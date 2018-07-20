@@ -72,6 +72,7 @@
     <Build Include="Core\Functions\decryptData.sql" />
     <Build Include="Core\Functions\encryptData.sql" />
     <Build Include="Core\Tables\trMapUserRole.sql" />
+    <Build Include="Core\Tables\trNavigation.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
