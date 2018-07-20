@@ -1,9 +1,9 @@
 {
-  "name": "isuitepro",
+  "name": "goidentity",
   "version": "1.0.0",
-  "description": "iSuitePro",
+  "description": "goidentity",
   "author": "",
-  "url": "https://iSuitePro.com",
+  "url": "https://goidentity.in",
   "copyright": "Copyright 2018",
   "license": "iSuite",
   "angular-cli": {},

@@ -46,7 +46,6 @@ BEGIN
 		INSERT INTO @claims (ClaimType, ClaimValue) VALUES('AuthenticationMethod', 'iSuitePro');
 
 		INSERT INTO @claims (ClaimType, ClaimValue) values('UserId', @userId);
-		INSERT INTO @claims (ClaimType, ClaimValue) values('EmployeeId', @userId);
 		INSERT INTO @claims (ClaimType, ClaimValue) values('UserName', @userName);
 
 		

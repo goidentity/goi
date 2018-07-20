@@ -37,9 +37,9 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
                     .AddParm("@appKey", SqlDbType.VarChar, userLoginLog.AppKey)
                 ).ToList();
 
-            if (result.Any(r => r.ClaimType == "userId"))
+            if (result.Any(r => r.ClaimType == "UserId"))
             {
-                var userId = int.Parse(result.First(r => r.ClaimType == "userId").ClaimValue);
+                var userId = int.Parse(result.First(r => r.ClaimType == "UserId").ClaimValue);
                 user = primaryDbContext.Users.First(emp => emp.UserId == userId);
             }
 

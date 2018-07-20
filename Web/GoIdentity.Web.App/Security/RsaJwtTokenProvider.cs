@@ -54,11 +54,11 @@ namespace GoIdentity.Web.Security
                 RemoteIPAddress = (httpContextAccessor.HttpContext.Connection.RemoteIpAddress != null) ? httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString() : "Not exists"
             };
 
-            var claims = userBusinessAccess.ValidateUser(userLoginLog, out var employee);
+            var claims = userBusinessAccess.ValidateUser(userLoginLog, user: out var user);
 
             if (claims != null && claims.Count > 0 && claims.Any(c => c.ClaimType == "Status" && c.ClaimValue == "Success"))
             {
-                ClaimsIdentity identity = new ClaimsIdentity(new GenericIdentity(employee.EmployeeNumber, "jwt"));
+                ClaimsIdentity identity = new ClaimsIdentity(new GenericIdentity(user.UserName, "jwt"));
                 identity.AddClaims(claims.Where(c => c.ClaimType != "Status").Select(c => new System.Security.Claims.Claim(c.ClaimType, c.ClaimValue)).ToList());
                 SecurityToken token = tokenHandler.CreateJwtSecurityToken(new SecurityTokenDescriptor
                 {
@@ -74,9 +74,7 @@ namespace GoIdentity.Web.Security
                     access_token = tokenHandler.WriteToken(token),
                     expires_in = 3600,
 
-                    EmployeeId = claims.Any(c => c.ClaimType == "EmployeeId") ? int.Parse(claims.First(c => c.ClaimType == "EmployeeId").ClaimValue) : 0,
-                    UserId = claims.Any(c => c.ClaimType == "UserId") ? int.Parse(claims.First(c => c.ClaimType == "UserId").ClaimValue) : 0,
-                    OrganizationId = claims.Any(c => c.ClaimType == "OrganizationId") ? int.Parse(claims.First(c => c.ClaimType == "OrganizationId").ClaimValue) : 0
+                    UserId = claims.Any(c => c.ClaimType == "UserId") ? int.Parse(claims.First(c => c.ClaimType == "UserId").ClaimValue) : 0
                 };
             }
             else

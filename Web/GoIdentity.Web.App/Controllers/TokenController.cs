@@ -1,4 +1,5 @@
 ﻿using GoIdentity.Entities.Core;
+using GoIdentity.Web.App;
 using GoIdentity.Web.Security;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ using System.Linq;
 namespace GoIdentity.Web.Controllers
 {
     [Route("api/[controller]")]
+    [GoIdentityExceptionFilter]
     public class TokenController : BaseController
     {
         private ITokenProvider _tokenProvider;
