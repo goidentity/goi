@@ -39,7 +39,7 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
 
                 foreach (var navigationGroup in module.ChildItems)
                 {
-                    navigationGroup.ChildItems = navigationItemsList.Where(r => r.ParentNavigationId == navigationGroup.NavigationId && r.IsActive == true).OrderBy(r => r.SortId).ToList();
+                    navigationGroup.ChildItems = navigationItemsList.Where(r => r.ParentNavigationId == navigationGroup.NavigationId).OrderBy(r => r.SortId).ToList();
                     if (navigationGroup.ChildItems.Count > 0) navigationGroup.hasChildren = true;
                 }
             }

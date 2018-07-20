@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\BusinessProfile.cs" />
+    <Compile Include="Core\Navigation.cs" />
     <Compile Include="Core\User.cs" />
     <Compile Include="Core\UserContext.cs" />
     <Compile Include="Core\UserProfile.cs" />
