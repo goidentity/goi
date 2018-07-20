@@ -23,12 +23,9 @@ namespace GoIdentity.Web.App
             Configuration = builder.Build();
 
             ConnectionStrings.COMMON_CONNECTION_STRING = Configuration.GetSection("Data")["ErpCommonConnectionString:ConnectionString"];
-            ConnectionStrings.SERVER_NAME = Configuration.GetSection("AppSettings")["ServerName"];
-            ConnectionStrings.SERVER_CREDENTIALS = Configuration.GetSection("AppSettings")["ServerCredentials"];
             ConnectionStrings.COMMAND_TIMEOUT = int.Parse(Configuration.GetSection("AppSettings")["CommandTimeout"]);
 
             ConnectionStrings.REPORTS_OUTPUT_PATH = Configuration.GetSection("AppSettings")["ReportsOutputPath"];
-            ConnectionStrings.QtBinaries_PATH = Configuration.GetSection("AppSettings")["SyncfusionQtBinaries"];
             ConnectionStrings.DOCS_PATH = Configuration.GetSection("AppSettings")["DocsPath"];
 
             ConnectionStrings.GOOGLE_AUTH_SECRET_KEY = Configuration.GetSection("AppSettings")["GoogleAuthSecretKey"];

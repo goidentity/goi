@@ -61,10 +61,19 @@
     <Folder Include="dbo" />
     <Folder Include="Security" />
     <Folder Include="Core\Tables" />
+    <Folder Include="Core\Stored Procedures" />
+    <Folder Include="Core\Functions" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Core\Tables\trUser.sql" />
     <Build Include="Security\Core.sql" />
     <Build Include="Core\Tables\dmnRole.sql" />
+    <Build Include="Core\Stored Procedures\validateUserCredentials.sql" />
+    <Build Include="Core\Functions\decryptData.sql" />
+    <Build Include="Core\Functions\encryptData.sql" />
+    <Build Include="Core\Tables\trMapUserRole.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>
