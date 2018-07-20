@@ -27,8 +27,8 @@
                         <div class="ipro-module-menu dropdown-menu-lg">
                             <div class="ipro-modules-items" *ngFor='let module of modulesList; let i=index'>
                                 <a href="#" class="dropdown-item ipro-module-icon handsimble" (click)="onModuleClick(module.NavigationId)">
-                                    <i class="fa {{module.ImagePath}} hidden-xs-down" aria-hidden="true" [style.color]="colors[i]"></i>
-                                    <div class="mb-q"><i class="fa {{module.ImagePath}} hidden-sm-up" aria-hidden="true" [style.color]="colors[i]"></i>&nbsp;{{module.Title}}</div>
+                                    <i class="fa {{module.ImagePath}} hidden-xs-down" aria-hidden="true"></i>
+                                    <div class="mb-q"><i class="fa {{module.ImagePath}} hidden-sm-up" aria-hidden="true" ></i>&nbsp;{{module.Title}}</div>
                                 </a>
                             </div>
                         </div>

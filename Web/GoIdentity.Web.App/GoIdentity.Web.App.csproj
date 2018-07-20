@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="ServiceEntities\" />
-    <Folder Include="src\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

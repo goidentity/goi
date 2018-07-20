@@ -13,6 +13,21 @@ namespace GoIdentity.Web.Controllers
     [GoIdentityExceptionFilter]
     public class UserApiController : BaseController
     {
+        private IUserBusinessAccess userBusinessAccess = default(IUserBusinessAccess);
 
+        public UserApiController(UserContext userContext, IUserBusinessAccess userBusinessAccess) 
+        {
+            this.userContext = userContext;
+            this.userBusinessAccess = userBusinessAccess;
+        }
+
+        [Route("[action]")]
+        [HttpGet]
+        public IActionResult GetNavigationItems()
+        {
+            var loggedInUserId = this.LoggedInUserId;
+            return Ok(this.userBusinessAccess.GetNavigationItems(loggedInUserId));
+        }
+        
     }
 }
