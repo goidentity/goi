@@ -150,11 +150,11 @@ export class FullLayoutComponent extends BaseComponent implements OnInit, AfterV
 
     onModuleClick(navigationId: number) {
         debugger;
-        var selectedGuid: string = "";
+        var selectedGuid: number = 0;
 
         this.navigationItemsList = this.modulesList.filter(f => f.NavigationId == navigationId);
         if (this.navigationItemsList.length > 0) {
-            selectedGuid = this.navigationItemsList[0].NavigationUid.toUpperCase();
+            selectedGuid = this.navigationItemsList[0].NavigationId;
         }
 
         document.querySelector('body').classList.add('sidebar-mobile-show');
