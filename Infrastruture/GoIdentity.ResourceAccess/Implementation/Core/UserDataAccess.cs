@@ -45,5 +45,26 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
 
             return result;
         }
+
+        public List<Navigation> GetNavigationItems(int? userId = null)
+        {
+            if (userId.HasValue)
+            {
+                var parmsCollection = new ParmsCollection();
+
+                var result = this.unitOfWork.GetIdentityDbContext().ExecuteStoredProcedure<Navigation>
+                                ("[Core].[getNavigationItemsByUserId]",
+                                    parmsCollection
+                                    .AddParm("@userId", SqlDbType.Int, userId)).ToList();
+
+                //TODO: check this
+                return result.ToList();
+            }
+            else
+            {
+                return this.unitOfWork.GetIdentityDbContext().Navigations.ToList();
+            }
+        }
+
     }
 }

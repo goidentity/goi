@@ -1,4 +1,5 @@
-﻿using GoIdentity.Entities.Core;
+﻿using System.Linq;
+using GoIdentity.Entities.Core;
 using GoIdentity.Entities.Security;
 using GoIdentity.ResourceAccess.Contracts.Core;
 using GoIdentity.BusinessAccess.Contracts.Core;
@@ -20,6 +21,30 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
         {
             //userLoginLog.Password = EncryptionManager.Encrypt(userLoginLog.Password);
             return this.userDataAccess.ValidateUser(userLoginLog, out user);
+        }
+
+        public List<Navigation> GetNavigationItems(int? userId = null)
+        {
+            return this.ToModuleFormat(this.userDataAccess.GetNavigationItems(userId));
+        }
+
+        private List<Navigation> ToModuleFormat(List<Navigation> navigationItemsList)
+        {
+            var modules = navigationItemsList.Where(n => n.ParentNavigationId == null).OrderBy(n => n.SortId).ToList();
+
+            foreach (var module in modules)
+            {
+                module.ChildItems = navigationItemsList.Where(r => r.ParentNavigationId == module.NavigationId).OrderBy(r => r.SortId).ToList();
+                if (module.ChildItems.Count > 0) module.hasChildren = true;
+
+                foreach (var navigationGroup in module.ChildItems)
+                {
+                    navigationGroup.ChildItems = navigationItemsList.Where(r => r.ParentNavigationId == navigationGroup.NavigationId && r.IsActive == true).OrderBy(r => r.SortId).ToList();
+                    if (navigationGroup.ChildItems.Count > 0) navigationGroup.hasChildren = true;
+                }
+            }
+
+            return modules;
         }
     }
 }

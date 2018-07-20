@@ -10,5 +10,6 @@ namespace GoIdentity.BusinessAccess.Contracts.Core
     public interface IUserBusinessAccess
     {
         List<Claim> ValidateUser(UserLoginLog userLoginLog, out User user);
+        List<Navigation> GetNavigationItems(int? userId = null);
     }
 }
