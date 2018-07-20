@@ -1,0 +1,154 @@
+
+<header class="app-header navbar" [style.background-color]="color">
+    <ul class="nav navbar-nav hidden-md-down">
+        <li class="nav-item">
+            <a class="nav-link navbar-toggler sidebar-toggler" href="#">&#9776;</a>
+        </li>
+    </ul>
+    <button class="navbar-toggler mobile-sidebar-toggler hidden-lg-up" type="button">&#9776;</button>
+    <a class="navbar-brand" href="#" [style.background-color]="color" *ngIf="client">
+        {{client.ProductName}}
+    </a>
+
+    <form class="form-inline ipro-search-form b-r-1 px-1 hidden-md-down">
+        <i class="fa fa-search"></i>
+        <input class="form-control ipro-search-top" placeholder="Search..." type="text">
+    </form>
+
+    <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item">
+
+            <div class="ipro-MenuIcons btn-group" dropdown>
+                <span dropdownToggle class="dropdown-toggle dropdown-menu-right">
+                    <i class="fa fa-th handsimble" aria-hidden="true"></i>
+                </span>
+                <ul *dropdownMenu class="dropdown-menu" role="menu">
+                    <li role="menuitem">
+                        <div class="ipro-module-menu dropdown-menu-lg">
+                            <div class="ipro-modules-items" *ngFor='let module of modulesList; let i=index'>
+                                <a href="#" class="dropdown-item ipro-module-icon handsimble" (click)="onModuleClick(module.NavigationId)">
+                                    <i class="fa {{module.ImagePath}} hidden-xs-down" aria-hidden="true" [style.color]="colors[i]"></i>
+                                    <div class="mb-q"><i class="fa {{module.ImagePath}} hidden-sm-up" aria-hidden="true" [style.color]="colors[i]"></i>&nbsp;{{module.Title}}</div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="ipro-MenuIcons btn-group dropdown-menu-right" dropdown>
+                <span dropdownToggle class="dropdown-toggle">
+                    <i class="fa fa-cog handsimble" aria-hidden="true"></i>
+                </span>
+                <ul *dropdownMenu class="dropdown-menu" role="menu">
+                    <li role="menuitem">
+                        <div class="ipro-module-menu dropdown-menu-lg">
+
+                            <div class="ipro-modules-items-color" *ngFor='let color of colorSet; let i=index'>
+                                <a href="#" class="dropdown-item" (click)="setColour(color,i)">
+
+                                    <div class="mb-q" style="width:30px; height:30px; border-radius:100%;" [style.background-color]="color">&nbsp;</div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="ipro-MenuIcons btn-group dropdown-menu-right  dropdown-menu-login" dropdown>
+                <span dropdownToggle class="dropdown-toggleclass nav-link nav-pill avatar">
+                    <img src="assets/img/avatars/6.jpg" class="img-avatar handsimble">
+                </span>
+                <ul *dropdownMenu class="dropdown-menu" role="menu">
+                    <li role="menuitem">
+                        <div class="ipro-module-menu dropdown-menu-lg dropdown-menu-xs">
+                            <div class="ipro-module-menu-body">
+                                <div class="ipro-module-profile hidden-xs-down">
+                                    <img class="img-avatar" src="assets/img/avatars/5.jpg">
+                                </div>
+                                <div class="ipro-module-right">
+                                    <div class="ipro-module-settings">
+                                        <a href="javascript:void(0)" (click)="onSettingClick()"><i aria-hidden="true" class="fa fa-cog"></i></a>
+                                    </div>
+                                    <div class="ipro-module-profile-name ">
+                                        <div class="ipro-login-name">{{loggedInUser}}</div>
+                                        <div class="ipro-login-as">Organization: <span> {{logedinOrganztion}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ipro-module-menu-footer">
+                                <a class="btn ipro-module-btn pull-left" href="javascript:void()" (click)="onChangeOrganization()"> Change <span class="hidden-xs-down">Organization</span><span class="hidden-sm-up">Org</span></a>
+                                <a class="btn ipro-module-btn pull-right" href="javascript:void()" (click)="onSignout()" tooltip="Sign out">Logout</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</header>
+
+<div class="app-body" id="{{themepanel}}">
+    <div class="sidebar" [style.background-color]="color1" [style.color]="colortxt">
+        <nav class="sidebar-nav">
+            <ul class="nav" *ngFor='let navigationItem of navigationItemsList'>
+                <li class="nav-item nav-dropdown" *ngFor="let navigationChildItem of navigationItem.ChildItems" routerLinkActive="open">
+                    <a *ngIf="navigationChildItem.ChildItems.length>0" class="nav-link navheaderItem" [style.color]="colortxt" href="#" attr.title="{{navigationChildItem.Title}}">
+                        <i class="fa {{navigationChildItem.ImagePath}}" [style.color]="colortxt"></i> {{navigationChildItem.Title}}
+                    </a>
+                    <ul class="nav-dropdown-items" *ngFor="let navigationSubChildItem of navigationChildItem.ChildItems; let i=index">
+                        <li class="nav-item mobile-sidebar-toggler">
+                            <a class="nav-link" routerLinkActive="active" [routerLink]="navigationSubChildItem.NavigationPath" attr.title="{{navigationSubChildItem.Title}}" (click)="getNavigationTitle(navigationSubChildItem.Title)" [style.color]="colortxt">
+                                <i class="fa {{navigationSubChildItem.ImagePath}}" [style.color]="colortxt"></i> {{navigationSubChildItem.Title}}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main content -->
+    <main class="main" id="main" (scroll)="onWindowScroll($event)">
+        <!-- Breadcrumb -->
+
+        <div class="breadcrumb-main">
+            <ul class="breadcrumb-header "><li>{{breadcrumbsTitle}}</li></ul>
+
+            <ol class="breadcrumb">
+                <breadcrumbs>0</breadcrumbs>
+            </ol>
+        </div>
+
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+        <!-- /.conainer-fluid -->
+
+    </main>
+</div>
+
+
+<footer class="app-footer">
+    <a href="#">{{logedinOrganztion}}</a>
+    <span class="float-right" *ngIf="client">
+        Powered by <a href="{{client.ProductUrl}}" target="_blank">{{client.ProductName}}</a> &copy; 2018.
+    </span>
+</footer>
+
+<div *ngIf="OpenDialogStatus">
+    <kendo-dialog [minWidth]="250" [width]="450" title="Select Organization" (close)="closeDialog()">
+
+        <kendo-grid [resizable]="true" [data]="organizations" style="width:500px;">
+            <kendo-grid-column field="Title" width="120" title="Organization">
+            </kendo-grid-column>
+
+            <kendo-grid-column field="OrganizationId" width="120" title="Switch Organization">
+                <ng-template kendoGridCellTemplate let-mapUserOrganization>
+                    <span class="handsimble" (click)="onSwitchOrganization(mapUserOrganization)"><i class="fa fa-share-square" aria-hidden="true"></i></span>
+                </ng-template>
+            </kendo-grid-column>
+        </kendo-grid>
+
+    </kendo-dialog>
+</div>
+
