@@ -18839,8 +18839,12 @@ select.form-control {
     height: 35px !important;
     font-size: 20px !important;
 }
-.pad-l-10{
-    padding-left:10px;
+.md-text {
+    height: 25px !important;
+    font-size: 15px !important;
+}
+.pad-l-10 {
+    padding-left: 10px;
 }
 .pad-r-5{
     padding-right:5px;
