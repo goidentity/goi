@@ -63,6 +63,7 @@
     <Folder Include="Core\Tables" />
     <Folder Include="Core\Stored Procedures" />
     <Folder Include="Core\Functions" />
+    <Folder Include="Core\Views" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Core\Tables\trUser.sql" />
@@ -83,6 +84,7 @@
     <Build Include="Core\Stored Procedures\createUserProfile.sql" />
     <Build Include="Core\Stored Procedures\getUserProfile.sql" />
     <Build Include="Core\Stored Procedures\updateUserProfile.sql" />
+    <Build Include="Core\Views\vUserScore.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
