@@ -28,6 +28,11 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
             return this.ToModuleFormat(this.userDataAccess.GetNavigationItems(userId));
         }
 
+        public UserProfile GetUserProfile(int? userId = null)
+        {
+            return this.ToModuleFormat(this.userDataAccess.GetNavigationItems(userId));
+        }
+
         private List<Navigation> ToModuleFormat(List<Navigation> navigationItemsList)
         {
             var modules = navigationItemsList.Where(n => n.ParentNavigationId == null).OrderBy(n => n.SortId).ToList();

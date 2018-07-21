@@ -66,5 +66,28 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
             }
         }
 
+        public UserProfile GetUserProfile(int? userId = null)
+        {
+            if (userId.HasValue)
+            {
+                var result = this.unitOfWork.GetIdentityDbContext().ExecuteQuery
+                                ("Select * from [Core].[UserProfile] where UserId=" + @userId);
+
+                return result;
+            }
+            else
+            {
+                return this.unitOfWork.GetIdentityDbContext().UserProfile;
+            }
+        }
+        public int CreateUserProfile(UserProfile userProfile)
+        {
+
+        }
+        public int UpdateUserProfile(int? userId = null)
+        {
+
+        }
+
     }
 }
