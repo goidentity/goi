@@ -11,10 +11,10 @@ namespace GoIdentity.Entities.Core
         [Key]
         public int IndustryId { get; set; }
         public string Industry { get; set; }
-        public double IndustryWeightage { get; set; }
+        public decimal IndustryWeightage { get; set; }
         public int CategoryId { get; set; }
         public string Category { get; set; }
         public int UserId { get; set; }
-        public double Score { get; set; }
+        public decimal Score { get; set; }
     }
 }

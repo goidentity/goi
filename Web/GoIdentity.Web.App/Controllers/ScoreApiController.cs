@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GoIdentity.BusinessAccess.Contracts.Core;
+using GoIdentity.Entities.Core;
 using GoIdentity.Web.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -16,8 +17,10 @@ namespace GoIdentity.Web.App.Controllers
     public class ScoreApiController : BaseController
     {
         private readonly IScoreBusinessAccess _scoreBusinessAccess;
-        public ScoreApiController(IScoreBusinessAccess scoreBusinessAccess)
+
+        public ScoreApiController(UserContext userContext, IScoreBusinessAccess scoreBusinessAccess)
         {
+            this.userContext = userContext;
             _scoreBusinessAccess = scoreBusinessAccess;
         }
 

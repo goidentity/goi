@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Inject, Input, OnDestroy, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Subscription ,  Observable } from 'rxjs';
@@ -7,12 +7,13 @@ import { ToasterService } from "angular2-toaster";
 import { AuthenticationService } from '../services/authentication.service';
 import { Broadcaster, MessageEvent } from '../models/utilities/broadcaster';
 import { BaseComponent } from '../shared/base-component';
+import { ScoreService } from '../services/score.service';
 
 @Component({
     templateUrl: './dashboard.component.html',
-    providers: []
+    providers: [ScoreService]
 })
-export class DashboardComponent extends BaseComponent implements OnInit {
+export class DashboardComponent extends BaseComponent implements OnInit, AfterViewInit {
     public router: Router;
     public OpenPanelDialogStatus: boolean;
     public dataSetsGridView: Array<any>; 
@@ -22,6 +23,8 @@ export class DashboardComponent extends BaseComponent implements OnInit {
         public authenticationService: AuthenticationService,
         public messageEvent: MessageEvent,
 
+        public scoreService: ScoreService,
+
         private routerObj: Router) {
         super(toasterService, authenticationService, messageEvent);
         this.router = routerObj;
@@ -29,11 +32,17 @@ export class DashboardComponent extends BaseComponent implements OnInit {
 
     ngOnInit() {
         
-        this.getReportData();
     }
-    private getReportData(): void {
-        
+
+    private scoreData: any[];
+
+    ngAfterViewInit() {
+        this.scoreService.getLatestScoreByUserId(Number.parseInt(localStorage.getItem('UserId'))).subscribe(data => {
+            this.scoreData = data;
+            console.log(this.scoreData);
+        });
     }
+
     sourceList: Widget[] = [
         new Widget('onebyone'),
         new Widget('twobytwo'),

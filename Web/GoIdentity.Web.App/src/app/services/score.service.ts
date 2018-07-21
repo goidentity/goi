@@ -13,7 +13,7 @@ import { AccessControl, vAccessControl } from '../models/domain/accesscontrol-en
 import { Role, MapUserRole, vMapUserRole } from '../models/domain/role-entities';
 
 @Injectable()
-export class UserService extends BaseService {
+export class ScoreService extends BaseService {
     public baseServiceUrl: string;
 
     constructor(public authHttp: HttpClient,

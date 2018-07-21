@@ -24,5 +24,5 @@
 	[CreatedDate] DATETIME NOT NULL, 
     [ModifiedBy] INT NOT NULL, 
     [ModifiedDate] DATETIME NOT NULL, 
-    [AccountType] INT NULL
+    [AccountType] INT NULL DEFAULT 1
 )
