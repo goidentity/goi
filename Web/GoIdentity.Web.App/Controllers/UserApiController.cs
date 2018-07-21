@@ -46,6 +46,7 @@ namespace GoIdentity.Web.Controllers
 
             return Ok(userBusinessAccess.Register(user, registerViewModel.Password));
         }
+
         [Route("[action]")]
         [HttpGet]
         public IActionResult GetUserProfile()
@@ -53,8 +54,10 @@ namespace GoIdentity.Web.Controllers
             var loggedInUserId = this.LoggedInUserId;
             return Ok(this.userBusinessAccess.GetUserProfile(loggedInUserId));
         }
+
         [HttpPost]
         [Route("[action]")]
+        [AllowAnonymous]
         public int CreateUserProfile([FromBody]UserProfileViewModel userProfileViewmodel)
         {
             var loggedInUserId = this.LoggedInUserId;
@@ -71,8 +74,10 @@ namespace GoIdentity.Web.Controllers
 
             return userBusinessAccess.CreateUserProfile(userProfile);
         }
+
         [HttpPost]
         [Route("[action]")]
+        [AllowAnonymous]
         public int UpdateUserProfile([FromBody]UserProfileViewModel userProfileViewmodel)
         {
             var loggedInUserId = this.LoggedInUserId;
@@ -92,6 +97,7 @@ namespace GoIdentity.Web.Controllers
 
         [Route("[action]")]
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult ForgotPassword(string userName)
         {
             return Ok(true);
