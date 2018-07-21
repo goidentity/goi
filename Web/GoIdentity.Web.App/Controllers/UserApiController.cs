@@ -14,21 +14,6 @@ namespace GoIdentity.Web.Controllers
     [GoIdentityExceptionFilter]
     public class UserApiController : BaseController
     {
-        private readonly IUserBusinessAccess _userBusinessAccess;
-        public UserApiController(IUserBusinessAccess userBusinessAccess)
-        {
-            _userBusinessAccess = userBusinessAccess;
-        }
-        [HttpPost]
-        [Route("[action]")]
-        public User Register([FromBody]RegisterViewModel registerViewModel)
-        {
-            var user = new User()
-            {
-                FirstName = registerViewModel.FirstName,
-                LastName = registerViewModel.LastName,
-                Email = registerViewModel.EmailId,
-                MobileNumber = registerViewModel.MobileNumber,
         private IUserBusinessAccess userBusinessAccess = default(IUserBusinessAccess);
 
         public UserApiController(UserContext userContext, IUserBusinessAccess userBusinessAccess) 
@@ -44,10 +29,20 @@ namespace GoIdentity.Web.Controllers
             var loggedInUserId = this.LoggedInUserId;
             return Ok(this.userBusinessAccess.GetNavigationItems(loggedInUserId));
         }
+        [HttpPost]
+        [Route("[action]")]
+        public User Register([FromBody]RegisterViewModel registerViewModel)
+        {
+            var user = new User()
+            {
+                FirstName = registerViewModel.FirstName,
+                LastName = registerViewModel.LastName,
+                Email = registerViewModel.EmailId,
+                MobileNumber = registerViewModel.MobileNumber,
                 AccountType = AccountType.Individual
             };
-        
-            return _userBusinessAccess.Register(user, registerViewModel.Password);
+
+            return userBusinessAccess.Register(user, registerViewModel.Password);
         }
     }
 }
