@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Core\IScoreBusinessAccess.cs" />
     <Compile Include="Contracts\Core\IUserBusinessAccess.cs" />
+    <Compile Include="Implementation\Core\ScoreBusinessAccess.cs" />
     <Compile Include="Implementation\Core\UserBusinessAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

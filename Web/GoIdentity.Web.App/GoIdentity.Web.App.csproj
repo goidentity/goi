@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ServiceEntities\" />
+    <Compile Remove="ServiceEntities\**" />
+    <Content Remove="ServiceEntities\**" />
+    <EmbeddedResource Remove="ServiceEntities\**" />
+    <None Remove="ServiceEntities\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
