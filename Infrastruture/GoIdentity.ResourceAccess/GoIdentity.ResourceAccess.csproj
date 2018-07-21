@@ -50,10 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Core\IScoreDataAccess.cs" />
     <Compile Include="Contracts\Core\IUserDataAccess.cs" />
     <Compile Include="DataColumnCollection.cs" />
     <Compile Include="DbContextExtensions.cs" />
     <Compile Include="IdentityDbContext.cs" />
+    <Compile Include="Implementation\Core\ScoreDataAccess.cs" />
     <Compile Include="Implementation\Core\UserDataAccess.cs" />
     <Compile Include="Implementation\DataAccess.cs" />
     <Compile Include="IUnitOfWork.cs" />
