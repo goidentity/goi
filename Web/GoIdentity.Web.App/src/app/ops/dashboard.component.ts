@@ -34,7 +34,7 @@ export class DashboardComponent extends BaseComponent implements OnInit, AfterVi
         
     }
 
-    private scoreData: any[];
+    public scoreData: any[];
 
     ngAfterViewInit() {
         this.scoreService.getLatestScoreByUserId(Number.parseInt(localStorage.getItem('UserId'))).subscribe(data => {

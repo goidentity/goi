@@ -5,7 +5,7 @@ import { LoginComponent } from "./login.component";
 import { ChangePasswordComponent } from "./changepassword.Component";
 import { p500Component } from "./500.component";
 import { p404Component } from "./404.component";
-import { ForgotPasswordComponent } from "./forgot.Component";
+import { ForgotPasswordComponent } from "./forgot-password.component";
 import { RegisterComponent } from "./register.component";
 
 export const SettingsRoutes: Routes = [

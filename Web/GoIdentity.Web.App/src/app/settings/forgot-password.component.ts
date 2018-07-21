@@ -18,7 +18,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { Broadcaster, MessageEvent } from '../models/utilities/broadcaster';
 
 @Component({
-    templateUrl: './forgot.component.html',
+    templateUrl: './forgot-password.component.html',
     providers: []
 })
 export class ForgotPasswordComponent extends BaseComponent implements OnInit {

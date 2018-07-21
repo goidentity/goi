@@ -16,7 +16,7 @@ import { RippleModule } from '@progress/kendo-angular-ripple';
 
 import { LoginComponent } from "./login.component";
 import { RegisterComponent } from "./register.component";
-import { ForgotPasswordComponent } from "./forgot.component";
+import { ForgotPasswordComponent } from "./forgot-password.component";
 import { p404Component } from "./404.component";
 import { p500Component } from "./500.component";
 import { ChangePasswordComponent } from "./changepassword.Component";
