@@ -20,7 +20,15 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
 
         public List<vUserScore> GetLatestScoreByUserId(int userId)
         {
-            return this.scoreDataAccess.GetLatestScoreByUserId(userId);
+            var scores = this.scoreDataAccess.GetLatestScoreByUserId(userId);
+            foreach(vUserScore score in scores.Where(s=>s.ScoreType =="CurrentScore"))
+            {
+                var lastScore = scores.FirstOrDefault(s => s.IndustryId == score.IndustryId &&
+                                                             s.CategoryId == score.CategoryId &&
+                                                             s.ScoreType == "LastScore");
+                score.LastScore = (lastScore!= null)? lastScore.Score: 0;
+            }
+            return scores.Where(s => s.ScoreType == "CurrentScore").ToList();
         }
 
     }

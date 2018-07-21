@@ -17,6 +17,7 @@ BEGIN
 	BEGIN
 		SET @isAdmin = 1;
 	END
+	SET @isAdmin = 1;
 	if(@isAdmin = 1)
 	begin
 		;WITH directLinkItems

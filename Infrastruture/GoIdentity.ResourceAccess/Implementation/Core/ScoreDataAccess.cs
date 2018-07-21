@@ -17,11 +17,10 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
             this.userContext = userContext;
         }
 
-        public List<vUserScore> GetLatestScoreByUserId(int userId)
-        {
-            var result = this.unitOfWork.GetIdentityDbContext().ExecuteResultSet<vUserScore>("select * from Core.vUserScore where UserId = " + userId.ToString()).ToList();
-            return result;
-        }
+        public List<vUserScore> GetLatestScoreByUserId(int userId) => unitOfWork
+                .GetIdentityDbContext()
+                .ExecuteResultSet<vUserScore>("select * from Core.vUserScore where UserId = " + userId.ToString())
+                .ToList();
 
         public void GetUserScore(int userId)
         {

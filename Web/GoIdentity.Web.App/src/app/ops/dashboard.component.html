@@ -1,23 +1,39 @@
-<table *ngFor="let industry of scoreData">
+<table style="padding-top:25px">
     <tr>
         <th>
-            {{industry.Industry}}
+            Score | Last Score
+        </th>
+        <td>
+            {{finalScore}} | {{finalLastScore}}
+        </td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>Positive Score | Last Score</th>
+        <th>Neutral Score | Last Score</th>
+        <th>Negative Score | Last Score</th>
+    </tr>
+    <tr>
+        <td>{{positiveScore}} | {{positiveLastScore}}</td>
+        <td>{{neutralScore}} | {{neutralLastScore}}</td>
+        <td>{{negativeScore}} | {{negativeLastScore}}</td>
+    </tr>
+</table>
+<table >
+    <tr>
+        <th *ngFor="let category of scoreData">
+            {{category.key}}
         </th>
     </tr>
     <tr>
-        <td>
-            <table>
-                <tr >
-                    <th *ngFor="let score of industry.data">
-                        {{score.Category}}
-                    </th>
-                </tr>
-                <tr>
-                    <td *ngFor="let score of industry.data">
-                        {{score.Score}}
-                    </td>
-                </tr>
-            </table>
+        <td *ngFor="let category of scoreData">
+            {{category.score}}
+        </td>
+    </tr>
+    <tr>
+        <td *ngFor="let category of scoreData">
+            {{category.lastScore}}
         </td>
     </tr>
 </table>

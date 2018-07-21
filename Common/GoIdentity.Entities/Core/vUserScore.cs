@@ -14,5 +14,7 @@ namespace GoIdentity.Entities.Core
         public string Category { get; set; }
         public int UserId { get; set; }
         public decimal Score { get; set; }
+        public decimal LastScore { get; set; }
+        public string ScoreType { get; set; }
     }
 }

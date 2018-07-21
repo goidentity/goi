@@ -1,13 +1,14 @@
 import { Component, OnInit, Inject, Input, OnDestroy, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { Subscription ,  Observable } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 import { ToasterService } from "angular2-toaster";
 import { AuthenticationService } from '../services/authentication.service';
 import { Broadcaster, MessageEvent } from '../models/utilities/broadcaster';
 import { BaseComponent } from '../shared/base-component';
 import { ScoreService } from '../services/score.service';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
     templateUrl: './dashboard.component.html',
@@ -16,7 +17,7 @@ import { ScoreService } from '../services/score.service';
 export class DashboardComponent extends BaseComponent implements OnInit, AfterViewInit {
     public router: Router;
     public OpenPanelDialogStatus: boolean;
-    public dataSetsGridView: Array<any>; 
+    public dataSetsGridView: Array<any>;
 
     constructor(
         public toasterService: ToasterService,
@@ -31,29 +32,65 @@ export class DashboardComponent extends BaseComponent implements OnInit, AfterVi
     }
 
     ngOnInit() {
-        
+
     }
 
     public scoreData: any[];
+    public positiveScore: number = 0;
+    public negativeScore: number = 0;
+    public neutralScore: number = 0;
+
+    public positiveLastScore: number = 0;
+    public negativeLastScore: number = 0;
+    public neutralLastScore: number = 0;
+
+    public finalScore: number = 0;
+    public finalLastScore: number = 0;
 
     ngAfterViewInit() {
         this.scoreService.getLatestScoreByUserId(Number.parseInt(localStorage.getItem('UserId'))).subscribe(data => {
+            let hasMoreIndustries = 0;
             this.scoreData = [];
-            var row = { Industry: '', Weightage: 0, data: [] as any[] };
-            var fullLength = data.length;
-
+            //find if more industries
             data.forEach((d, i) => {
-                var nextEntry = (i+1 > fullLength-1) ? '': data[i + 1].Industry;
-                if (nextEntry != d.Industry) {
-                    row.Industry = d.Industry;
-                    row.Weightage = d.IndustryWeightage;
-                    this.scoreData.push(row);
-                    //re initiate
-                    row = { Industry: d.Industry, Weightage: d.IndustryWeightage, data: [] };
-                }
-                row.data.push({ Category: d.Category, Score: d.Score });
+                var nextEntry = (i + 1 > data.length - 1) ? '' : data[i + 1].Industry;
+                if (nextEntry !='' && d.Industry != nextEntry)
+                    hasMoreIndustries = 1;
             });
+            // process data
+            data.forEach((d, i) => {
+                
+                if (hasMoreIndustries == 1) {
+                    var cScore = 0;
+                    var lScore = 0;
+                    this.scoreData.forEach(s => {
+                        if (s.key == d.Category) {
+                            cScore = cScore + d.Score * d.IndustryWeightage;
+                            lScore = lScore + d.LastScore * d.IndustryWeightage;
+                        };
+                    })
+                    this.scoreData.push({ key: d.Category, score: cScore, lastScore: lScore });
+                    //calculate negative/positive score
+                    if (d.Score > 0) this.positiveScore = this.positiveScore + d.Score * d.IndustryWeightage;
+                    if (d.Score < 0) this.negativeScore = this.negativeScore + d.Score * d.IndustryWeightage;
+                    if (d.LastScore > 0) this.positiveScore = this.positiveLastScore + d.LastScore * d.IndustryWeightage;
+                    if (d.LastScore < 0) this.negativeScore = this.negativeLastScore + d.LastScore * d.IndustryWeightage;
+                    
+                }
+                else {
+                    this.scoreData.push({ key: d.Category, score: d.Score, lastScore: d.LastScore });
+                    if (d.Score > 0) this.positiveScore = this.positiveScore + d.Score ;
+                    if (d.Score < 0) this.negativeScore = this.negativeScore + d.Score ;
+                    if (d.LastScore > 0) this.positiveScore = this.positiveLastScore + d.LastScore;
+                    if (d.LastScore < 0) this.negativeScore = this.negativeLastScore + d.LastScore;
+                }
+                    
+            });
+            this.finalScore = this.positiveScore + this.negativeScore + this.neutralScore;
+            this.finalLastScore = this.positiveLastScore + this.negativeLastScore + this.neutralLastScore;
         });
+        
+        
     }
 
     sourceList: Widget[] = [
@@ -71,25 +108,25 @@ export class DashboardComponent extends BaseComponent implements OnInit, AfterVi
         this.targetList.push($event.dragData);
     }
     /* Init */
-    
+
 
     iproGridSettings() {
-      this.OpenPanelDialogStatus = true;
+        this.OpenPanelDialogStatus = true;
     }
 
 
     iproGridDelete(index: number) {
         debugger;
-        this.targetList.splice(index,1);        
-       
+        this.targetList.splice(index, 1);
+
     }
 
 
-     closePanel() {
-         this.OpenPanelDialogStatus = false;
-     }
+    closePanel() {
+        this.OpenPanelDialogStatus = false;
+    }
 
-    
+
 
 
 }

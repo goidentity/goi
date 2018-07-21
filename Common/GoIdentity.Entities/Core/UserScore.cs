@@ -13,5 +13,7 @@ namespace GoIdentity.Entities.Core
         public int Id { get; set; }
         public int ICMapId { get; set; }
         public decimal Score { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public Guid GroupId { get; set; }
     }
 }

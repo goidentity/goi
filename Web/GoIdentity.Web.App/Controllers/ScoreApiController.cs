@@ -26,10 +26,6 @@ namespace GoIdentity.Web.App.Controllers
 
         [Route("[action]/{userId:int}")]
         [HttpGet]
-        public IActionResult GetLatestScoreByUserId(int userId)
-        {
-            var result = _scoreBusinessAccess.GetLatestScoreByUserId(userId);
-            return Ok(result);
-        }        
+        public IActionResult GetLatestScoreByUserId(int userId) => Ok(_scoreBusinessAccess.GetLatestScoreByUserId(userId));
     }
 }
