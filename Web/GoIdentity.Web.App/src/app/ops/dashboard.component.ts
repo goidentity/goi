@@ -34,12 +34,25 @@ export class DashboardComponent extends BaseComponent implements OnInit, AfterVi
         
     }
 
-    private scoreData: any[];
+    public scoreData: any[];
 
     ngAfterViewInit() {
         this.scoreService.getLatestScoreByUserId(Number.parseInt(localStorage.getItem('UserId'))).subscribe(data => {
-            this.scoreData = data;
-            console.log(this.scoreData);
+            this.scoreData = [];
+            var row = { Industry: '', Weightage: 0, data: [] as any[] };
+            var fullLength = data.length;
+
+            data.forEach((d, i) => {
+                var nextEntry = (i+1 > fullLength-1) ? '': data[i + 1].Industry;
+                if (nextEntry != d.Industry) {
+                    row.Industry = d.Industry;
+                    row.Weightage = d.IndustryWeightage;
+                    this.scoreData.push(row);
+                    //re initiate
+                    row = { Industry: d.Industry, Weightage: d.IndustryWeightage, data: [] };
+                }
+                row.data.push({ Category: d.Category, Score: d.Score });
+            });
         });
     }
 

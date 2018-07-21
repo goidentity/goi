@@ -1,5 +1,23 @@
-<table *ngIf="scoreData">
+<table *ngFor="let industry of scoreData">
     <tr>
-
+        <th>
+            {{industry.Industry}}
+        </th>
+    </tr>
+    <tr>
+        <td>
+            <table>
+                <tr >
+                    <th *ngFor="let score of industry.data">
+                        {{score.Category}}
+                    </th>
+                </tr>
+                <tr>
+                    <td *ngFor="let score of industry.data">
+                        {{score.Score}}
+                    </td>
+                </tr>
+            </table>
+        </td>
     </tr>
 </table>

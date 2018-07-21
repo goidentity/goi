@@ -1,3 +1,4 @@
+<toaster-container></toaster-container>
 <div class="app flex-row align-items-center login-bg">
     <div class="container">
         <div class="row justify-content-center">
@@ -12,42 +13,59 @@
                         <div class="">
                             <a href="#" class="active pad-10">Login</a> |<a class="pad-10 active" href="#">Signup</a>
                         </div>
-                        <div class="card-body pad-l-10 pad-r-5">
-                            <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                                <div class="form-group ipro-form-grop-validation mb-4" [ngClass]="{'has-error has-danger': form.controls['uname'].hasError('required') && form.controls['uname'].touched}">
-                                    <div>
-                                        <input type="text" id="username" tabindex="1" class="form-control big-text" placeholder="Email / Phone number" [formControl]="form.controls['uname']" autofocus />
-                                    </div>
-                                    <div class="help-block ipro-valid-block with-errors" *ngIf="form.controls['uname'].hasError('required') && form.controls['uname'].touched">
-                                        Email / Phone number is required.
-                                    </div>
-                                </div>
 
-                                <div class="form-group ipro-form-grop-validation mb-4 no-m-b no-pad-b" [ngClass]="{'has-error has-danger':form.controls['password'].hasError('required') && form.controls['password'].touched}">
+                        <div class="card-body pad-l-10 pad-r-5 no-pad-b">
+                            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                                <div class="form-group row mb-4">
+                                    <div class="col-6">
+                                        <input type="text" id="firstname" tabindex="1" class="form-control md-text" placeholder="First name" [formControl]="form.controls['firstname']" autofocus />
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" id="lastname" tabindex="2" class="form-control md-text" placeholder="Last name" [formControl]="form.controls['lastname']" />
+                                    </div>
+                                </div>
+                                <div class="form-group mb-4">
                                     <div>
-                                        <input type="password" id="password" tabindex="2" class="form-control big-text" placeholder="Password" [formControl]="form.controls['password']">
-                                    </div>
-                                    <div class="help-block ipro-valid-block with-errors" *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched">
-                                        Password is required.
+                                        <input type="text" id="email" tabindex="3" class="form-control md-text" placeholder="Email" [formControl]="form.controls['email']" />
                                     </div>
                                 </div>
-                                <div class="alert ipro-alert ipro-alert-login alert-danger" role="alert" *ngIf="errorMsg">
-                                    {{errorMsg}}
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 text-right mb-4">
-                                        <button class="btn btn-link px-0 font-sm text-gray-dark no-pad" type="button">Forgot password</button>
+                                <div class="form-group mb-4">
+                                    <div>
+                                        <input type="text" id="mobile" tabindex="4" class="form-control md-text" placeholder="Mobile number" [formControl]="form.controls['mobile']" />
                                     </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-6">
+                                        <input type="password" id="password" tabindex="5" class="form-control md-text" placeholder="Password" [formControl]="form.controls['password']" />
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="password" id="confirmPassword" tabindex="6" class="form-control md-text" placeholder="Confirm password" [formControl]="form.controls['confirmPassword']" />
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-bottom:60px !important">
+
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
-                                        <button type="submit" class="btn btn-primary bg-goidentity-green text-white btn-pill btn-block px-4" primary="true"> Login</button>
+                                        <button type="submit" class="btn btn-primary bg-goidentity-green text-white btn-pill btn-block px-4" primary="true"> Rigister</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="button" class="btn-icon btn-i-default btn-pill" title="facebook">
+                                            <i class="fa fa-facebook-f"></i>
+                                        </button>
+                                        &nbsp;
+                                        <button type="button" class="btn-icon btn-i-default btn-pill" title="linkedIn">
+                                            <i class="fa fa-linkedin"></i>
+                                        </button>
+                                        &nbsp;
+                                        <button type="button" class="btn-icon btn-i-default btn-pill" title="twitter">
+                                            <i class="fa fa-twitter"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

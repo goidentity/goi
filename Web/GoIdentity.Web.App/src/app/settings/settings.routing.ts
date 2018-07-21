@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from "./login.component";
+import { ChangePasswordComponent } from "./changepassword.Component";
 import { p500Component } from "./500.component";
 import { p404Component } from "./404.component";
-import { ChangePasswordComponent } from "./changepassword.Component";
+import { ForgotPasswordComponent } from "./forgot-password.component";
 import { RegisterComponent } from "./register.component";
 
 export const SettingsRoutes: Routes = [
@@ -14,6 +15,9 @@ export const SettingsRoutes: Routes = [
     }, {
         path: 'register',
         component: RegisterComponent
+    }, {
+        path: 'forgot',
+        component: ForgotPasswordComponent
     },
     {
         path: '404',

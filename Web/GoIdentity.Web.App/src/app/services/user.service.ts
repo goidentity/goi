@@ -31,7 +31,6 @@ export class UserService extends BaseService {
     }
     
     getUserProfile(): Observable<UserProfile> {
-debugger;
         return this.authHttp.get<UserProfile>(this.baseServiceUrl + 'GetUserProfile/');
     }
 
@@ -41,6 +40,10 @@ debugger;
 
     updateUserProfile(userProfileViewmodel: UserProfileViewmodel) {
         return this.authHttp.post(this.baseServiceUrl + 'Update', JSON.stringify(userProfileViewmodel));
+    }
+
+    forgotPassword(userName: string): Observable<boolean> {
+        return this.authHttp.get<boolean>(this.baseServiceUrl + "ForgotPassword?userName=" + userName);
     }
 }
 

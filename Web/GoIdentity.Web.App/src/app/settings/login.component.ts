@@ -9,11 +9,11 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ChangePassword, Client } from '../models/domain/user-entities';
 import { DeviceInfo, DeviceDetectorService } from 'ngx-device-detector';
-import { ToasterService } from "angular2-toaster";
+import { ToasterService } from 'angular2-toaster/angular2-toaster';
 
 @Component({
     templateUrl: 'login.component.html',
-    providers: [ToasterService, Ng4LoadingSpinnerService]
+    providers: [Ng4LoadingSpinnerService]
 })
 export class LoginComponent implements OnInit {
 
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
 
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
         this.spinnerService.hide();
-        
+
         this.route.queryParams.subscribe(params => {
             debugger;
             this.deviceId = params["deviceId"];
@@ -55,12 +55,14 @@ export class LoginComponent implements OnInit {
         debugger;
         var deviceInfo = this.deviceService.getDeviceInfo();
         localStorage.setItem("device", (deviceInfo.device == undefined || deviceInfo.device == null) ? "" : deviceInfo.device);
-        if (this.form.controls['uname'] == null || this.form.controls['uname'].value == "") 
+        if (this.form.controls['uname'] == null || this.form.controls['uname'].value == "" || this.form.controls['uname'].value ==null) {
             this.toasterService.pop('error', '', 'Invalid Email/Phone number');
-
-        if (this.form.controls['password'] == null || this.form.controls['password'].value == "")
+            return false;
+        }
+        if (this.form.controls['password'] == null || this.form.controls['password'].value == "" || this.form.controls['password'].value == null) {
             this.toasterService.pop('error', '', 'Invalid password');
-
+            return false;
+        }
         this.spinnerService.show();
         this.authenticationService.SignIn(this.form.controls['uname'].value
             , this.form.controls['password'].value)
