@@ -21,5 +21,10 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
         {
             return this.unitOfWork.GetIdentityDbContext().vUserScores.Where(u => u.UserId == userId).ToList();
         }
+
+        public void GetUserScore(int userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -22,5 +22,10 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
         {
             return this.scoreDataAccess.GetLatestScoreByUserId(userId);
         }
+
+        public void GetUserScore(int userId)
+        {
+            _scoreDataAccess.GetUserScore(userId);
+        }
     }
 }
