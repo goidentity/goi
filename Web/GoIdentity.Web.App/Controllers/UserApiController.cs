@@ -31,7 +31,7 @@ namespace GoIdentity.Web.Controllers
         }
         [HttpPost]
         [Route("[action]")]
-        public User Register([FromBody]RegisterViewModel registerViewModel)
+        public IActionResult Register([FromBody]RegisterViewModel registerViewModel)
         {
             var user = new User()
             {
@@ -42,7 +42,7 @@ namespace GoIdentity.Web.Controllers
                 AccountType = AccountType.Individual
             };
 
-            return userBusinessAccess.Register(user, registerViewModel.Password);
+            return Ok(userBusinessAccess.Register(user, registerViewModel.Password));
         }
         [Route("[action]")]
         [HttpGet]
