@@ -8,11 +8,11 @@
                             <img src="./assets/img/logo_white.png" class="login-image" alt="goidentity">
                         </div>
                     </div>
-                    <div class="card p-4">
+                    <div class="card p-4 no-pad-b">
                         <div class="">
                             <a [routerLink]="['/settinsg/login']" class="active pad-10">Login</a> | <a class="pad-10 active" [routerLink]="['/settinsg/register']">Signup</a>
                         </div>
-                        <div class="card-body pad-l-10 pad-r-5">
+                        <div class="card-body pad-l-10 pad-r-5 no-pad-b">
                             <form [formGroup]="form" (ngSubmit)="onSubmit()">
                                 <div class="form-group ipro-form-grop-validation mb-4" [ngClass]="{'has-error has-danger': form.controls['uname'].hasError('required') && form.controls['uname'].touched}">
                                     <div>
@@ -35,13 +35,26 @@
                                     {{errorMsg}}
                                 </div>
                                 <div class="row">
-                                    <div class="col-12 text-right mb-4">
+                                    <div class="col-12 text-right mb-4" style="margin-bottom:60px !important">
                                         <button class="btn btn-link px-0 font-sm text-gray-dark no-pad" type="button">Forgot password</button>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
                                         <button type="submit" class="btn btn-primary bg-goidentity-green text-white btn-pill btn-block px-4" primary="true"> Login</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="button" class="btn-icon btn-i-default btn-pill" title="facebook">
+                                            <i class="fa fa-facebook-f"></i>
+                                        </button>
+                                        &nbsp;
+                                        <button type="button" class="btn-icon btn-i-default btn-pill" title="linkedIn">
+                                            <i class="fa fa-linkedin"></i>
+                                        </button>
+                                            &nbsp;
+                                        <button type="button" class="btn-icon btn-i-default btn-pill" title="twitter">
+                                            <i class="fa fa-twitter"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </form>
