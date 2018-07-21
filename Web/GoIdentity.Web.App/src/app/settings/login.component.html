@@ -10,7 +10,7 @@
                     </div>
                     <div class="card p-4">
                         <div class="">
-                            <a [routerLink]="['/settinsg/login']" class="active pad-10">Login</a> | <a class="pad-10 active" [routerLink]="['/settinsg/register']">Signup</a>
+                            <a [routerLink]="['./settings/login']" class="active pad-10">Login</a> | <a class="pad-10 active" [routerLink]="['./settings/register']">Signup</a>
                         </div>
                         <div class="card-body pad-l-10 pad-r-5">
                             <form [formGroup]="form" (ngSubmit)="onSubmit()">
