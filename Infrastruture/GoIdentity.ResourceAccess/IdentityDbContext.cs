@@ -24,7 +24,6 @@ namespace GoIdentity.ResourceAccess
         public DbSet<Category> Categories { get; set; }
         public DbSet<IndustryCategoryMap> IndustryCategoryMap { get; set; }
         public DbSet<UserScore> UserScores { get; set; }
-        public DbSet<vUserScore> vUserScores { get; set; }
         #endregion
 
     }

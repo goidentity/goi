@@ -1,4 +1,4 @@
-<table *ngFor="let industry of ScoreData">
+<table *ngFor="let industry of scoreData">
     <tr>
         <th>
             {{industry.Industry}}
@@ -11,6 +11,11 @@
                     <th *ngFor="let score of industry.data">
                         {{score.Category}}
                     </th>
+                </tr>
+                <tr>
+                    <td *ngFor="let score of industry.data">
+                        {{score.Score}}
+                    </td>
                 </tr>
             </table>
         </td>
