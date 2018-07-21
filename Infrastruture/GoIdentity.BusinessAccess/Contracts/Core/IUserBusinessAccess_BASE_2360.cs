@@ -10,14 +10,6 @@ namespace GoIdentity.BusinessAccess.Contracts.Core
     public interface IUserBusinessAccess
     {
         List<Claim> ValidateUser(UserLoginLog userLoginLog, out User user);
-
-        User Register(User user, string password);
-
         List<Navigation> GetNavigationItems(int? userId = null);
-
-        UserProfile GetUserProfile(int? userId = null);
-        int CreateUserProfile(UserProfile userProfile);
-        int UpdateUserProfile(UserProfile userProfile);
-
     }
 }

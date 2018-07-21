@@ -23,5 +23,13 @@ namespace GoIdentity.Entities.Core
         public string JsonFeed { get; set; }
 
         public bool IsLocked { get; set; }
+        public AccountType AccountType { get; set; }
+
+    }
+
+    public enum AccountType
+    {
+        Individual=1,
+        Company=2
     }
 }

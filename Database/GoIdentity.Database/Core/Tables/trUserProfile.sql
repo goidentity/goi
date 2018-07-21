@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[trUserProfile]
+﻿CREATE TABLE [Core].[trUserProfile]
 (
 	[UserProfileId] INT NOT NULL PRIMARY KEY IDENTITY, 
     [DOB] NCHAR(10) NULL, 

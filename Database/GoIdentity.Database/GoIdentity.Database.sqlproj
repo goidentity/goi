@@ -76,6 +76,9 @@
     <Build Include="Core\Stored Procedures\getNavigationItemsByUserId.sql" />
     <Build Include="Core\Tables\trAccessControl.sql" />
     <Build Include="Core\Tables\trUserProfile.sql" />
+    <Build Include="Core\Stored Procedures\createUserProfile.sql" />
+    <Build Include="Core\Stored Procedures\getUserProfile.sql" />
+    <Build Include="Core\Stored Procedures\updateUserProfile.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

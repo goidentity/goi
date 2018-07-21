@@ -22,25 +22,15 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
             //userLoginLog.Password = EncryptionManager.Encrypt(userLoginLog.Password);
             return this.userDataAccess.ValidateUser(userLoginLog, out user);
         }
+<<<<<<< HEAD
+        public User Register(User user, string password)
+        {
+            return userDataAccess.Register(user, password);
+=======
 
         public List<Navigation> GetNavigationItems(int? userId = null)
         {
             return this.ToModuleFormat(this.userDataAccess.GetNavigationItems(userId));
-        }
-
-        public UserProfile GetUserProfile(int? userId = null)
-        {
-            return this.userDataAccess.GetUserProfile(userId);
-        }
-
-        public int CreateUserProfile(UserProfile userProfile)
-        {
-            return this.userDataAccess.CreateUserProfile(userProfile);
-        }
-
-        public int UpdateUserProfile(UserProfile userProfile)
-        {
-            return this.userDataAccess.UpdateUserProfile(userProfile);
         }
 
         private List<Navigation> ToModuleFormat(List<Navigation> navigationItemsList)
@@ -60,10 +50,7 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
             }
 
             return modules;
-        }
-        public User Register(User user, string password)
-        {
-            return userDataAccess.Register(user, password);
+>>>>>>> 4b707ba8a386cbeb10123eb4eb67351c2d2de9a6
         }
     }
 }
