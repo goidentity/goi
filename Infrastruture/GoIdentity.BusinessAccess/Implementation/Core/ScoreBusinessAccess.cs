@@ -1,4 +1,5 @@
 ﻿using GoIdentity.BusinessAccess.Contracts.Core;
+using GoIdentity.Entities.Core;
 using GoIdentity.ResourceAccess.Contracts.Core;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,16 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
 {
     public class ScoreBusinessAccess : IScoreBusinessAccess
     {
-        private readonly IScoreDataAccess _scoreDataAccess;
+        private readonly IScoreDataAccess scoreDataAccess;
+
         public ScoreBusinessAccess(IScoreDataAccess scoreDataAccess)
         {
-            _scoreDataAccess = scoreDataAccess;
+            this.scoreDataAccess = scoreDataAccess;
+        }
+
+        public List<vUserScore> GetLatestScoreByUserId(int userId)
+        {
+            return this.scoreDataAccess.GetLatestScoreByUserId(userId);
         }
     }
 }

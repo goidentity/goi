@@ -20,10 +20,12 @@ namespace GoIdentity.Web.App.Controllers
         {
             _scoreBusinessAccess = scoreBusinessAccess;
         }
+
+        [Route("[action]/{userId:int}")]
         [HttpGet]
-        public IActionResult Get(int userId)
+        public IActionResult GetLatestScoreByUserId(int userId)
         {
-            return Ok();
+            return Ok(_scoreBusinessAccess.GetLatestScoreByUserId(userId));
         }
     }
 }

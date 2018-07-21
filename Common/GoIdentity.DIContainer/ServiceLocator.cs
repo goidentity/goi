@@ -44,9 +44,11 @@ namespace GoIdentity.DIContainer
 
             //Data Access
             _serviceCollection.AddScoped<IUserDataAccess, UserDataAccess>();
+            _serviceCollection.AddScoped<IScoreDataAccess, ScoreDataAccess>();
 
             //Business Access
             _serviceCollection.AddScoped<IUserBusinessAccess, UserBusinessAccess>();
+            _serviceCollection.AddScoped<IScoreBusinessAccess, ScoreBusinessAccess>();
 
             _serviceCollection.AddScoped<UserContext, UserContext>();
 
