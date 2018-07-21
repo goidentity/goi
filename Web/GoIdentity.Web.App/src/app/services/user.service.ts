@@ -30,6 +30,10 @@ export class UserService extends BaseService {
         return this.authHttp.post(this.baseServiceUrl + 'Register', JSON.stringify(registerViewModel));
     }
 
+    forgotPassword(userName: string): Observable<boolean> {
+        return this.authHttp.get<boolean>(this.baseServiceUrl + "ForgotPassword?userName=" + userName);
+    }
+
 }
 
 export class RegisterViewModel

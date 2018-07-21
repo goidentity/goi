@@ -30,6 +30,6 @@ namespace GoIdentity.Web.App.Controllers
         {
             var result = _scoreBusinessAccess.GetLatestScoreByUserId(userId);
             return Ok(result);
-        }
+        }        
     }
 }

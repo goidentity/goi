@@ -89,5 +89,12 @@ namespace GoIdentity.Web.Controllers
 
             return userBusinessAccess.UpdateUserProfile(userProfile);
         }
+
+        [Route("[action]")]
+        [HttpGet]
+        public IActionResult ForgotPassword(string userName)
+        {
+            return Ok(true);
+        }
     }
 }
