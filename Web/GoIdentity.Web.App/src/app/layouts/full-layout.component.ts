@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Input, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, HostListener, Input, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { DialogModule } from '@progress/kendo-angular-dialog';
 
 import { GridModule } from '@progress/kendo-angular-grid';
@@ -8,6 +8,7 @@ import { Router, NavigationEnd } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster/angular2-toaster';
 import { AuthenticationService } from '../services/authentication.service';
+import { UserService } from '../services/user.service';
 import { Broadcaster, MessageEvent } from '../models/utilities/broadcaster';
 import { Guid, InputDataTypeConstants, InputControlTypeConstants, InputSourceTypeConstants, KeyConstants } from '../models/utilities/Guid';
 
@@ -23,9 +24,9 @@ import { GlobalVariables } from '../models/utilities/handy-entities';
     templateUrl: './full-layout.component.html',
     styles: ['.my-class { background- color: yellow;}'],
 
-    providers: [ToasterService, AuthenticationService, MessageEvent]
+    providers: [ToasterService, AuthenticationService, UserService, MessageEvent]
 })
-export class FullLayoutComponent extends BaseComponent implements OnInit {
+export class FullLayoutComponent extends BaseComponent implements OnInit, AfterViewInit {
 
     public userProfile: UserProfile;
     public organizations: Organization[] = [];
@@ -38,6 +39,7 @@ export class FullLayoutComponent extends BaseComponent implements OnInit {
     constructor(
         public toasterService: ToasterService,
         public authenticationService: AuthenticationService,
+        public userService: UserService,
         public messageEvent: MessageEvent,
         public elementref: ElementRef,
         private router: Router
@@ -49,20 +51,22 @@ export class FullLayoutComponent extends BaseComponent implements OnInit {
             this.breadcrumbsTitle = message;
 
             if (this.modulesList == undefined) {
+                this.userService.getNavigationItems()
+                    .subscribe(nl => {
+                        debugger;
+                        this.modulesList = nl;
+                        this.loadSideMenu();
+                    });
             } else {
                 this.loadSideMenu();
             }
 
         });
+        
+    }
 
-        this.messageEvent.on("LoadOneSearchMenu").subscribe(message => {
-
-            if (this.modulesList == undefined) {
-                
-            } else {
-                this.navigationItemsList = this.modulesList.filter(f => f.NavigationUid.toUpperCase() == message);
-            }
-        });
+    ngAfterViewInit(): void {
+        this.messageEvent.fire(KeyConstants.BreadcrumbsTitle, "");
     }
 
     private loadSideMenu() {
@@ -85,6 +89,7 @@ export class FullLayoutComponent extends BaseComponent implements OnInit {
                 break;
         }
         if (currentNavigationId > 0) { this.onModuleClick(currentNavigationId); }
+        else { this.onModuleClick(this.modulesList[0].NavigationId); }
     }
 
     public status: { isopen: boolean } = { isopen: false };
@@ -145,27 +150,12 @@ export class FullLayoutComponent extends BaseComponent implements OnInit {
 
     onModuleClick(navigationId: number) {
         debugger;
-        var selectedGuid: string = "";
+        var selectedGuid: number = 0;
 
         this.navigationItemsList = this.modulesList.filter(f => f.NavigationId == navigationId);
         if (this.navigationItemsList.length > 0) {
-            selectedGuid = this.navigationItemsList[0].NavigationUid.toUpperCase();
+            selectedGuid = this.navigationItemsList[0].NavigationId;
         }
-
-        //A889F053-F1C3-4C2C-9830-520DEBADBFDC - One Student
-        //73CB2564-4163-4875-941F-42B7D7DD829E - One Employee
-        //CA53FA3C-38B8-43E5-B29F-91F6521EAA40 - One Vehicle
-
-        setTimeout(() => {
-            switch (selectedGuid) {
-                case '73CB2564-4163-4875-941F-42B7D7DD829E':
-                    this.router.navigate(['tb/search/1']);
-                    break;
-                case 'A889F053-F1C3-4C2C-9830-520DEBADBFDC':
-                    this.router.navigate(['tb/search/3']);
-                    break;
-            }
-        }, 1000);
 
         document.querySelector('body').classList.add('sidebar-mobile-show');
     }

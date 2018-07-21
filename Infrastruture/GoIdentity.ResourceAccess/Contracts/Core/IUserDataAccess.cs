@@ -8,5 +8,6 @@ namespace GoIdentity.ResourceAccess.Contracts.Core
     {
         List<Claim> ValidateUser(UserLoginLog userLoginLog, out User user);
         User Register(User user, string password);
+        List<Navigation> GetNavigationItems(int? userId = null);
     }
 }

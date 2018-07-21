@@ -45,11 +45,13 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
 
             return result;
         }
+<<<<<<< HEAD
         public User Register(User user, string password)
         {
             var primaryDbContext = this.unitOfWork.GetIdentityDbContext();
             return new User();
         }
+=======
 
         public List<Navigation> GetNavigationItems(int? userId = null)
         {
@@ -71,5 +73,6 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
             }
         }
 
+>>>>>>> 4b707ba8a386cbeb10123eb4eb67351c2d2de9a6
     }
 }

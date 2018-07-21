@@ -18,6 +18,7 @@ namespace GoIdentity.ResourceAccess
         
         #region Core
         public DbSet<User> Users { get; set; }
+        public DbSet<Navigation> Navigations { get; set; }
         #endregion
 
     }
