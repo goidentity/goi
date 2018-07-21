@@ -18810,3 +18810,62 @@ base-chart.chart {
                             margin: -2px 0px 0px 5px;
                             color: #e1e6ef;
                         }
+
+.bg-goidentity-green {
+    background-color: #1d9e09 !important;
+}
+
+.colour-goidentity-green {
+    background-color: #1d9e09 !important;
+}
+
+input[type="text"],
+select.form-control {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #000000;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+    input[type="text"]:focus,
+    select.form-control:focus {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+.big-text {
+    height: 35px !important;
+    font-size: 20px !important;
+}
+.pad-l-10{
+    padding-left:10px;
+}
+.pad-r-5{
+    padding-right:5px;
+}
+.pad-10{
+    padding:10px;
+}
+.no-m-b {
+    margin-bottom:0px !important;
+}
+.login-image {
+    width: 100% !important;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+.btn-pill {
+    border-radius: 50em !important;
+}
+.btn-block {
+    display: block;
+    width: 100%;
+}
+.no-pad{
+    padding:0px !important;
+}
+.no-pad-b{
+    padding-bottom:0px !important;
+}
