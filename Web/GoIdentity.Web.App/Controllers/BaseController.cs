@@ -24,7 +24,6 @@ namespace GoIdentity.Web.Controllers
         {
             if (this.User != null && this.User.Identity.IsAuthenticated)
             {
-                var organizationId = default(short);
                 var timezoneOffset = default(short);
                 
                 if (this.Request.Headers["TimezoneOffset"].Any())
