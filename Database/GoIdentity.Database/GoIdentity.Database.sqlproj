@@ -75,8 +75,15 @@
     <Build Include="Core\Tables\trNavigation.sql" />
     <Build Include="Core\Stored Procedures\getNavigationItemsByUserId.sql" />
     <Build Include="Core\Tables\trAccessControl.sql" />
+    <Build Include="Core\Tables\dmnIndustry.sql" />
+    <Build Include="Core\Tables\dmnCategory.sql" />
+    <Build Include="Core\Tables\dmnIndustryCategoryMap.sql" />
+    <Build Include="Core\Tables\trUserScore.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="GoIdentity.Database.refactorlog" />
   </ItemGroup>
 </Project>

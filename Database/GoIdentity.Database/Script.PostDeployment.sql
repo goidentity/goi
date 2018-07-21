@@ -74,3 +74,50 @@
 				0, GETDATE(), 0, GETDATE());
 
 	END
+
+	IF NOT EXISTS (SELECT 1 FROM Core.dmnIndustry)
+	BEGIN
+		INSERT INTO Core.dmnIndustry ([Name], [Weightage]) VALUES ('Entertainment Industry', 20)
+		INSERT INTO Core.dmnIndustry ([Name], [Weightage]) VALUES ('Political Industry', 28.4)
+		INSERT INTO Core.dmnIndustry ([Name], [Weightage]) VALUES ('Educational Industry', 7.2)
+		INSERT INTO Core.dmnIndustry ([Name], [Weightage]) VALUES ('Healthcare Industry', 13.7)
+		INSERT INTO Core.dmnIndustry ([Name], [Weightage]) VALUES ('Mechanical Industry',9.5)
+		INSERT INTO Core.dmnIndustry ([Name], [Weightage]) VALUES ('Chemical Industry',17.9)
+		INSERT INTO Core.dmnIndustry ([Name], [Weightage]) VALUES ('Textile Industry',15.8)
+	END
+
+	IF NOT EXISTS (SELECT 1 FROM Core.dmnCategory)
+	BEGIN
+		INSERT INTO Core.dmnCategory ([Name]) VALUES ('Profile')
+		INSERT INTO Core.dmnCategory ([Name]) VALUES ('Education')
+		INSERT INTO Core.dmnCategory ([Name]) VALUES ('SelfIndustry')
+		INSERT INTO Core.dmnCategory ([Name]) VALUES ('Proffession')
+		INSERT INTO Core.dmnCategory ([Name]) VALUES ('Business')
+		INSERT INTO Core.dmnCategory ([Name]) VALUES ('Social')
+	END
+
+	IF NOT EXISTS (SELECT 1 FROM Core.dmnIndustryCategoryMap)
+	BEGIN
+		INSERT INTO Core.dmnIndustryCategoryMap([IndustryId] ,[CategoryId] ,[Weightage])
+		VALUES (1,1,5.6)
+		INSERT INTO Core.dmnIndustryCategoryMap([IndustryId] ,[CategoryId] ,[Weightage])
+		VALUES (1,1,9.4)
+		INSERT INTO Core.dmnIndustryCategoryMap([IndustryId] ,[CategoryId] ,[Weightage])
+		VALUES (1,1,20)
+		INSERT INTO Core.dmnIndustryCategoryMap([IndustryId] ,[CategoryId] ,[Weightage])
+		VALUES (1,1,23.7)
+		INSERT INTO Core.dmnIndustryCategoryMap([IndustryId] ,[CategoryId] ,[Weightage])
+		VALUES (1,1,22.3)
+		INSERT INTO Core.dmnIndustryCategoryMap([IndustryId] ,[CategoryId] ,[Weightage])
+		VALUES (1,1,19)
+	END
+
+	IF NOT EXISTS (SELECT 1 FROM Core.trUserScore)
+	BEGIN
+		INSERT INTO Core.trUserScore (UserId, ICMapId, Score, CreatedOn) VALUES (1, 1, 7, GETDATE())
+		INSERT INTO Core.trUserScore (UserId, ICMapId, Score, CreatedOn) VALUES (1, 1, 28, GETDATE())
+		INSERT INTO Core.trUserScore (UserId, ICMapId, Score, CreatedOn) VALUES (1, 1, 42, GETDATE())
+		INSERT INTO Core.trUserScore (UserId, ICMapId, Score, CreatedOn) VALUES (1, 1, 4, GETDATE())
+		INSERT INTO Core.trUserScore (UserId, ICMapId, Score, CreatedOn) VALUES (1, 1, 36, GETDATE())
+		INSERT INTO Core.trUserScore (UserId, ICMapId, Score, CreatedOn) VALUES (1, 1, 29, GETDATE())
+	END
