@@ -58,10 +58,7 @@ export class AuthenticationService {
     }
 
     public SignUp(firstname: string, lastname: string, email: string, mobilenumber: string, password: string): Observable<any> {
-        // Token endpoint & params.  
-        debugger;
         let tokenEndpoint: string = "/api/UserApi/Register";
-
         let model: any = {
             AccountType: "Individual",
             FirstName: firstname,
@@ -70,12 +67,9 @@ export class AuthenticationService {
             MobileNumber: mobilenumber,
             Password: password
         }
-
-        //let body: string = this.encodeParams(model);
-
         return this.http.post<any>(tokenEndpoint, model).pipe(map(result => {
             if (result != undefined) {
-                return true;//this.store(result);
+                return result;
             }
         }));
     }
