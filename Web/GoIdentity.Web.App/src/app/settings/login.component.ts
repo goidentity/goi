@@ -9,10 +9,11 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ChangePassword, Client } from '../models/domain/user-entities';
 import { DeviceInfo, DeviceDetectorService } from 'ngx-device-detector';
+import { ToasterService } from "angular2-toaster";
 
 @Component({
     templateUrl: 'login.component.html',
-    providers: [Ng4LoadingSpinnerService]
+    providers: [ToasterService, Ng4LoadingSpinnerService]
 })
 export class LoginComponent implements OnInit {
 
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private authenticationService: AuthenticationService,
         private spinnerService: Ng4LoadingSpinnerService,
-        private deviceService: DeviceDetectorService)
+        private deviceService: DeviceDetectorService,
+        private toasterService: ToasterService)
     { }
 
     ngOnInit() {
@@ -52,9 +54,13 @@ export class LoginComponent implements OnInit {
     onSubmit() {
         debugger;
         var deviceInfo = this.deviceService.getDeviceInfo();
-
         localStorage.setItem("device", (deviceInfo.device == undefined || deviceInfo.device == null) ? "" : deviceInfo.device);
-        
+        if (this.form.controls['uname'] == null || this.form.controls['uname'].value == "") 
+            this.toasterService.pop('error', '', 'Invalid Email/Phone number');
+
+        if (this.form.controls['password'] == null || this.form.controls['password'].value == "")
+            this.toasterService.pop('error', '', 'Invalid password');
+
         this.spinnerService.show();
         this.authenticationService.SignIn(this.form.controls['uname'].value
             , this.form.controls['password'].value)
