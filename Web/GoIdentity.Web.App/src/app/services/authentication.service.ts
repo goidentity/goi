@@ -37,14 +37,14 @@ export class AuthenticationService {
         }
     }
 
-    public SignIn(username: string, password: string, authenticationCode: string): Observable<any> {
+    public SignIn(username: string, password: string): Observable<any> {
         // Token endpoint & params.  
         debugger;
         let tokenEndpoint: string = "/api/token/generate";
 
         let model: any = {
             grant_type: "password",
-            username: username + ":" + ((authenticationCode == null) ? "" : authenticationCode),
+            username: username,
             password: password
         };
 

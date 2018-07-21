@@ -15,6 +15,7 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { RippleModule } from '@progress/kendo-angular-ripple';
 
 import { LoginComponent } from "./login.component";
+import { RegisterComponent } from "./register.component";
 import { p404Component } from "./404.component";
 import { p500Component } from "./500.component";
 import { ChangePasswordComponent } from "./changepassword.Component";
@@ -43,6 +44,7 @@ RippleModule,
     ],
     declarations: [
         LoginComponent,
+        RegisterComponent,
         p500Component,
         p404Component,
         ChangePasswordComponent,

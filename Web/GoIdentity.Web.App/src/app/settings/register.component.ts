@@ -11,10 +11,10 @@ import { ChangePassword, Client } from '../models/domain/user-entities';
 import { DeviceInfo, DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
-    templateUrl: 'login.component.html',
+    templateUrl: 'register.component.html',
     providers: [Ng4LoadingSpinnerService]
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
     public form: FormGroup;
     public returnUrl: string;
