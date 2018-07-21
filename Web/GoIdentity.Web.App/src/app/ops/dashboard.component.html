@@ -1,5 +1,18 @@
 <table *ngIf="scoreData">
     <tr>
-
+        <th>
+            {{scoreData[0].Industry}}
+        </th>
+    </tr>
+    <tr>
+        <td>
+            <table>
+                <tr >
+                    <th *ngFor="let score of scoreData">
+                        {{score.Category}}
+                    </th>
+                </tr>
+            </table>
+        </td>
     </tr>
 </table>

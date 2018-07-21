@@ -19,7 +19,8 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
 
         public List<vUserScore> GetLatestScoreByUserId(int userId)
         {
-            return this.unitOfWork.GetIdentityDbContext().vUserScores.Where(u => u.UserId == userId).ToList();
+            var result = this.unitOfWork.GetIdentityDbContext().vUserScores.Where(u => u.UserId == userId);
+            return result.ToList();
         }
 
         public void GetUserScore(int userId)

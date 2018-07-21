@@ -28,7 +28,8 @@ namespace GoIdentity.Web.App.Controllers
         [HttpGet]
         public IActionResult GetLatestScoreByUserId(int userId)
         {
-            return Ok(_scoreBusinessAccess.GetLatestScoreByUserId(userId));
+            var result = _scoreBusinessAccess.GetLatestScoreByUserId(userId);
+            return Ok(result);
         }
     }
 }
