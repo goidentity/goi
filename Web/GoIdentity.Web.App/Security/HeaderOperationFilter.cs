@@ -21,15 +21,6 @@ namespace GoIdentity.Web.Security
 
             operation.Parameters.Add(new NonBodyParameter
             {
-                Name = "OrganizationId",
-                In = "header",
-                Type = "string",
-                Required = true,
-                Default = "0"
-            });
-
-            operation.Parameters.Add(new NonBodyParameter
-            {
                 Name = "TimezoneOffset",
                 In = "header",
                 Type = "string",
