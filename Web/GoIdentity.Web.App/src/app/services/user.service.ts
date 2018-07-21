@@ -26,5 +26,18 @@ export class UserService extends BaseService {
         return this.authHttp.get<Navigation[]>(this.baseServiceUrl + 'GetNavigationItems/');
     }
 
+    register(registerViewModel: RegisterViewModel) {
+        return this.authHttp.post(this.baseServiceUrl + 'Register', JSON.stringify(registerViewModel));
+    }
+
+}
+
+export class RegisterViewModel
+{
+    FirstName: string;
+    LastName: string;
+    Password: string;
+    EmailId: string;
+    MobileNumber: string;
 }
 

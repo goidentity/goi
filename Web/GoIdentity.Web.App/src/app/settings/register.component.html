@@ -1,0 +1,56 @@
+<div class="app flex-row align-items-center login-bg">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card-group">
+                    <div class="card text-white bg-goidentity-green py-5 d-md-down-none">
+                        <div class="card-body text-center">
+                            <img src="./assets/img/logo_white.png" class="login-image" alt="goidentity">
+                        </div>
+                    </div>
+                    <div class="card p-4">
+                        <div class="">
+                            <a href="#" class="active pad-10">Login</a> |<a class="pad-10 active" href="#">Signup</a>
+                        </div>
+                        <div class="card-body pad-l-10 pad-r-5">
+                            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                                <div class="form-group ipro-form-grop-validation mb-4" [ngClass]="{'has-error has-danger': form.controls['uname'].hasError('required') && form.controls['uname'].touched}">
+                                    <div>
+                                        <input type="text" id="username" tabindex="1" class="form-control big-text" placeholder="Email / Phone number" [formControl]="form.controls['uname']" autofocus />
+                                    </div>
+                                    <div class="help-block ipro-valid-block with-errors" *ngIf="form.controls['uname'].hasError('required') && form.controls['uname'].touched">
+                                        Email / Phone number is required.
+                                    </div>
+                                </div>
+
+                                <div class="form-group ipro-form-grop-validation mb-4 no-m-b no-pad-b" [ngClass]="{'has-error has-danger':form.controls['password'].hasError('required') && form.controls['password'].touched}">
+                                    <div>
+                                        <input type="password" id="password" tabindex="2" class="form-control big-text" placeholder="Password" [formControl]="form.controls['password']">
+                                    </div>
+                                    <div class="help-block ipro-valid-block with-errors" *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched">
+                                        Password is required.
+                                    </div>
+                                </div>
+                                <div class="alert ipro-alert ipro-alert-login alert-danger" role="alert" *ngIf="errorMsg">
+                                    {{errorMsg}}
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-right mb-4">
+                                        <button class="btn btn-link px-0 font-sm text-gray-dark no-pad" type="button">Forgot password</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button type="submit" class="btn btn-primary bg-goidentity-green text-white btn-pill btn-block px-4" primary="true"> Login</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng4-loading-spinner class="loader" [loadingText]="'Please wait...'" [zIndex]="99999"></ng4-loading-spinner>

@@ -29,8 +29,10 @@ namespace GoIdentity.Web.Controllers
             var loggedInUserId = this.LoggedInUserId;
             return Ok(this.userBusinessAccess.GetNavigationItems(loggedInUserId));
         }
+
         [HttpPost]
         [Route("[action]")]
+        [AllowAnonymous]
         public IActionResult Register([FromBody]RegisterViewModel registerViewModel)
         {
             var user = new User()

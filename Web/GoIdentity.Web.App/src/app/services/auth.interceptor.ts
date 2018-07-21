@@ -13,7 +13,6 @@ export class AuthInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<HttpEventType.Response>> {
         //debugger;
         var bearerToken = localStorage.getItem('id_token') == null ? "" : localStorage.getItem('id_token');
-        var organizationId = localStorage.getItem("OrganizationId") == null ? "0" : localStorage.getItem("OrganizationId");
         var deviceId = localStorage.getItem("deviceId") == null ? "" : localStorage.getItem("deviceId");
         var device = localStorage.getItem("device") == null ? "" : localStorage.getItem("device");
 
@@ -23,7 +22,6 @@ export class AuthInterceptor implements HttpInterceptor {
             authReq = req.clone({
                 headers: req.headers
                     .set('Authorization', "bearer " + bearerToken)
-                    .set('OrganizationId', organizationId)
                     .set('TimezoneOffset', new Date().getTimezoneOffset().toString())
                     .set('DeviceId', deviceId)
                     .set('Device', device)
@@ -32,7 +30,6 @@ export class AuthInterceptor implements HttpInterceptor {
             authReq = req.clone({
                 headers: req.headers
                     .set('Authorization', "bearer " + bearerToken)
-                    .set('OrganizationId', organizationId)
                     .set('TimezoneOffset', new Date().getTimezoneOffset().toString())
                     .set('DeviceId', deviceId)
                     .set('Device', device)
@@ -44,7 +41,6 @@ export class AuthInterceptor implements HttpInterceptor {
                 headers: req.headers
                     .set('Authorization', "bearer " + bearerToken)
                     .set('Content-Type', "application/json")
-                    .set('OrganizationId', organizationId)
                     .set('TimezoneOffset', new Date().getTimezoneOffset().toString())
                     .set('DeviceId', deviceId)
                     .set('Device', device)

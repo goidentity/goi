@@ -5,12 +5,15 @@ import { LoginComponent } from "./login.component";
 import { p500Component } from "./500.component";
 import { p404Component } from "./404.component";
 import { ChangePasswordComponent } from "./changepassword.Component";
-
+import { RegisterComponent } from "./register.component";
 
 export const SettingsRoutes: Routes = [
     {
         path: 'login',
         component: LoginComponent
+    }, {
+        path: 'register',
+        component: RegisterComponent
     },
     {
         path: '404',
