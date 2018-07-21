@@ -57,6 +57,29 @@ export class AuthenticationService {
         }));
     }
 
+    public SignUp(firstname: string, lastname: string, email: string, mobilenumber: string, password: string): Observable<any> {
+        // Token endpoint & params.  
+        debugger;
+        let tokenEndpoint: string = "/api/UserApi/Register";
+
+        let model: any = {
+            AccountType: "Individual",
+            FirstName: firstname,
+            LastName: lastname,
+            EmailId: email,
+            MobileNumber: mobilenumber,
+            Password: password
+        }
+
+        //let body: string = this.encodeParams(model);
+
+        return this.http.post<any>(tokenEndpoint, model).pipe(map(result => {
+            if (result != undefined) {
+                return true;//this.store(result);
+            }
+        }));
+    }
+
     public signout(): void {
         this.redirectUrl = null;
         this.remove();
