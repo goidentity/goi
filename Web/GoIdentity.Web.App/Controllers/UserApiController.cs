@@ -44,5 +44,48 @@ namespace GoIdentity.Web.Controllers
 
             return Ok(userBusinessAccess.Register(user, registerViewModel.Password));
         }
+        [Route("[action]")]
+        [HttpGet]
+        public IActionResult GetUserProfile()
+        {
+            var loggedInUserId = this.LoggedInUserId;
+            return Ok(this.userBusinessAccess.GetUserProfile(loggedInUserId));
+        }
+        [HttpPost]
+        [Route("[action]")]
+        public int CreateUserProfile([FromBody]UserProfileViewModel userProfileViewmodel)
+        {
+            var loggedInUserId = this.LoggedInUserId;
+            var userProfile = new UserProfile()
+            {
+                DOB = userProfileViewmodel.DOB,
+                Area = userProfileViewmodel.Area,
+                Gender = userProfileViewmodel.Gender,
+                Profession = userProfileViewmodel.Profession,
+                RolesPlayed = userProfileViewmodel.RolesPlayed,
+                RolesInterested = userProfileViewmodel.RolesInterested,
+                UserId = loggedInUserId
+            };
+
+            return userBusinessAccess.CreateUserProfile(userProfile);
+        }
+        [HttpPost]
+        [Route("[action]")]
+        public int UpdateUserProfile([FromBody]UserProfileViewModel userProfileViewmodel)
+        {
+            var loggedInUserId = this.LoggedInUserId;
+            var userProfile = new UserProfile()
+            {
+                DOB = userProfileViewmodel.DOB,
+                Area = userProfileViewmodel.Area,
+                Gender = userProfileViewmodel.Gender,
+                Profession = userProfileViewmodel.Profession,
+                RolesPlayed = userProfileViewmodel.RolesPlayed,
+                RolesInterested = userProfileViewmodel.RolesInterested,
+                UserId = loggedInUserId
+            };
+
+            return userBusinessAccess.UpdateUserProfile(userProfile);
+        }
     }
 }

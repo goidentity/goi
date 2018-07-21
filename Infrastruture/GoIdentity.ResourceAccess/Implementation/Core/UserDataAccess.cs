@@ -71,5 +71,53 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
             }
         }
 
+        public UserProfile GetUserProfile(int? userId = null)
+        {
+            var parmsCollection = new ParmsCollection();
+            if (userId.HasValue)
+            {
+                var result = this.unitOfWork.GetIdentityDbContext().ExecuteStoredProcedure<UserProfile>("[Core].[getUserProfile]", parmsCollection.AddParm("@userId", SqlDbType.Int, userId));                                
+
+                return result.ToList().FirstOrDefault();
+            }
+            else
+            {
+                return this.unitOfWork.GetIdentityDbContext().UserProfile.FirstOrDefault();
+            }
+        }
+        public int CreateUserProfile(UserProfile userProfile)
+        { 
+            var primaryDbContext = this.unitOfWork.GetIdentityDbContext();
+            var parmsCollection = new ParmsCollection();
+            var result = primaryDbContext.ExecuteNonQuery("[Core].[createUserProfile]",
+                parmsCollection
+                    .AddParm("@dob", SqlDbType.VarChar, userProfile.DOB)
+                    .AddParm("@area", SqlDbType.VarChar, userProfile.Area)
+                    .AddParm("@gender", SqlDbType.VarChar, userProfile.Gender)
+                    .AddParm("@profession", SqlDbType.VarChar, userProfile.Profession)
+                    .AddParm("@rolesplayed", SqlDbType.VarChar, userProfile.RolesPlayed)
+                    .AddParm("@rolesinterested", SqlDbType.VarChar, userProfile.RolesInterested)
+                    .AddParm("@userId", SqlDbType.Int, userProfile.UserId),CommandType.StoredProcedure
+                );          
+
+            return result;
+        }
+        public int UpdateUserProfile(UserProfile userProfile)
+        {
+            var primaryDbContext = this.unitOfWork.GetIdentityDbContext();
+            var parmsCollection = new ParmsCollection();
+            var result = primaryDbContext.ExecuteNonQuery("[Core].[updateUserProfile]",
+                parmsCollection
+                    .AddParm("@dob", SqlDbType.VarChar, userProfile.DOB)
+                    .AddParm("@area", SqlDbType.VarChar, userProfile.Area)
+                    .AddParm("@gender", SqlDbType.VarChar, userProfile.Gender)
+                    .AddParm("@profession", SqlDbType.VarChar, userProfile.Profession)
+                    .AddParm("@rolesplayed", SqlDbType.VarChar, userProfile.RolesPlayed)
+                    .AddParm("@rolesinterested", SqlDbType.VarChar, userProfile.RolesInterested)
+                    .AddParm("@userId", SqlDbType.Int, userProfile.UserId)
+                );
+            return result;
+        }
+
     }
 }

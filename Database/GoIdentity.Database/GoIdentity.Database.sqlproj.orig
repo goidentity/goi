@@ -75,14 +75,17 @@
     <Build Include="Core\Tables\trNavigation.sql" />
     <Build Include="Core\Stored Procedures\getNavigationItemsByUserId.sql" />
     <Build Include="Core\Tables\trAccessControl.sql" />
+<<<<<<< HEAD
     <Build Include="Core\Tables\dmnIndustry.sql" />
     <Build Include="Core\Tables\dmnCategory.sql" />
     <Build Include="Core\Tables\dmnIndustryCategoryMap.sql" />
     <Build Include="Core\Tables\trUserScore.sql" />
+=======
     <Build Include="Core\Tables\trUserProfile.sql" />
     <Build Include="Core\Stored Procedures\createUserProfile.sql" />
     <Build Include="Core\Stored Procedures\getUserProfile.sql" />
     <Build Include="Core\Stored Procedures\updateUserProfile.sql" />
+>>>>>>> 0c47cb3d6a272ffc1757b6aa5555447796a7fd10
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
