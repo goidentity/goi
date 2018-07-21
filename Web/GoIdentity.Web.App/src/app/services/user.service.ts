@@ -29,7 +29,19 @@ export class UserService extends BaseService {
     register(registerViewModel: RegisterViewModel) {
         return this.authHttp.post(this.baseServiceUrl + 'Register', JSON.stringify(registerViewModel));
     }
+    
+    getUserProfile(): Observable<UserProfile> {
+debugger;
+        return this.authHttp.get<UserProfile>(this.baseServiceUrl + 'GetUserProfile/');
+    }
 
+    createUserProfile(userProfileViewmodel: UserProfileViewmodel) {
+        return this.authHttp.post(this.baseServiceUrl + 'Save', JSON.stringify(userProfileViewmodel));
+    }
+
+    updateUserProfile(userProfileViewmodel: UserProfileViewmodel) {
+        return this.authHttp.post(this.baseServiceUrl + 'Update', JSON.stringify(userProfileViewmodel));
+    }
 }
 
 export class RegisterViewModel
@@ -39,5 +51,16 @@ export class RegisterViewModel
     Password: string;
     EmailId: string;
     MobileNumber: string;
+}
+
+export class UserProfileViewmodel
+{
+    DOB: string;
+    Area: string;
+    Gender: string;
+    Profession: string;
+    RolesPlayed: string;
+    RolesInterested: string;
+    UserId: string;
 }
 

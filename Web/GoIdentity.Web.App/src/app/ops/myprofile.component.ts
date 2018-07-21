@@ -5,6 +5,7 @@ import { Subscription ,  Observable } from 'rxjs';
 
 import { ToasterService } from "angular2-toaster";
 import { AuthenticationService } from '../services/authentication.service';
+import { UserService } from '../services/user.service';
 import { Broadcaster, MessageEvent } from '../models/utilities/broadcaster';
 import { BaseComponent } from '../shared/base-component';
 
@@ -20,6 +21,7 @@ export class MyprofileComponent extends BaseComponent implements OnInit {
     constructor(
         public toasterService: ToasterService,
         public authenticationService: AuthenticationService,
+        public userService: UserService,
         public messageEvent: MessageEvent,
 
         private routerObj: Router) {
@@ -27,12 +29,13 @@ export class MyprofileComponent extends BaseComponent implements OnInit {
         this.router = routerObj;
     }
 
-    ngOnInit() {
-        
-        this.getReportData();
+    ngOnInit() {        
+        this.getUserProfileData();
     }
-    private getReportData(): void {
-        
+    private getUserProfileData(): void {
+        this.userService.getUserProfile().subscribe(data =>{
+console.log(data);
+});
     }
     sourceList: Widget[] = [
         new Widget('onebyone'),

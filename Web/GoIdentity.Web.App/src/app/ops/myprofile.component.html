@@ -1,0 +1,80 @@
+<div class="app flex-row align-items-center login-bg">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card-group mb-0">
+                    <form [formGroup]="form" (ngSubmit)="onSave()">
+                        <div class="form-group ipro-form-grop-validation" [ngClass]="{'has-error has-danger': form.controls['uname'].hasError('required') && form.controls['uname'].touched}">
+                            <div class="input-group">
+                                <span>DOB: </span>
+                                <input type="text" id="dob" tabindex="1" class="form-control" placeholder="DOB" [formControl]="form.controls['dob']" autofocus />
+                            </div>
+                            <div class="help-block ipro-valid-block with-errors" *ngIf="form.controls['dob'].hasError('required') && form.controls['dob'].touched">
+                                DOB is required.
+                            </div>
+                        </div>
+
+                        <div class="form-group ipro-form-grop-validation" [ngClass]="{'has-error has-danger':form.controls['area'].hasError('required') && form.controls['password'].touched}">
+                            <div class="input-group">
+                                <span>Area: </span>
+                                <input type="text" id="area" tabindex="2" class="form-control" placeholder="Area" [formControl]="form.controls['area']">
+                            </div>
+                            <div class="help-block ipro-valid-block with-errors" *ngIf="form.controls['area'].hasError('required') && form.controls['area'].touched">
+                                Area is required
+                            </div>
+                        </div>
+
+                        <div class="form-group ipro-form-grop-validation" [ngClass]="{'has-error has-danger':form.controls['gender'].hasError('required') && form.controls['gender'].touched}">
+                            <div class="input-group">
+                                <span>Gender: </span>
+                                <input type="text" id="gender" tabindex="2" class="form-control" placeholder="Gender" [formControl]="form.controls['gender']">
+                            </div>
+                            <div class="help-block ipro-valid-block with-errors" *ngIf="form.controls['gender'].hasError('required') && form.controls['gender'].touched">
+                                Gender is required
+                            </div>
+                        </div>
+
+                        <div class="form-group ipro-form-grop-validation" [ngClass]="{'has-error has-danger':form.controls['profession'].hasError('required') && form.controls['profession'].touched}">
+                            <div class="input-group">
+                                <span>Profession: </span>
+                                <input type="text" id="profession" tabindex="2" class="form-control" placeholder="Profession" [formControl]="form.controls['profession']">
+                            </div>
+                            <div class="help-block ipro-valid-block with-errors" *ngIf="form.controls['profession'].hasError('required') && form.controls['profession'].touched">
+                                Profession is required
+                            </div>
+                        </div>
+
+                        <div class="form-group ipro-form-grop-validation">
+                            <div class="input-group">
+                                <span>Roles Played: </span>
+                                <input type="text" id="rolesplayed" tabindex="2" class="form-control" placeholder="RolesPlayed" [formControl]="form.controls['rolesplayed']">
+                            </div>
+                        </div>
+                        <div class="form-group ipro-form-grop-validation">
+                            <div class="input-group">
+                                <span>Roles Interested: </span>
+                                <input type="text" id="rolesinterested" tabindex="2" class="form-control" placeholder="RolesInterested" [formControl]="form.controls['rolesinterested']">
+                            </div>
+                        </div>
+
+                        <div class="alert ipro-alert ipro-alert-login alert-danger" role="alert" *ngIf="errorMsg">
+                            {{errorMsg}}
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-6 hidden-xs-down">&nbsp;</div>
+                            <div class="col-4 Button-right">
+                                <button kendoButton type="submit" class="btn btn-primary px-2 k-button" primary="true"><i class="fa fa-key" (click)="onSaveClick()"></i>&nbsp; Save</button>
+                                <button kendoButton type="submit" class="btn btn-primary px-2 k-button" primary="true"><i class="fa fa-key" (click)="onUpdateClick()"></i>&nbsp; Update</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
