@@ -21,5 +21,9 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
             //userLoginLog.Password = EncryptionManager.Encrypt(userLoginLog.Password);
             return this.userDataAccess.ValidateUser(userLoginLog, out user);
         }
+        public User Register(User user, string password)
+        {
+            return userDataAccess.Register(user, password);
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace GoIdentity.BusinessAccess.Contracts.Core
     public interface IUserBusinessAccess
     {
         List<Claim> ValidateUser(UserLoginLog userLoginLog, out User user);
+        User Register(User user, string password);
     }
 }

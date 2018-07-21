@@ -45,5 +45,10 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
 
             return result;
         }
+        public User Register(User user, string password)
+        {
+            var primaryDbContext = this.unitOfWork.GetIdentityDbContext();
+            return new User();
+        }
     }
 }

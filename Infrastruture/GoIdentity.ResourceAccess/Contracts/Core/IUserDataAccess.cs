@@ -7,5 +7,6 @@ namespace GoIdentity.ResourceAccess.Contracts.Core
     public interface IUserDataAccess
     {
         List<Claim> ValidateUser(UserLoginLog userLoginLog, out User user);
+        User Register(User user, string password);
     }
 }
