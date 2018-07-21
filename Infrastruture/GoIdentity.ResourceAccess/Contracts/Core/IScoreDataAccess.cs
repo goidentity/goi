@@ -8,5 +8,6 @@ namespace GoIdentity.ResourceAccess.Contracts.Core
 {
     public interface IScoreDataAccess
     {
+        void GetUserScore(int userId);
     }
 }

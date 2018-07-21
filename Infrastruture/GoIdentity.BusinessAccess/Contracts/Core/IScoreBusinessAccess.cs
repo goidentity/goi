@@ -8,5 +8,6 @@ namespace GoIdentity.BusinessAccess.Contracts.Core
 {
     public interface IScoreBusinessAccess
     {
+        void GetUserScore(int userId);
     }
 }

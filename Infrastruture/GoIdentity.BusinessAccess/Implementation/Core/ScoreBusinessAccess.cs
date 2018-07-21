@@ -15,5 +15,10 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
         {
             _scoreDataAccess = scoreDataAccess;
         }
+
+        public void GetUserScore(int userId)
+        {
+            _scoreDataAccess.GetUserScore(userId);
+        }
     }
 }

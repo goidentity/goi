@@ -12,5 +12,10 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
         public ScoreDataAccess(IUnitOfWork unitOfWork, Entities.Core.UserContext userContext = null) : base(unitOfWork, userContext)
         {
         }
+
+        public void GetUserScore(int userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

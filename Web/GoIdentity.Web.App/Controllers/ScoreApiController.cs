@@ -23,6 +23,7 @@ namespace GoIdentity.Web.App.Controllers
         [HttpGet]
         public IActionResult Get(int userId)
         {
+            _scoreBusinessAccess.GetUserScore(userId);
             return Ok();
         }
     }
