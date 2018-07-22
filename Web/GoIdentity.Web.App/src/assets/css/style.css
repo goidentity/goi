@@ -18932,3 +18932,20 @@ select.form-control {
 .header.navbar {
     background: #1d9e09 !important;
 }
+
+.m-t-60 {
+    margin-top: 60px !important;
+}
+
+.p-t-60 {
+    padding-top: 60px !important;
+}
+
+.m-l-5 {
+    margin-left: 5px !important;
+}
+
+.btn-sm {
+    padding: 3px 5px !important;
+    font-size: 12px !important;
+}

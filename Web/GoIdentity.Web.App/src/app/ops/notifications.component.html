@@ -1,0 +1,33 @@
+﻿<div class="row m-t-60">
+    <div class="col-lg-12"> 
+                <table class="table table-responsive-sm table-bordered table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>User Id</th>
+                            <th>Notification Message</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of notificationData">
+                            <td>{{row.UserId}}</td>
+                            <td>{{row.MessageContent}}</td>
+                            <td>{{row.CreatedDate| date }}</td>
+                            <td>
+                                <span class="badge badge-success" *ngIf="(row.MessageStatus == '0')"> Read </span>
+                                <span class="badge badge-warning" *ngIf="(row.MessageStatus == '1')"> Unread </span>
+                                <span class="badge badge-secondary" *ngIf="(row.MessageStatus == '2')"> Queue </span>
+                                <span class="badge badge-danger" *ngIf="(row.MessageStatus == '3')"> Deleted </span>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-danger btn-pill" (click)="onDelete(row.UserNotificationId)">Delete</button>
+                                <button type="button" class="btn btn-sm btn-primary btn-pill m-l-5" (click)="onEdit(row.UserNotificationId)">Edit</button>
+                            </td>
+                        </tr> 
+                    </tbody>
+                </table>  
+    </div>
+    <!-- /.col-->
+</div>
