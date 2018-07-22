@@ -16,7 +16,13 @@ import { BaseComponent } from '../shared/base-component';
 export class MyprofileComponent extends BaseComponent implements OnInit {
     public router: Router;
     public OpenPanelDialogStatus: boolean;
-    public dataSetsGridView: Array<any>; 
+    public dataSetsGridView: Array<any>;
+    public form: any;
+    public errorMsg: any;
+
+    public onSave(){}
+    public onSaveClick() {}
+    public onUpdateClick() {}
 
     constructor(
         public toasterService: ToasterService,

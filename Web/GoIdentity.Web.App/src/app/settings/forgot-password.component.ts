@@ -10,12 +10,15 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ChangePassword, Client } from '../models/domain/user-entities';
 import { DeviceInfo, DeviceDetectorService } from 'ngx-device-detector';
 import { ToasterService } from 'angular2-toaster/angular2-toaster';
+import { BaseComponent } from '../shared/base-component';
+import { AuthenticationService } from '../services/authentication.service';
+import { Broadcaster, MessageEvent } from '../models/utilities/broadcaster';
 
 @Component({
     templateUrl: './forgot-password.component.html',
     providers: [Ng4LoadingSpinnerService, UserService]
 })
-export class ForgotPasswordComponent implements OnInit {
+export class ForgotPasswordComponent extends BaseComponent implements OnInit {
 
     /* Change Password Variables */
     public forgetform: FormGroup;
@@ -48,7 +51,12 @@ export class ForgotPasswordComponent implements OnInit {
         private userService: UserService,
         private spinnerService: Ng4LoadingSpinnerService,
         private deviceService: DeviceDetectorService,
-        private toasterService: ToasterService) { }
+
+        public toasterService: ToasterService,
+        public authenticationService: AuthenticationService,
+        public messageEvent: MessageEvent) {
+        super(toasterService, authenticationService, messageEvent);
+    }
 
     onSubmit() {
         debugger;
