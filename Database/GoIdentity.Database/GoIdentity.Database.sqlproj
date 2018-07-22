@@ -64,6 +64,8 @@
     <Folder Include="Core\Stored Procedures" />
     <Folder Include="Core\Functions" />
     <Folder Include="Core\Views" />
+    <Folder Include="Score" />
+    <Folder Include="Score\Tables" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Core\Tables\trUser.sql" />
@@ -86,6 +88,8 @@
     <Build Include="Core\Stored Procedures\updateUserProfile.sql" />
     <Build Include="Core\Views\vUserScore.sql" />
     <Build Include="Core\Tables\trUserNotification.sql" />
+    <Build Include="Security\Scores.sql" />
+    <Build Include="Score\Tables\dmnInfluencer.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

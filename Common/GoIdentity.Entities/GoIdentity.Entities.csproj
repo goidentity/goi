@@ -54,6 +54,7 @@
     <Compile Include="Core\vUserScore.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scores\Influencer.cs" />
     <Compile Include="Security\Claim.cs" />
     <Compile Include="Security\UserLoginLog.cs" />
   </ItemGroup>
