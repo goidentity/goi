@@ -27,5 +27,9 @@ namespace GoIdentity.Web.App.Controllers
         [Route("[action]/{userId:int}")]
         [HttpGet]
         public IActionResult GetLatestScoreByUserId(int userId) => Ok(_scoreBusinessAccess.GetLatestScoreByUserId(userId));
+
+        [Route("[action]/{userId:int}")]
+        [HttpGet]
+        public IActionResult GetNotifications(int userId) => Ok(_scoreBusinessAccess.GetNotifications(userId));
     }
 }

@@ -13,6 +13,8 @@
 	[UniqueId] UNIQUEIDENTIFIER DEFAULT(NEWID()),
 	[JsonFeed] VARCHAR(8000) NULL,
 	
+    [AccountType] INT NULL DEFAULT (1),
+
 	[DefaultRole] VARCHAR(50) NOT NULL DEFAULT('Regular'),
 	[IsLocked] BIT NOT NULL DEFAULT(0),
 	[LockedDate] DATETIME NULL,
@@ -23,6 +25,5 @@
 	[CreatedBy] INT NOT NULL,
 	[CreatedDate] DATETIME NOT NULL, 
     [ModifiedBy] INT NOT NULL, 
-    [ModifiedDate] DATETIME NOT NULL, 
-    [AccountType] INT NULL DEFAULT 1
+    [ModifiedDate] DATETIME NOT NULL 
 )

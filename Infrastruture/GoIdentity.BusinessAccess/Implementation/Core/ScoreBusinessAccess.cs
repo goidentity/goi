@@ -31,5 +31,9 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
             return scores.Where(s => s.ScoreType == "CurrentScore").ToList();
         }
 
+        public List<UserNotification> GetNotifications(int userId)
+        {
+            return this.scoreDataAccess.GetNotifications(userId);
+        }
     }
 }

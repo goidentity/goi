@@ -85,6 +85,7 @@
     <Build Include="Core\Stored Procedures\getUserProfile.sql" />
     <Build Include="Core\Stored Procedures\updateUserProfile.sql" />
     <Build Include="Core\Views\vUserScore.sql" />
+    <Build Include="Core\Tables\trUserNotification.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

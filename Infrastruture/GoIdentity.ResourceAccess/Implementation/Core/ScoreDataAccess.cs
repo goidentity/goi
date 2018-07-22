@@ -22,9 +22,9 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
                 .ExecuteResultSet<vUserScore>("select * from Core.vUserScore where UserId = " + userId.ToString())
                 .ToList();
 
-        public void GetUserScore(int userId)
+        public List<UserNotification> GetNotifications(int userId)
         {
-            throw new NotImplementedException();
+            return this.unitOfWork.GetIdentityDbContext().UserNotifications.Where(n => n.UserId == userId).ToList();
         }
     }
 }

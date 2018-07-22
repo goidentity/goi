@@ -10,5 +10,6 @@ namespace GoIdentity.BusinessAccess.Contracts.Core
     public interface IScoreBusinessAccess
     {
         List<vUserScore> GetLatestScoreByUserId(int userId);
+        List<UserNotification> GetNotifications(int userId);
     }
 }

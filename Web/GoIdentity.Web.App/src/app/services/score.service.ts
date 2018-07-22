@@ -26,4 +26,8 @@ export class ScoreService extends BaseService {
         return this.authHttp.get<any[]>(this.baseServiceUrl + 'GetLatestScoreByUserId/' + userId);
     }
 
+    getNotifications(userId: number): Observable<any[]> {
+        return this.authHttp.get<any[]>(this.baseServiceUrl + 'GetNotifications/' + userId);
+    }
+
 }

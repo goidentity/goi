@@ -10,5 +10,6 @@ namespace GoIdentity.ResourceAccess.Contracts.Core
     public interface IScoreDataAccess
     {
         List<vUserScore> GetLatestScoreByUserId(int userId);
+        List<UserNotification> GetNotifications(int userId);
     }
 }

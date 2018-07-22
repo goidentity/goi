@@ -48,6 +48,7 @@
     <Compile Include="Core\Navigation.cs" />
     <Compile Include="Core\User.cs" />
     <Compile Include="Core\UserContext.cs" />
+    <Compile Include="Core\UserNotification.cs" />
     <Compile Include="Core\UserProfile.cs" />
     <Compile Include="Core\UserScore.cs" />
     <Compile Include="Core\vUserScore.cs" />
