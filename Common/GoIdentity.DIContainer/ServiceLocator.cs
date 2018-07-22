@@ -3,6 +3,7 @@ using GoIdentity.BusinessAccess.Implementation.Core;
 using GoIdentity.Entities.Core;
 using GoIdentity.ResourceAccess;
 using GoIdentity.ResourceAccess.Contracts.Core;
+using GoIdentity.ResourceAccess.DataProcessors;
 using GoIdentity.ResourceAccess.Implementation.Core;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -45,10 +46,12 @@ namespace GoIdentity.DIContainer
             //Data Access
             _serviceCollection.AddScoped<IUserDataAccess, UserDataAccess>();
             _serviceCollection.AddScoped<IScoreDataAccess, ScoreDataAccess>();
+            _serviceCollection.AddScoped<IAuthDataAccess, AuthDataAccess>();
 
             //Business Access
             _serviceCollection.AddScoped<IUserBusinessAccess, UserBusinessAccess>();
             _serviceCollection.AddScoped<IScoreBusinessAccess, ScoreBusinessAccess>();
+            _serviceCollection.AddScoped<IAuthBusinessAccess, AuthBusinessAccess>();
 
             _serviceCollection.AddScoped<UserContext, UserContext>();
 

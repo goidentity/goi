@@ -8,4 +8,18 @@
     <Property Name="NewName" Value="UserId" />
     <Property Name="NewName" Value="UserProfileId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="4378be0d-2617-456e-87bf-a90426f3c2f5" ChangeDateTime="07/22/2018 07:38:42">
+    <Property Name="ElementName" Value="[dbo].[trUserInfluencerAuthKey].[AuthKey]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[trUserInfluencerAuthKey]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Secret" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fae82164-5cc4-47be-b790-6cd03c1ec454" ChangeDateTime="07/22/2018 07:43:18">
+    <Property Name="ElementName" Value="[dbo].[trUserInfluencerAuthKey].[Las]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[trUserInfluencerAuthKey]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastRefreshedDate" />
+  </Operation>
 </Operations>

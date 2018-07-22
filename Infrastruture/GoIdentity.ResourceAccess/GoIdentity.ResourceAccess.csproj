@@ -53,11 +53,16 @@
     <Compile Include="Contracts\Core\IScoreDataAccess.cs" />
     <Compile Include="Contracts\Core\IUserDataAccess.cs" />
     <Compile Include="DataColumnCollection.cs" />
+    <Compile Include="Contracts\Core\IAuthDataAccess.cs" />
     <Compile Include="DbContextExtensions.cs" />
     <Compile Include="IdentityDbContext.cs" />
+    <Compile Include="Implementation\Core\AuthDataAccess.cs" />
     <Compile Include="Implementation\Core\ScoreDataAccess.cs" />
     <Compile Include="Implementation\Core\UserDataAccess.cs" />
     <Compile Include="Implementation\DataAccess.cs" />
+    <Compile Include="DataProcessors\DataProcessor.cs" />
+    <Compile Include="DataProcessors\IDataProcessor.cs" />
+    <Compile Include="DataProcessors\LinkedInProcessor.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="ParmsCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,5 +83,6 @@
       <Name>GoIdentity.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

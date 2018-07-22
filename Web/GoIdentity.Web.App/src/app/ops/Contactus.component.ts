@@ -7,10 +7,10 @@ import { ToasterService } from "angular2-toaster";
 import { AuthenticationService } from '../services/authentication.service';
 import { Broadcaster, MessageEvent } from '../models/utilities/broadcaster';
 import { BaseComponent } from '../shared/base-component';
-
+import { AuthDataService } from '../services/authdata.service';
 @Component({
     templateUrl: './contactus.component.html',
-    providers: []
+    providers: [AuthDataService]
 })
 export class ContactusComponent extends BaseComponent implements OnInit {
     public router: Router;
@@ -21,7 +21,7 @@ export class ContactusComponent extends BaseComponent implements OnInit {
         public toasterService: ToasterService,
         public authenticationService: AuthenticationService,
         public messageEvent: MessageEvent,
-
+        public authDataService : AuthDataService,
         private routerObj: Router) {
         super(toasterService, authenticationService, messageEvent);
         this.router = routerObj;
@@ -67,7 +67,11 @@ export class ContactusComponent extends BaseComponent implements OnInit {
          this.OpenPanelDialogStatus = false;
      }
 
-    
+    onClick() {
+        this.authDataService.getAuthUrl().subscribe(data => {
+            window.location.href = data.Url;
+        });
+    }
 
 
 }
