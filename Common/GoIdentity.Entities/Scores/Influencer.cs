@@ -26,6 +26,12 @@ namespace GoIdentity.Entities.Scores
 
     public enum InfluencerType : short
     {
-
+        Undefined = 0,
+        LinkedIn = 1,
+        Upwork = 2,
+        Naukri = 3,
+        Payoneer = 4,
+        Paisabazaar = 5,
+        MCA = 6
     }
 }
