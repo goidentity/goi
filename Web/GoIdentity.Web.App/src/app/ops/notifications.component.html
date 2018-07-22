@@ -22,8 +22,15 @@
                                 <span class="badge badge-danger" *ngIf="(row.MessageStatus == '3')"> Deleted </span>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-danger btn-pill" (click)="onDelete(row.UserNotificationId)">Delete</button>
-                                <button type="button" class="btn btn-sm btn-primary btn-pill m-l-5" (click)="onEdit(row.UserNotificationId)">Edit</button>
+                                <div class="form-group">
+                                    <select class="form-control dropdown">
+                                        <option>View</option>
+                                        <option>Mark as read</option>
+                                        <option>Edit</option>
+                                        <option>Delete</option>
+                                    </select>
+                                </div>
+
                             </td>
                         </tr> 
                     </tbody>
