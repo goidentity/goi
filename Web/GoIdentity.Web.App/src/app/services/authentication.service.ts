@@ -72,7 +72,7 @@ export class AuthenticationService {
                 return result;
             }
         }));
-    }
+    }   
 
     public signout(): void {
         this.redirectUrl = null;
