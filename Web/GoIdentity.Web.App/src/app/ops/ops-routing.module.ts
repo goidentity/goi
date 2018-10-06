@@ -8,6 +8,7 @@ import { MyprofileComponent } from './myprofile.component';
 import { NotificationsComponent } from './notifications.component';
 import { AboutComponent } from './about.component';
 import { ContactusComponent } from './contactus.component';
+import { ConnectorComponent } from './connector.component';
 
 const routes: Routes = [
     {
@@ -54,6 +55,14 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         data: {
             title: 'contactus'
+        }
+
+    }, {
+        path: 'connectors',
+        component: ConnectorComponent,
+        canActivate: [AuthGuard],
+        data: {
+            title: 'connectors'
         }
     }
 ];

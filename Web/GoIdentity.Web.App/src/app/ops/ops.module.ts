@@ -29,6 +29,7 @@ import { MyprofileComponent } from './myprofile.component';
 import { NotificationsComponent } from './notifications.component';
 import { AboutComponent } from './about.component';
 import { ContactusComponent } from './contactus.component';
+import { ConnectorComponent } from './connector.component';
 
 @NgModule({
     imports: [
@@ -52,7 +53,7 @@ import { ContactusComponent } from './contactus.component';
         ChartsModule,
         OpsRoutingModule, RippleModule
     ],
-    declarations: [DashboardComponent, MyidentityComponent, MyprofileComponent, NotificationsComponent, AboutComponent, ContactusComponent
+    declarations: [DashboardComponent, MyidentityComponent, MyprofileComponent, NotificationsComponent, AboutComponent, ContactusComponent, ConnectorComponent
     ],
     providers: [ToasterService,
         {

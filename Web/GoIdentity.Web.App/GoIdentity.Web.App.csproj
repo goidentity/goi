@@ -14,6 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="src\app\ops\connector.component.ts" />
+    <None Remove="src\app\services\connector.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -38,6 +43,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="RestSharp" Version="106.3.1" />
     <PackageReference Include="Serilog.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
     <PackageReference Include="Serilog.Sinks.File" Version="4.0.0" />
@@ -51,6 +57,11 @@
   <ProjectReference Include="..\..\Common\GoIdentity.Entities\GoIdentity.Entities.csproj" />
   <ProjectReference Include="..\..\Infrastruture\GoIdentity.BusinessAccess\GoIdentity.BusinessAccess.csproj" />
   <ProjectReference Include="..\..\Infrastruture\GoIdentity.ResourceAccess\GoIdentity.ResourceAccess.csproj" />
+</ItemGroup>
+
+<ItemGroup>
+  <TypeScriptCompile Include="src\app\ops\connector.component.ts" />
+  <TypeScriptCompile Include="src\app\services\connector.service.ts" />
 </ItemGroup>
   
 </Project>

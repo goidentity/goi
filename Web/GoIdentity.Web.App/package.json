@@ -72,6 +72,7 @@
     "ngx-tooltip": "0.0.9",
     "ngx-treeview": "^6.0.0",
     "node-sass": "^4.9.2",
+    "npm": "^6.3.0",
     "primeicons": "^1.0.0-beta.9",
     "primeng": "^6.0.0",
     "rxjs": "^6.0.0",
