@@ -90,7 +90,8 @@
     <Build Include="Core\Tables\trUserNotification.sql" />
     <Build Include="Security\Scores.sql" />
     <Build Include="Score\Tables\dmnInfluencer.sql" />
-    <Build Include="Score\Tables\trUserInfluencerAuthKey.sql" />
+    <Build Include="Score\Tables\trUserInfluencerAuth.sql" />
+    <Build Include="Score\Tables\trEngineLog.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

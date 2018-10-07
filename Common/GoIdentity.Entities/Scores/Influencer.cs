@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GoIdentity.Entities.Scores
 {
-    [Table(name: "trInfluencer", Schema = "Scores")]
+    [Table(name: "dmnInfluencer", Schema = "Scores")]
     public class Influencer : Entity
     {
         [Key]
-        public InfluencerType InfluencerId { get; set; }
+        public ConnectorType InfluencerId { get; set; }
         public string Title { get; set; }
         public string Category { get; set; }
 
@@ -24,14 +22,4 @@ namespace GoIdentity.Entities.Scores
         public bool IsActive { get; set; }
     }
 
-    public enum InfluencerType : short
-    {
-        Undefined = 0,
-        LinkedIn = 1,
-        Upwork = 2,
-        Naukri = 3,
-        Payoneer = 4,
-        Paisabazaar = 5,
-        MCA = 6
-    }
 }

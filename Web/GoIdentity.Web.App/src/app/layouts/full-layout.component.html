@@ -28,7 +28,7 @@
                             <div class="ipro-modules-items" *ngFor='let module of modulesList; let i=index'>
                                 <a href="#" class="dropdown-item ipro-module-icon handsimble" (click)="onModuleClick(module.NavigationId)">
                                     <i class="fa {{module.ImagePath}} hidden-xs-down" aria-hidden="true"></i>
-                                    <div class="mb-q"><i class="fa {{module.ImagePath}} hidden-sm-up" aria-hidden="true" ></i>&nbsp;{{module.Title}}</div>
+                                    <div class="mb-q"><i class="fa {{module.ImagePath}} hidden-sm-up" aria-hidden="true"></i>&nbsp;{{module.Title}}</div>
                                 </a>
                             </div>
                         </div>
@@ -89,15 +89,26 @@
 <div class="app-body" id="{{themepanel}}">
     <div class="sidebar" [style.background-color]="color1" [style.color]="colortxt">
         <nav class="sidebar-nav">
+
             <ul class="nav" *ngFor='let navigationItem of navigationItemsList'>
+                <li class="nav-item nav-dropdown" *ngIf="Nav_Profile">
+                    <a class="nav-link navheaderItem" [style.color]="colortxt" href="#">
+                        <div class="ipro-module-profile hidden-xs-down profile_Title">
+                            <img class="img-avatar" src="assets/img/avatars/5.jpg" width="100" height="100">
+                        </div>
+                        <div class="profile_Title">
+                            {{loggedInUser}}
+                        </div>
+                    </a>
+                </li>
                 <li class="nav-item nav-dropdown" *ngFor="let navigationChildItem of navigationItem.ChildItems" routerLinkActive="open">
                     <a *ngIf="navigationChildItem.ChildItems.length>0" class="nav-link navheaderItem" [style.color]="colortxt" href="#" attr.title="{{navigationChildItem.Title}}">
                         <i class="fa {{navigationChildItem.ImagePath}}" [style.color]="colortxt"></i> {{navigationChildItem.Title}}
                     </a>
                     <ul class="nav-dropdown-items" *ngFor="let navigationSubChildItem of navigationChildItem.ChildItems; let i=index">
                         <li class="nav-item mobile-sidebar-toggler">
-                            <a class="nav-link" routerLinkActive="active" [routerLink]="navigationSubChildItem.NavigationPath" attr.title="{{navigationSubChildItem.Title}}" (click)="getNavigationTitle(navigationSubChildItem.Title)" [style.color]="colortxt">
-                                <i class="fa {{navigationSubChildItem.ImagePath}}" [style.color]="colortxt"></i> {{navigationSubChildItem.Title}}
+                            <a class="nav-link ripple" routerLinkActive="active" [routerLink]="navigationSubChildItem.NavigationPath" attr.title="{{navigationSubChildItem.Title}}" (click)="getNavigationTitle(navigationSubChildItem.Title)" [style.color]="colortxt">
+                                <i class="fa {{navigationSubChildItem.ImagePath}}"></i> {{navigationSubChildItem.Title}}
                             </a>
                         </li>
                     </ul>
@@ -107,11 +118,11 @@
     </div>
 
     <!-- Main content -->
-    <main class="main" id="main" (scroll)="onWindowScroll($event)">
+    <main class="main" id="main">
         <!-- Breadcrumb -->
 
         <div class="breadcrumb-main">
-            <ul class="breadcrumb-header "><li>{{breadcrumbsTitle}}</li></ul>
+            <ul class="breadcrumb-header"><li>{{breadcrumbsTitle}}</li></ul>
 
             <ol class="breadcrumb">
                 <breadcrumbs>0</breadcrumbs>
@@ -121,7 +132,6 @@
         <div class="container-fluid">
             <router-outlet></router-outlet>
         </div>
-        <!-- /.conainer-fluid -->
 
     </main>
 </div>

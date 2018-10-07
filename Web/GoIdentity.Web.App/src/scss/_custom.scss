@@ -1,6 +1,4 @@
 @import "_custom-variables";
-
-
 // Extend
 
 body {
@@ -16,10 +14,13 @@ body.sidebar ul.nav li.nav-item.nav-dropdown.open a.nav-link :active {
     font-weight: bold;
 }
 
-
-.ipro-primary-bb {
+.sidebar .ipro-primary-bb {
     background-color: $ipro-primary-btn;
     border-color: $ipro-primary-btn;
+}
+
+.card-group > .ipro-login-box {
+    background-color: white;
 }
 
 .ipro-primary-b {
@@ -172,29 +173,36 @@ kendo-maskedtextbox > input.k-textbox {
  *  Scrollable chnage color
  */
 
-.nav::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: 10px !important;
-    background-color: #F5F5F5 !important;
+/*.nav::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-right: 1px solid Transparent !important;
+    border-left: 1px solid Transparent !important;
+}*/
+nav.sidebar-nav {
+    background-color: rgba(255,255,255,.95);
+    transition: all .3s cubic-bezier(.35,0,.25,1);
 }
 
 .nav::-webkit-scrollbar {
-    width: 12px;
+    width: 8px;
     background-color: #F5F5F5;
 }
 
-.nav::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #555;
-}
+/*.nav::-webkit-scrollbar-thumb {
+    height: 2px;
+    background-color: #adb2d0 !important;
+    background-clip: content-box;
+    border-color: transparent !important;
+    border-style: solid;
+    border-width: 1px 5px;
+}*/
 /*kendo custome styles*/
 .k-pager-numbers .k-link, .k-pager-numbers .k-link:link, .k-pager-numbers .k-link.k-state-selected, .k-pager-numbers, .k-link.k-state-selected, .k-pager-numbers .k-link:link.k-state-selected {
     color: $ipro-black-color;
 }
 
 .k-state-selected {
-    color: $ipro-btn-text;
+    color: rgba(0,0,0,.2);
     background-color: #F8F8F8;
     border-color: rgba(0,0,0,.1);
 }
@@ -258,7 +266,7 @@ ul.nav-dropdown-items li a {
 }
 
 .ipro-panel {
-    border: solid 1px rgba(231, 231, 231, 0.36);
+    /*border: solid 1px rgba(231, 231, 231, 0.36);*/
     padding: 0px 15px 0px 15px;
 }
 
@@ -284,9 +292,9 @@ a {
 }
 
 .main .container-fluid {
-    /*margin-bottom: 15px !important;
-    padding: 0px 15px !important;*/
-    /*background-color: white;*/
+    margin-bottom: 15px !important;
+    padding: 45px 15px !important;
+    background-color: white;
 }
 
 .ipro-side-container {
@@ -295,7 +303,7 @@ a {
     /*width: 98.5%;*/
     position: absolute;
     top: 30px;
-    left: 2px;
+    left: 10px;
     /*padding: 10px;*/
 }
 
@@ -328,6 +336,7 @@ button.Button-right.k-button.k-primary.k-button-icon {
 main.main {
     background-color: $ipro-btn-text !important;
     overflow-x: auto !important;
+    box-shadow: 0 16px 38px -12px rgba(245, 245, 245, 0.56), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
 }
 
 .ipro-valid-block {
@@ -411,9 +420,9 @@ main.main {
 }
 
 .btn {
-    padding: 8px 14px;
-    min-width: 50px;
-    border-radius: 0 ;
+    padding: 8px 14px !important;
+    min-width: 140px;
+    border-radius: 0 !important;
     cursor: pointer !important;
     letter-spacing: 0.5px;
 }
@@ -472,7 +481,7 @@ main.main {
 }*/
 
 .sidebar ul.nav li.nav-item.nav-dropdown.open {
-    background-color: #f8f8f8 !important;
+    background-color: transparent !important;
     color: #74bb7a !important;
     padding-right: 15px;
 }
@@ -504,7 +513,12 @@ main.main {
 
 .thfirstChild {
     margin: 0px;
-    width: 38px;
+    min-width: 55px;
+}
+
+.AcctthfirstChild {
+    margin: 0px;
+    min-width: 37px;
 }
 
 .thsecdChild {
@@ -534,11 +548,14 @@ main.main {
 
 .ipro-table th, .ipro-table td {
     padding: 4px 10px !important;
-    background-color: $ipro-btn-text;
+    /*background-color: $ipro-btn-text;*/
 }
 
 .table-buttons tr:hover {
+    position: relative;
     background-color: lightgoldenrodyellow;
+    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+    z-index: 0;
 }
 // Kendo button styles
 /*.k-action-buttons .k-primary:hover, .k-button.k-primary.k-flat.k-state-hover, .k-button.k-primary.k-flat:hover, .k-button.k-primary.k-state-hover, .k-button.k-primary:hover, .k-dialog-buttongroup .k-button.k-primary.k-state-hover, .k-dialog-buttongroup .k-button.k-primary:hover, .k-slider .k-draghandle:hover, .k-switch-on:hover .k-switch-handle, .k-primary:active {
@@ -766,8 +783,9 @@ input.form-control:focus {
 // aside bar
 .sidebar {
     border-color: #ededed;
+    background-color: rgba(255,255,255,.95);
     box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-    background-image: linear-gradient(#ededed, #ededed);
+    background-image: url('../assets/ipro-images/sidebar-bg.jpg');
     font-size: 13px !important;
     color: $ipro-btn-text !important;
     border-right: none;
@@ -802,10 +820,11 @@ input.form-control:focus {
 }
 
 .sidebar ul.nav li.nav-item a.nav-link:hover {
-    background-color: #afd6b2 !important;
+    background-color: transparent !important;
     border-radius: 0 16px 16px 0;
     -webkit-border-radius: 0 16px 16px 0;
     padding-right: 15px;
+    box-shadow: inset 1px -1px 20px 2px #eaeaea, inset -1px 4px 18px #ffffff;
 }
 
 
@@ -814,7 +833,7 @@ header.navbar {
     height: $navbar-height;
     border-bottom: none;
     background: rgb(73, 159, 80);
-    box-shadow: 0 8px 11px -6px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
     z-index: 99;
     opacity: 100;
 }
@@ -870,15 +889,17 @@ header.navbar .navbar-brand {
 }
 
 .sidebar ul.nav li.nav-item a.nav-link.active i, .sidebar ul.nav li.nav-item .navbar a.active.dropdown-toggle i, .navbar .sidebar ul.nav li.nav-item a.active.dropdown-toggle i {
-    color: $ipro-btn-text;
+    color: #18ab24 !important;
     font-weight: bold;
 }
 
 .sidebar ul.nav li.nav-item a.nav-link.active {
-    color: $ipro-btn-text !important;
+    color: #18ab24 !important;
     border-radius: 0 16px 16px 0;
     -webkit-border-radius: 0 16px 16px 0;
     padding-right: 15px;
+    box-shadow: inset 3px 0px 0px #489f4f, -1px 4px 0px 13px #ffffff;
+    background: rgba(0,0,0,.02) !important;
 }
 
 /*.sidebar ul.nav li.nav-item.nav-dropdown.open a.nav-link {
@@ -960,7 +981,7 @@ a.nav-link.active i {
 }
 
 tbody.ng-star-inserted td tbody:hover {
-    background: lightyellow;
+    background: #fafafa;
 }
 
 .ipro-custom-tree ul li {
@@ -1270,12 +1291,485 @@ label.editButton.ipro-edit-btns {
 }
 /*Media tree 480 max*/
 @media (max-width:480px) {
+    .image-flex > img.img-avatar {
+        width: 80px;
+        height: 80px;
+        border: 1px solid gray;
+        /*box-shadow: 3px 3px 5px 0px #ccc;*/
+        border-radius: 0px;
+    }
+
+    .mobile-banner {
+        display: block;
+        padding: 8px 0px 0px 0px !important;
+        margin: 0px;
+        border-radius: 0px;
+    }
+
+    .ipro-modules-items-color {
+        /* display: inline-block; */
+        width: 35% !important;
+    }
+
+    .k-button {
+        margin: 3px;
+        padding: 2px 10px;
+        min-width: 64px;
+        letter-spacing: 0.5px;
+    }
+
+    .tab-content .tab-pane {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    ul.breadcrumb-header {
+        padding: 6px 10px 0px 5px;
+    }
+
+    h6, .h6 {
+        font-size: 1rem;
+        margin-top: 9px;
+    }
+
+    .k-dropdown-wrap .k-input {
+        font-size: 15px;
+    }
+
+    .parentTree {
+        width: 100% !important;
+        padding: 10px;
+    }
+
+    kendo-list tr.table_tdlength td {
+        min-width: 50px !important;
+    }
+
+    span.k-numeric-wrap > input, .k-picker-wrap .k-input, .k-autocomplete, .k-dropdown-wrap .k-input .k-combobox, .k-dateinput, .k-datetimepicker, .k-maskedtextbox, .k-numerictextbox, .k-timepicker {
+        font-size: 14px;
+        height: 23px !important;
+        width: 100% !important;
+        color: $ipro-black-color !important;
+        font-weight: 400;
+    }
+
+    kendo-dropdownlist.k-widget.k-dropdown.k-header.ng-untouched.ng-pristine.ng-valid.ng-star-inserted,
+    input.form-control.k-textbox.ng-pristine.ng-valid.ng-star-inserted.ng-touched, kendo-dropdownlist.k-widget.k-dropdown.k-header.ng-valid.ng-star-inserted.ng-dirty.ng-touched,
+    kendo-dropdownlist.k-widget.k-dropdown.k-header.ng-untouched.ng-pristine.ng-valid,
+    kendo-dropdownlist.k-widget.k-dropdown.k-header.ng-pristine.ng-valid.ng-star-inserted.ng-touched,
+    kendo-datepicker.k-datepicker, textarea.form-control.k-textarea.ng-untouched.ng-pristine.ng-valid.ng-star-inserted,
+    textarea.form-control.k-textarea.ng-valid.ng-star-inserted.ng-dirty.ng-touched, input.form-control.k-textbox.ng-untouched.ng-pristine.ng-valid.ng-star-inserted,
+    kendo-multiselect.k-multiselect, div#masttextbox, textarea.form-control.k-textarea.ng-pristine.ng-valid.ng-star-inserted.ng-touched:focus, textarea.form-control.k-textarea.ng-pristine.ng-valid.ng-star-inserted.ng-touched {
+        width: 100% !important;
+    }
+
+    .Login_Empolyee {
+        width: 100% !important;
+    }
+
+    .sidebar-mobile-show .sidebar {
+        width: 100% !important;
+    }
+
+    .button_list span {
+        width: 100%;
+        display: block;
+        position: relative;
+        text-align: left !important;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    .k-button.k-primary {
+        color: #ffffff !important;
+        background-color: #74bb79 !important;
+        background-image: linear-gradient(rgba(157, 144, 139, 0), rgba(159, 154, 152, 0.2)) !important;
+        border-color: #a8a7a7;
+        border-radius: 0px;
+    }
+
+    span.handsimble i {
+        font-size: 16px;
+    }
+
+    .k-grid td, .k-grid th {
+        padding: 5px 8px !important;
+    }
+
+    .k-grid-footer td, .k-group-footer td, .k-grouping-row td {
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+    .ipro-MenuIcons.btn-group.dropdown-menu-right.dropdown-menu-login {
+        width: 15px;
+        height: 32px;
+    }
+
+    .ipro-MenuIcons.btn-group.dropdown-menu-right.dropdown-menu-login.show > .dropdown-menu.show {
+        top: 30px !important;
+        left: -200px !important;
+    }
+
+    .dropdown-menu-login > ul li div.ipro-module-menu-color:before, .dropdown-menu-login > ul li div.ipro-module-menu:before, .dropdown-menu-login > ul li div.ipro-module-menu:after, .dropdown-menu-login > ul li div.ipro-module-menu-color:after {
+        right: 8px !important;
+        z-index: 999 !important;
+    }
+
+    .ipro-module-icon .mb-q {
+        font-size: 16px;
+    }
+
+    .ipro-module-icon .mb-q i {
+        font-size: 20px;
+        padding-right: 10px !important;
+    }
+
+    .sidebar ul.nav {
+        width: 100% !important;
+    }
+
+    button.navbar-toggler.mobile-sidebar-toggler.hidden-lg-up {
+        width: 48px;
+        color: white;
+    }
+
+    .sidebar ul.nav li.nav-item ul li {
+        font-size: 16px;
+    }
+
+    .chanage-width, .sidebar ul.nav {
+        width: 100%;
+    }
+
+    .flex-feilds {
+        width: 320px !important;
+        border-radius: 0px !important;
+        background-color: white !important;
+        padding-right: 8px !important;
+        padding-bottom: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24) !important;
+    }
+
+    .sidebar .sidebar-nav,
+    .sidebar .nav {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .ui-treetable table {
+        table-layout: auto;
+    }
+
+
+    .onebyone {
+        min-width: 100% !important;
+        height: 50px !important;
+        border: 1px dashed gray !important;
+        display: inline-block;
+    }
+
+    .onebyone > .panel-heading {
+        background-color: #F8F8F8 !important;
+        color: $ipro-btn-text !important;
+    }
+
+    .twobytwo {
+        min-width: 100% !important;
+        height: 100px !important;
+        border: 1px dashed gray !important;
+        display: inline-block;
+    }
+
+    .twobytwo > .panel-heading {
+        background-color: green !important;
+        color: $ipro-btn-text !important;
+    }
+
+    .twobyfour {
+        min-width: 100% !important;
+        height: 200px !important;
+        border: 1px dashed gray !important;
+        display: inline-block;
+    }
+
+    .twobyfour > .panel-heading {
+        background-color: rgb(240, 127, 32) !important;
+        color: $ipro-btn-text !important;
+    }
+
+    .fourbytwo {
+        min-width: 100% !important;
+        height: 100px !important;
+        border: 1px dashed gray !important;
+        display: inline-block;
+    }
+
+    .fourbytwo > .panel-heading {
+        background-color: #F8F8F8 !important;
+        color: $ipro-btn-text !important;
+    }
+
+    .fourbyfour {
+        min-width: 100% !important;
+        height: 200px !important;
+        border: 1px dashed gray !important;
+        display: inline-block;
+    }
+
+    .fourbyfour > .panel-heading {
+        background-color: rgb(240, 127, 32) !important;
+        color: $ipro-btn-text !important;
+    }
+
+    .fivebytwo {
+        min-width: 100% !important;
+        height: 100px !important;
+        border: 1px dashed gray !important;
+        display: inline-block;
+    }
+
+    .fivebytwo > .panel-heading {
+        background-color: #F8F8F8 !important;
+        color: $ipro-btn-text !important;
+    }
+
+    .fivebyfour {
+        min-width: 100% !important;
+        height: 200px !important;
+        border: 1px dashed gray !important;
+        display: inline-block;
+    }
+
+    .fivebyfour > .panel-heading {
+        background-color: rgb(240, 127, 32) !important;
+        color: $ipro-btn-text !important;
+    }
+
+    .table-minwith tr td.tdwidth {
+        min-width: 50px !important;
+        text-align: right !important;
+        /*position: relative;*/
+        right: 2px !important;
+    }
+
+    .alignmentRight {
+        text-align: left !important;
+    }
+
+    .extend-main.ipro-panel {
+        padding: 0px 15px 0px 18px;
+    }
+
+    ipro-panel {
+        /*border: solid 1px rgba(231, 231, 231, 0.36);*/
+        padding: 0px 15px 0px 11px;
+    }
+
+    .image-flex {
+        position: relative;
+        /* box-shadow: 3px 3px 5px 6px #ccc; */
+        /* border: 5px solid white; */
+        border-radius: 50em;
+        /* left: -15px; */
+        top: 0px;
+        /*padding: 5px;*/
+    }
+
+    #Container-width {
+        padding-top: 5px !important;
+    }
+
+    .mobile-banner {
+        display: block;
+        padding: 8px 0px 0px 0px !important;
+        margin: 0px;
+    }
+
+    .sidebar-mobile-show.sidebar {
+        width: 100% !important;
+    }
+
+    .sidebar ul.nav li.nav-item a.nav-link i {
+        width: 20px;
+        margin: 0 1.2rem 0 0;
+        font-size: 20px;
+        color: black;
+        text-align: center;
+    }
+
+    .item a.nav-link {
+        font-size: 16px;
+    }
+
+    .chanage-width {
+        width: 100%;
+    }
+
+    .acctTemphead {
+        display: block !important;
+        text-align: left !important;
+    }
+
+    .acctTemplatestyle {
+        padding-bottom: 15px;
+        width: 100% !important;
+        display: block;
+    }
+
+    .mb-0 {
+        background-color: white !important;
+    }
+
+    .form-inline {
+        display: contents;
+        flex-flow: row wrap;
+        align-items: center;
+    }
+
+
+    .float-left {
+        float: initial !important;
+    }
+    /*.ipro-inputcontrol > kendo-datepicker, .ipro-inputcontrol > kendo-multiselect, .ipro-inputcontrol > kendo-dropdownlist.k-dropdown, .ipro-right-body input, .ipro-inputcontrol.k-datepicker, .ipro-inputcontrol > div.ng-star-inserted, .ipro-inputcontrol > .inputcontrol, kendo-numerictextbox.k-numerictextbox, .form-control.k-textbox {
+        width: 100% !important;
+    }*/
+    [_nghost-c12] .treeview-container .row-item, .form-check {
+        margin-bottom: -8px;
+    }
+
+    .k-animation-container-shown {
+        padding-left: 5px !important;
+    }
+
+    .HeaderRowLength.ng-star-inserted {
+        margin: 5px 14px 0px 25px;
+        width: 100%;
+    }
+
+
+
+    .extend-main {
+        width: 100% !important;
+    }
+
+    .sidebar {
+        border-color: #003c6c;
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+        background-image: url('../assets/ipro-images/sidebar-bg.jpg');
+        font-size: 13px !important;
+        color: $ipro-btn-text !important;
+        border-right: none;
+    }
+
+    .card, .BannerFeilds > div.card {
+        background-color: transparent !important;
+        border: 1px solid transparent !important;
+        margin-bottom: 0rem;
+    }
+
+    .flex-container {
+        display: flex;
+        width: 100% !important;
+        margin-top: 5px;
+        margin-bottom: 8px;
+        background-color: #ededed;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .fixedHeader {
+        width: 100% !important;
+    }
+
+    main.main {
+        background-color: $ipro-btn-text !important;
+        overflow-x: auto !important;
+        box-shadow: 0 16px 38px -12px rgba(245, 245, 245, 0.56), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+    }
+
     .ipro-side-container {
         background-color: transparent !important;
         font-size: 13px;
         position: absolute;
-        width: 98.5%;
+        width: 95.5%;
+        left: 10px !important;
+        padding: 2px;
+        box-shadow: 0 16px 38px -12px rgba(245, 245, 245, 0.56), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
         /*padding: 15px !important;*/
+    }
+
+    #flex-modulelist {
+        position: relative;
+        overflow: hidden;
+        margin: 2px;
+        -webkit-filter: grayscale(0.8);
+        filter: grayscale(0.1);
+        padding: 1px;
+        display: inline-block;
+        width: 48% !important;
+        font-size: 13px;
+        min-height: 160px;
+        color: white;
+        border-radius: 11px;
+        box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    }
+
+    #flex-modulelist::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 2;
+        display: block;
+        content: '';
+        width: 0;
+        height: 0;
+        background: rgba(255,255,255,.2);
+        border-radius: 100%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        -webkit-transform: translateY(-50%) translateX(-50%);
+        transform: translateY(-50%) translateX(-50%);
+    }
+
+    #flex-modulelist:hover {
+        animation: bloom ease-in-out .75s forwards;
+    }
+
+    #flex-modulelist:hover::before {
+        animation: circle .75s;
+    }
+
+    #flex-modulelist > a.Module-Item {
+        position: relative;
+        top: 50px;
+        color: white;
+    }
+
+    #flex-modulelist > a.Module-Item .mb-q {
+        text-align: center;
+        font-size: 14px;
+    }
+
+    #flex-modulelist > a.Module-Item .mb-q i {
+        text-align: center;
+        font-size: 40px !important;
+    }
+
+    #flex-modulelist > a.Module-Item:hover, a.Module-Item.active {
+        background-color: transparent !important;
+        color: white;
+        font-weight: bold;
+    }
+
+    #flex-modulelist > a.Module-Item i {
+        color: white !important;
+    }
+
+    div#flex-modulelist:hover {
+        background: #569869 !important;
     }
 
     .fixedHeader {
@@ -1300,8 +1794,10 @@ label.editButton.ipro-edit-btns {
 
     .sidebar .sidebar-nav,
     .sidebar .nav {
-        width: 200px !important;
+        /*width: 200px !important;*/
         height: 100% !important;
+        /*box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);*/
+        transition: all .3s cubic-bezier(.35,0,.25,1);
     }
 
     .treeview-container {
@@ -1329,6 +1825,24 @@ label.editButton.ipro-edit-btns {
     .k-dialog {
         padding: 0;
         min-width: 300px;
+    }
+
+    .overlay {
+        position: fixed;
+        display: none;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 2;
+        cursor: pointer;
+    }
+
+    .sidebar {
+        z-index: 3;
     }
 }
 /*Right menu*/
@@ -1547,7 +2061,6 @@ header.navbar .dropdown-item {
 span.k-numeric-wrap > input, .k-picker-wrap .k-input, .k-autocomplete, .k-dropdown-wrap .k-input .k-combobox, .k-dateinput, .k-datetimepicker, .k-maskedtextbox, .k-numerictextbox, .k-timepicker {
     font-size: 12px;
     height: 23px !important;
-    width: 100% !important;
     color: $ipro-black-color !important;
     font-weight: 400;
 }
@@ -1617,10 +2130,11 @@ span.k-numeric-wrap > input, .k-picker-wrap .k-input, .k-autocomplete, .k-dropdo
 main .breadcrumb-main {
     width: 100%;
     overflow: hidden;
-    background: #F8F8F8;
+    background: #F4F5F4;
     padding-bottom: 5px;
     position: fixed;
-    /*z-index: 999;*/
+    z-index: 1;
+    min-height:35px;
 }
 
 ul.breadcrumb-header {
@@ -1834,7 +2348,7 @@ ul.breadcrumb-header {
     font-size: 13px !important;
     font-weight: 600;
     color: #489f4f !important;
-    border: 1px solid rgba(231, 231, 231, 0.36) !important;
+    /*border: 1px solid rgba(231, 231, 231, 0.36) !important;*/
 }
 
 .panel-heading > .managepanelIcons {
@@ -1869,6 +2383,8 @@ button.k-button {
 
 kendo-grid.k-widget.k-grid {
     font-size: 13px;
+    box-shadow: inset 1px -2px 0px 0px rgba(245,245,245,.56), 0 9px 7px 1px rgba(0,0,0,.12), 1px 1px 20px 0 rgba(0,0,0,.2);
+    /*box-shadow: 0 16px 38px -12px rgba(245, 245, 245, 0.56), 0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);*/
     /*line-height: 1.5;*/
 }
 
@@ -1951,8 +2467,6 @@ kendo-grid.k-widget.k-grid {
     font-size: 13px !important;
 }
 /*toaster-*/
-
-
 .AmountRight, .number {
     text-align: right !important;
 }
@@ -2016,7 +2530,8 @@ kendo-grid.k-widget.k-grid {
 .ipro-create-dragform .ipro-tb-droppable-body {
     min-height: 250px;
     border: dashed 1px #e0e0e0;
-    padding: 10px;
+    padding-left: 1px;
+    padding-right: 20px
 }
 
 .ipro-tb-droppable-body.dnd-drag-over {
@@ -2171,7 +2686,8 @@ textarea {
 }*/
 
 .k-grid tr:hover {
-    background-color: lightyellow;
+    background-color: #fafafa;
+    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
 }
 
 .k-grid-content.k-virtual-content tr td {
@@ -2500,6 +3016,14 @@ kendo-grid.subgridTemplate.k-widget.k-grid tr th {
 
 // Extra small devices (portrait phones, less than 576px)
 @media (min-width: 220px) and (max-width: 320px) {
+    .chanage-width {
+        width: 100%;
+    }
+
+    .flex-container {
+        display: flex;
+        width: 100% !important;
+    }
 
     header.navbar .navbar-brand {
         display: none;
@@ -2507,6 +3031,7 @@ kendo-grid.subgridTemplate.k-widget.k-grid tr th {
 
     main.main {
         overflow-x: hidden;
+        box-shadow: 0 16px 38px -12px rgba(245, 245, 245, 0.56), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
     }
 
     .sidebar .sidebar-nav,
@@ -2607,9 +3132,13 @@ kendo-grid.subgridTemplate.k-widget.k-grid tr th {
         min-width: 250px;
     }
 
+    .chanage-width {
+        width: 50%;
+    }
+
     header.navbar .navbar-brand {
         text-align: left !important;
-        margin-left: 50px !important;
+        margin-left: 36px !important;
     }
 
     .sidebar .sidebar-nav,
@@ -2704,6 +3233,23 @@ kendo-grid.subgridTemplate.k-widget.k-grid tr th {
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767px) {
+    .ipro-side-container {
+        margin-left: 5px;
+    }
+
+    button.navbar-toggler.mobile-sidebar-toggler.hidden-lg-up {
+        width: 48px;
+    }
+
+    .chanage-width {
+        width: 80%;
+    }
+
+    .flex-container {
+        display: flex;
+        width: 450px;
+        max-width: 450px !important;
+    }
 
     header.navbar .navbar-brand {
         text-align: center;
@@ -2712,7 +3258,7 @@ kendo-grid.subgridTemplate.k-widget.k-grid tr th {
     .fixedHeader {
         position: fixed;
         top: 40px;
-        width: 85%;
+        width: 100% !important;
         overflow-x: hidden;
         display: block;
         z-index: 1;
@@ -2723,9 +3269,15 @@ kendo-grid.subgridTemplate.k-widget.k-grid tr th {
         min-width: 250px;
     }
 
+    .sidebar-mobile-show .sidebar {
+        width: 200px;
+        margin-left: 0;
+    }
+
     .sidebar .sidebar-nav,
     .sidebar .nav {
         height: 100% !important;
+        width: 200px;
     }
 
     .onebyone {
@@ -2815,6 +3367,19 @@ kendo-grid.subgridTemplate.k-widget.k-grid tr th {
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 767px) and (max-width: 967px) {
+    .chanage-width {
+        width: 80%;
+    }
+
+    .flex-feilds {
+        width: 750px !important;
+    }
+
+    .flex-container {
+        display: flex;
+        width: 90% !important;
+    }
+
     header.navbar .navbar-brand {
         text-align: center;
     }
@@ -2918,102 +3483,7 @@ kendo-grid.subgridTemplate.k-widget.k-grid tr th {
     }
 }
 
-@media (max-width: 480px) {
-    .sidebar .sidebar-nav,
-    .sidebar .nav {
-        width: 200px !important;
-        height: 100% !important;
-    }
 
-    .ui-treetable table {
-        table-layout: auto;
-    }
-
-
-    .onebyone {
-        min-width: 100% !important;
-        height: 50px !important;
-        border: 1px dashed gray !important;
-        display: inline-block;
-    }
-
-    .onebyone > .panel-heading {
-        background-color: #F8F8F8 !important;
-        color: $ipro-btn-text !important;
-    }
-
-    .twobytwo {
-        min-width: 100% !important;
-        height: 100px !important;
-        border: 1px dashed gray !important;
-        display: inline-block;
-    }
-
-    .twobytwo > .panel-heading {
-        background-color: green !important;
-        color: $ipro-btn-text !important;
-    }
-
-    .twobyfour {
-        min-width: 100% !important;
-        height: 200px !important;
-        border: 1px dashed gray !important;
-        display: inline-block;
-    }
-
-    .twobyfour > .panel-heading {
-        background-color: rgb(240, 127, 32) !important;
-        color: $ipro-btn-text !important;
-    }
-
-    .fourbytwo {
-        min-width: 100% !important;
-        height: 100px !important;
-        border: 1px dashed gray !important;
-        display: inline-block;
-    }
-
-    .fourbytwo > .panel-heading {
-        background-color: #F8F8F8 !important;
-        color: $ipro-btn-text !important;
-    }
-
-    .fourbyfour {
-        min-width: 100% !important;
-        height: 200px !important;
-        border: 1px dashed gray !important;
-        display: inline-block;
-    }
-
-    .fourbyfour > .panel-heading {
-        background-color: rgb(240, 127, 32) !important;
-        color: $ipro-btn-text !important;
-    }
-
-    .fivebytwo {
-        min-width: 100% !important;
-        height: 100px !important;
-        border: 1px dashed gray !important;
-        display: inline-block;
-    }
-
-    .fivebytwo > .panel-heading {
-        background-color: #F8F8F8 !important;
-        color: $ipro-btn-text !important;
-    }
-
-    .fivebyfour {
-        min-width: 100% !important;
-        height: 200px !important;
-        border: 1px dashed gray !important;
-        display: inline-block;
-    }
-
-    .fivebyfour > .panel-heading {
-        background-color: rgb(240, 127, 32) !important;
-        color: $ipro-btn-text !important;
-    }
-}
 /*   Change Header ToogleClass*/
 header.navbar .dropdown-menu {
     padding-bottom: 0;
@@ -3182,6 +3652,14 @@ header.navbar .nav-item {
     color: $ipro-black-color;
 }
 
+.k-dropdown .k-dropdown-wrap {
+    background-image: initial !important;
+}
+
+.readonlybgChnage span.k-i-arrow-s.k-icon {
+    color: black !important;
+}
+
 mention-list ul.dropdown-menu > li:hover, mention-list ul.dropdown-menu > li a:hover {
     color: $ipro-btn-text !important;
     background-color: #034274 !important;
@@ -3215,8 +3693,6 @@ whiteGrid {
     border: 2px dashed gray;
     min-height: 300px;
 }
-
-
 
 .grid1 > .panel-heading {
     background-color: #F8F8F8 !important;
@@ -3375,6 +3851,8 @@ whiteGrid {
     border-radius: 0 !important;
     cursor: pointer !important;
     letter-spacing: 0.5px;
+    background-color: transparent;
+    border-bottom: 1px solid whitesmoke;
 }
 
 #TreedropCustom .btn-outline-secondary:hover, .btn-outline-secondary, .btn-outline-secondary:active {
@@ -3405,8 +3883,22 @@ whiteGrid {
     float: left !important;
 }
 
+#report6046 {
+    width: 18%;
+    /*height: 200px !important;*/
+    padding: 5px;
+    margin: 5px;
+    /*border: 1px solid #ebebeb;*/
+    float: left !important;
+}
+
 #report6042 kendo-chart.k-chart.k-widget {
     height: 360px !important;
+    border: 1px solid #ebebeb;
+}
+
+#report6046 kendo-chart.k-chart.k-widget {
+    height: 200px !important;
     border: 1px solid #ebebeb;
 }
 
@@ -3591,8 +4083,16 @@ whiteGrid {
 }
 //Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575px) {
+    .chanage-width {
+        width: 100%;
+    }
+
+    .flex-feilds {
+        width: 360px !important;
+    }
+
     .sidebar .sidebar-nav {
-        height: 90% !important;
+        height: 95% !important;
         position: absolute;
     }
 
@@ -3612,10 +4112,25 @@ whiteGrid {
         float: left !important;
     }
 
+    #report6046 {
+        width: 100%;
+        /*height: 200px !important;*/
+        padding: 5px;
+        margin: 5px;
+        border: 1px solid #ebebeb;
+        float: left !important;
+    }
+
     #report6042 kendo-chart.k-chart.k-widget {
         height: 360px !important;
         border: 1px solid #ebebeb;
     }
+
+    #report6046 kendo-chart.k-chart.k-widget {
+        height: 200px !important;
+        border: 1px solid #ebebeb;
+    }
+
 
     #report6043 {
         width: 100%;
@@ -3721,20 +4236,66 @@ whiteGrid {
 
     .ui-treetable table {
         table-layout: auto;
+        box-shadow: inset -2px -13px 7px 2px rgba(245, 245, 245, 0.56), 2px 3px 15px 0px rgba(0, 0, 0, 0.12), -1px 0px 20px 0px rgba(0, 0, 0, 0.2);
     }
 }
 
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767px) {
+    .chanage-width {
+        width: 100%;
+    }
+
+    .flex-feilds {
+        width: 100% !important;
+    }
+
     .sidebar .sidebar-nav,
     .sidebar .nav {
         height: 90% !important;
         position: absolute;
     }
 
+    #report6041 {
+        width: 100% !important;
+        height: 400px !important;
+        padding: 5px;
+        margin: 5px;
+    }
+
+    #report6042 {
+        width: 100% !important;
+        height: 400px !important;
+        padding: 5px;
+        margin: 5px;
+        border: 1px solid #ebebeb;
+        float: left !important;
+    }
+
+    #report6043 {
+        width: 100%;
+        height: 400px !important;
+        padding: 10px;
+        margin: 10px;
+        border: 1px solid #ebebeb;
+        float: left !important;
+    }
+
+    #report6046 {
+        width: 48%;
+        /*height: 200px !important;*/
+        padding: 5px;
+        margin: 5px;
+        /*border: 1px solid #ebebeb;*/
+        float: left !important;
+    }
+
+
+
     .ui-treetable table {
         table-layout: auto;
+        box-shadow: inset -2px -13px 7px 2px rgba(245, 245, 245, 0.56), 2px 3px 15px 0px rgba(0, 0, 0, 0.12), -1px 0px 20px 0px rgba(0, 0, 0, 0.2);
     }
 
 
@@ -3745,12 +4306,20 @@ whiteGrid {
         padding: 5px 0;
         padding-right: 12px;
         -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
         align-self: center;
     }
 }
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (max-width: 967px) {
+    .chanage-width {
+        width: 80%;
+    }
+
+    .BannerFeilds > .col-md-3 {
+        display: flex;
+        max-width: 100% !important;
+    }
+
     .sidebar .sidebar-nav,
     .sidebar .nav {
         height: 90% !important;
@@ -3773,10 +4342,26 @@ whiteGrid {
         float: left !important;
     }
 
+    #report6046 {
+        width: 24%;
+        /*height: 200px !important;*/
+        padding: 5px;
+        margin: 5px;
+        border: 1px solid #ebebeb;
+        float: left !important;
+    }
+
     #report6042 kendo-chart.k-chart.k-widget {
         height: 360px !important;
         border: 1px solid #ebebeb;
     }
+
+    #report6046 kendo-chart.k-chart.k-widget {
+        height: 200px !important;
+        border: 1px solid #ebebeb;
+    }
+
+
 
     #report6043 {
         width: 49%;
@@ -3822,6 +4407,24 @@ whiteGrid {
 }
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) and (max-width: 1199px) {
+    .chanage-width {
+        width: 50%;
+    }
+
+    .flex-feilds {
+        width: 900px;
+    }
+
+    .flex-container {
+        display: flex;
+        width: 80% !important;
+    }
+
+    .BannerFeilds > .col-lg-4 {
+        display: flex;
+        max-width: 100% !important;
+    }
+
     form.form-inline.ipro-search-form.b-r-1.px-1.hidden-md-down {
         width: 500px;
     }
@@ -3845,6 +4448,20 @@ whiteGrid {
 }
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
+    .chanage-width {
+        width: 50%;
+    }
+
+    .flex-container {
+        display: flex;
+        width: 80% !important;
+    }
+
+    .BannerFeilds > .col-lg-4 {
+        display: flex;
+        max-width: 100% !important;
+    }
+
     .sidebar.sidebar-nav,
     .sidebar .nav {
         height: 90% !important;
@@ -3979,9 +4596,9 @@ kendo-grid-filter-menu.ng-star-inserted {
 
 .container-panelbadge {
     @extend %panelbadge1;
-    background: azure;
-    border: 2px solid #f0f2f5;
-    box-shadow: 0 8px 11px -6px rgba(0, 0, 0, 0.12);
+    background: #cef0a7;
+    /*border: 2px solid #f0f2f5;*/
+    box-shadow: inset 0px 0px 20px 0px #8BC34A, inset -1px 4px 18px #fff;
 }
 
 .container-panelbadge1 {
@@ -3989,16 +4606,30 @@ kendo-grid-filter-menu.ng-star-inserted {
     background-color: transparent;
 }
 
+.flex-container > .card > .card-block, .BannerFeilds > .ng-star-inserted > .card, .BannerFeilds > .ng-star-inserted > .card > .card-block {
+    background-color: transparent !important;
+    flex: 1 !important;
+    margin: 0px !important;
+    border: 0px !important;
+    padding: 0px !important;
+}
+
+.BannerFeilds {
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
 p.card-text span {
     display: inline-block;
     min-width: 70px;
+    margin-left: 10px;
 }
 
 %panelbadge1 {
     color: #121212;
-    border-radius: 5px;
+    border-radius: 50em;
     background-position: right;
-    padding: 6px;
+    /*padding: 6px;*/
 }
 
 
@@ -4015,13 +4646,21 @@ p.card-text span {
 }
 
 .container-panelbadge .row, .container-panelbadge1 .row {
-    margin-top: 2px;
+    margin: 0px !important;
+    background: #ffffff;
+    padding-right: 30px;
+    box-shadow: 1px 0px 20px -2px rgba(0, 0, 0, 0.2), 0 2px 0px 0 rgba(0, 0, 0, 0.14), 0px 1px 20px 0px rgba(0, 0, 0, 0.12);
 }
 
 .container-panelbadge .card-block, .container-panelbadge1 .card-block {
     padding: 0.01rem;
     color: #354336;
+    margin-bottom: 0.01rem;
+    margin-top: 0.01em;
+    border: none;
+    background-color: transparent;
 }
+
 
 .color-green {
     color: #0d8016;
@@ -4035,6 +4674,7 @@ p.card-text span {
     border-collapse: collapse;
     font-size: 13px;
     font-family: $font-family;
+    box-shadow: inset -2px -13px 7px 2px rgba(245, 245, 245, 0.56), 2px 3px 15px 0px rgba(0, 0, 0, 0.12), -1px 0px 20px 0px rgba(0, 0, 0, 0.2);
 }
 
 .pvtTable tr th {
@@ -4045,6 +4685,13 @@ p.card-text span {
     font-weight: normal;
     border: 1px solid lightgray !important;
     font-family: $font-family;
+}
+
+.pvtTable th.pvtRow {
+    background-color: white !important;
+    color: black;
+    text-align: left !important;
+    font-weight: bolder;
 }
 
 .pvtTable tr td {
@@ -4077,7 +4724,7 @@ th.totals {
     margin: auto;
 }
 
-.ipro-inputcontrol > input[readonly] {
+.ipro-inputcontrol > input[readonly], .ipro-inputcontrol > input[disabled] {
     background-color: #eee;
 }
 
@@ -4097,6 +4744,10 @@ th.totals {
     pre {
         max-height: 500px;
         overflow-y: auto;
+    }
+
+    .tab-pane {
+        padding: 0.2rem 0.4rem !important;
     }
 }
 
@@ -4212,7 +4863,8 @@ th.headerSno, td.headerSno {
     display: block;
     min-width: 16px !important;
     padding: 2px;
-    right: 10px;
+    border-radius: 1px;
+    border-left: 0.5px solid #f8f8f8;
 }
 
 
@@ -4233,6 +4885,12 @@ th.headerSno, td.headerSno {
 
 .inlineblock {
     display: inline-block;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0.1rem;
 }
 
 .table th, .table td {
@@ -4297,6 +4955,15 @@ th.headerSno, td.headerSno {
     background-image: linear-gradient(rgb(73, 159, 80), rgb(73, 159, 80));
 }
 
+#darkGreentheme.btn:focus {
+    outline: 0;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    border-bottom: 2px solid #868e96 !important;
+    box-shadow: 0 0 0 2px white;
+}
+
 
 #darkGreentheme.k-input.k-textbox:focus, #darkGreentheme.k-textarea:focus, #darkGreentheme.k-textbox:focus {
     border-bottom: 2px solid $ipro-btn-text;
@@ -4331,16 +4998,12 @@ th.headerSno, td.headerSno {
     background-color: #74bb7a !important;
 }
 
-#darkGreentheme table.table.table-striped.table-condensed.pvtTable tr th {
-    background-color: #79bb7e !important;
-    color: $ipro-btn-text;
-    text-align: left;
-}
 
 #darkGreenthemetable.table.table-striped.table-condensed.pvtTable tr th.pvtRow {
-    background-color: #79bb7e !important;
-    color: $ipro-btn-text;
+    background-color: white !important;
+    color: black !important;
     text-align: left !important;
+    font-weight: bolder;
 }
 
 #darkGreentheme .k-grid tr:first-child th {
@@ -4381,7 +5044,7 @@ div#darkGreentheme > .k-pager-wrap .k-state-selected:hover, .k-list-container .k
 }
 
 div#darkGreentheme .sidebar ul.nav li.nav-item.nav-dropdown.open {
-    background-color: #f8f8f8 !important;
+    background-color: transparent !important;
     color: #74bb7a !important;
     padding-right: 15px;
     padding-bottom: 15px;
@@ -4389,14 +5052,14 @@ div#darkGreentheme .sidebar ul.nav li.nav-item.nav-dropdown.open {
 
 
 div#darkGreentheme .sidebar ul.nav li.nav-item a.nav-link.active i, div#darkGreentheme .sidebar ul.nav li.nav-item .navbar a.active.dropdown-toggle i, div#darkGreentheme.navbar .sidebar ul.nav li.nav-item a.active.dropdown-toggle i {
-    color: $ipro-btn-text !important;
+    color: #499f50 !important;
     font-weight: bold;
     border-radius: 0 16px 16px 0;
     -webkit-border-radius: 0 16px 16px 0;
 }
 
 div#darkGreentheme .sidebar ul.nav li.nav-item a.nav-link.active, div#darkGreentheme .sidebar ul.nav li.nav-item .navbar a.active.dropdown-toggle, div#darkGreentheme.navbar .sidebar ul.nav li.nav-item a.active.dropdown-toggle {
-    color: $ipro-btn-text !important;
+    color: #499f50 !important;
     border-radius: 0 16px 16px 0;
     -webkit-border-radius: 0 16px 16px 0;
 }
@@ -4413,8 +5076,31 @@ div#darkBluetheme #treeAlignment .ui-treetable th.ui-state-default {
     height: 35px;
 }
 
+div#darkBluetheme .flex-feilds {
+    width: 700px;
+    display: flex;
+    /*background: #cef0a7;*/
+    border-radius: 1em;
+    padding-right: 30px;
+    box-shadow: inset 0px 0px 20px 0px #18527e, inset -1px 4px 18px #fff;
+}
+
 #darkBluetheme kendo-maskedtextbox > input.k-textbox {
     border-bottom: 1px solid #e1e1e1;
+}
+
+#darkBluetheme .ripple {
+    position: relative;
+    overflow: hidden;
+
+    &:after {
+        background: rgba(24, 82, 126, 0.5) !important;
+        @extend %RippleButtonafter;
+    }
+
+    &:active:after {
+        @extend %RippleButtonactive;
+    }
 }
 
 #darkBluetheme.k-input.k-textbox:focus, #darkBluetheme.k-textarea:focus, #darkBluetheme.k-textbox:focus {
@@ -4469,6 +5155,14 @@ div#darkBluetheme.panel-heading {
     background-color: #18527e !important;
 }
 
+#darkBluetheme .btn:focus {
+    outline: 0;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    border-bottom: 2px solid #18527e !important;
+    box-shadow: 0 0 0 2px white;
+}
 
 #darkBluetheme .k-grid tr:first-child th {
     border-color: #003c6c;
@@ -4510,15 +5204,16 @@ div#darkBluetheme > .k-pager-wrap .k-state-selected:hover, .k-list-container .k-
     color: #74bb7a !important;
 }*/
 div#darkBluetheme .sidebar ul.nav li.nav-item a.nav-link.active i, div#darkBluetheme .sidebar ul.nav li.nav-item .navbar a.active.dropdown-toggle i, div#darkBluetheme.navbar .sidebar ul.nav li.nav-item a.active.dropdown-toggle i {
-    color: $ipro-black-color !important;
+    color: #003056 !important;
     font-weight: bold;
     padding-right: 15px;
 }
 
 div#darkBluetheme .sidebar ul.nav li.nav-item a.nav-link.active {
-    color: $ipro-black-color !important;
-    background-color: $ipro-btn-text !important;
+    color: #003056 !important;
+    background-color: rgba(225, 225, 225, 0.5) !important;
     padding-right: 15px;
+    box-shadow: inset 4px 0px 0px #003056, inset -1px 4px 18px #ffffff;
 }
 
 div#darkBluetheme header.navbar {
@@ -4533,26 +5228,32 @@ div#darkBluetheme header.navbar .navbar-brand {
 div#darkBluetheme .sidebar {
     border-color: #003c6c;
     box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-    background-image: linear-gradient(#003c6c, #003c6c);
+    background-image: url('../assets/ipro-images/sidebar-bg.jpg');
     font-size: 13px !important;
     color: $ipro-btn-text !important;
     border-right: none;
 }
 
 div#darkBluetheme .sidebar ul.nav li.nav-item a.nav-link {
-    color: $ipro-btn-text !important;
+    color: rgb(0, 48, 86) !important;
 }
 
 div#darkBluetheme .sidebar ul.nav li.nav-item a.nav-link:hover {
-    background-color: #78aad0 !important;
+    background-color: transparent !important;
+    box-shadow: inset 1px -1px 20px 2px #eaeaea, inset -1px 4px 18px #ffffff !important;
+    box-shadow: unset;
+}
+
+div#darkBluetheme .sidebar ul.nav li.nav-item a.nav-link i {
+    color: #003c6c;
 }
 
 div#darkBluetheme .sidebar ul.nav li.nav-item a.nav-link i:hover {
-    color: $ipro-btn-text;
+    color: #003c6c;
 }
 
 div#darkBluetheme .sidebar ul.nav li.nav-item.nav-dropdown.open {
-    background-color: #18527e !important;
+    background-color: transparent !important;
     color: $ipro-black-color !important;
     padding-right: 15px;
     padding-bottom: 15px;
@@ -4630,14 +5331,17 @@ div#darkBluetheme #treeAlignment .ui-treetable th.ui-state-default {
 }
 
 #darkBluetheme table.table.table-striped.table-condensed.pvtTable tr th.pvtRow {
-    @extend %darkpvtrow;
     padding: 0.5rem !important;
     font-weight: normal;
     border: 1px solid lightgray !important;
+    background-color: white !important;
+    color: black;
+    text-align: left !important;
+    font-weight: bolder;
 }
 
 #darkBluetheme .sptButton {
-    max-width: 80px !important;
+    /*max-width: 80px !important;*/
     box-shadow: 0 3px 4px 0 rgba(0,0,0,.06);
 }
 
@@ -4668,22 +5372,25 @@ div#darkBluetheme.k-split-button.k-button-group .k-button:nth-child(2) {
     /*border-right: 0.5px solid white !important;*/
 }
 
-#darkBluetheme main.main::-webkit-scrollbar-track {
+
+
+
+#darkBluetheme main.main::-webkit-scrollbar-track, #darkBluetheme .tab-content > tab::-webkit-scrollbar-track, #darkBluetheme .table-responsive::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     border-radius: 5px !important;
     background-color: #F5F5F5 !important;
 }
 
-#darkBluetheme main.main::-webkit-scrollbar {
+#darkBluetheme main.main::-webkit-scrollbar, #darkBluetheme .table-responsive::-webkit-scrollbar, #darkBluetheme .tab-content > tab::-webkit-scrollbar {
     width: 5px;
     height: 5px;
     background-color: #F5F5F5;
 }
 
-#darkBluetheme main.main::-webkit-scrollbar-thumb {
+#darkBluetheme main.main::-webkit-scrollbar-thumb, #darkBluetheme .table-responsive::-webkit-scrollbar-thumb, #darkBluetheme .tab-content > tab::-webkit-scrollbar-thumb {
     border-radius: 5px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #003056;
+    background-color: #6e899e;
 }
 
 div#darkBluetheme span.color-green, div#darkBluetheme label.color-green {
@@ -4705,10 +5412,12 @@ div#darkBluetheme kendo-splitbutton.customGreen.sptButton > button.k-button:firs
     border-radius: 45px !important;
 }
 
-#darkBluetheme .k-grid-header-wrap table thead tr, #darkBluetheme .k-grid-header-wrap table thead tr:hover {
+#darkBluetheme .k-grid-header-wrap table thead tr, #darkBluetheme .k-grid-header-wrap table thead tr:hover, div#darkBluetheme .ui-treetable .ui-treetable-thead > tr > th {
     color: white;
     background: #18527e !important;
 }
+
+//Extended styles
 
 %darkpvtrow {
     background-color: #18527e !important;
@@ -4717,7 +5426,34 @@ div#darkBluetheme kendo-splitbutton.customGreen.sptButton > button.k-button:firs
     font-family: $font-family;
 }
 
+%RippleButtonafter {
+    content: '';
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    padding-top: 240%;
+    padding-left: 240%;
+    margin-top: -120%;
+    margin-left: -120%;
+    opacity: 0;
+    transition: all 1s;
+}
 
+%RippleButtonactive {
+    padding-top: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-left: 0;
+    opacity: 1;
+    transition: 0s;
+}
+
+
+// End Extended Styles
 .loader {
     border-radius: 50%;
     width: 120px;
@@ -4815,6 +5551,7 @@ table {
     border-spacing: 0;
     width: 100%;
     border: 1px solid #ddd;
+    box-shadow: inset -2px -13px 7px 2px rgba(245, 245, 245, 0.56), 2px 3px 15px 0px rgba(0, 0, 0, 0.12), -1px 0px 20px 0px rgba(0, 0, 0, 0.2);
 }
 
 .DisplayInline .col-sm-4 {
@@ -4835,7 +5572,7 @@ table {
 }
 
 .alignmentRight, .alignmentRight > button.k-button {
-    text-align: right !important;
+    text-align: right;
 }
 
 #Container-width {
@@ -4848,8 +5585,8 @@ table {
 }
 
 #Container-width .k-form-field.col-sm-12 {
-    background-color: #f8f8f8;
-    box-shadow: 0 -7px 6px -6px rgba(0, 0, 0, 0.12);
+    background-color: transparent;
+    box-shadow: inset 0px -1px 0px 0px rgba(0, 0, 0, 0.12);
     padding: 6px 15px 2px 19px;
     margin: 2px;
 }
@@ -4873,21 +5610,21 @@ kendo-splitbutton.customGreen.sptButton > button.k-button:first-child {
 }
 /* width */
 
-main.main::-webkit-scrollbar-track {
+main.main::-webkit-scrollbar-track, .tab-content > tab::-webkit-scrollbar-track, table-responsive::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     border-radius: 5px !important;
     background-color: #F5F5F5 !important;
 }
 
-main.main::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+main.main::-webkit-scrollbar, .table-responsive::-webkit-scrollbar, .tab-content > tab::-webkit-scrollbar {
+    width: 8px !important;
+    height: 8px !important;
     background-color: #F5F5F5;
 }
 
-main.main::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+main.main::-webkit-scrollbar-thumb, .table-responsive::-webkit-scrollbar-thumb, .tab-content > tab::-webkit-scrollbar-thumb {
+    border-radius: 5px !important;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3) !important;
     background-color: #c5e4c7;
 }
 
@@ -4927,8 +5664,13 @@ td.totalValue {
     font-weight: 600;
 }
 
+.ui-treetable .ui-treetable-tbody > tr {
+    background-color: transparent !important;
+}
+
 table.table.table-striped.table-condensed.pvtTable tr:hover, .ui-treetable .ui-treetable-tbody > tr.ng-star-inserted:hover {
     background-color: lightgoldenrodyellow;
+    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
 }
 
 .k-widget.k-window.k-dialog.ng-trigger.ng-trigger-dialogSlideInAppear {
@@ -4962,11 +5704,42 @@ kendo-multiselect.form-control.k-widget.k-multiselect.k-header.ng-valid.ng-dirty
 
 .flex-container {
     display: flex;
+    padding-top: 5px;
+    padding-left: 0px;
+}
+
+.image-flex {
+    position: relative;
+    /* box-shadow: 3px 3px 5px 6px #ccc; */
+    /*border: 5px solid white;*/
+    border-radius: 50em;
+    left: 6px;
+    top: 7px;
+}
+
+.flex-feilds {
+    width: 900px;
+    display: flex;
+    /*background: #cef0a7;*/
+    border-radius: 1em;
+    padding-right: 30px;
+    padding-bottom: 12px;
+    box-shadow: inset 0px 0px 20px 0px #8BC34A, inset -1px 4px 18px #fff;
+}
+
+.BannerFeilds > .ng-star-inserted {
+    display: block;
+    position: relative;
+    /* padding: 0px; */
+    padding-top: 10px;
+    margin: -4px;
 }
 
 .image-flex > img.img-avatar {
     width: 80px;
     height: 80px;
+    /* border: 5px solid azure; */
+    /*box-shadow: 3px 3px 5px 0px #ccc;*/
 }
 
 .mobile-banner {
@@ -4981,10 +5754,9 @@ kendo-multiselect.form-control.k-widget.k-multiselect.k-header.ng-valid.ng-dirty
 }
 
 .mobile-banner > .card-body > p.card-text {
-    
     padding-right: 10px;
     display: inline-flex;
-    margin:0px;
+    margin: 0px;
 }
 
 .mobile-banner > .card-header {
@@ -4996,11 +5768,235 @@ kendo-multiselect.form-control.k-widget.k-multiselect.k-header.ng-valid.ng-dirty
     color: black;
     text-align: left;
 }
+
 .card-text > label.k-form-field {
     display: inline-block;
-    margin-bottom: .5rem;
+    margin-bottom: 0px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: transparent !important;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: transparent !important;
+}
+
+is-widget {
+    box-shadow: 0 16px 38px -12px rgba(245, 245, 245, 0.56), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+}
+
+.txtleft {
+    text-align: left !important;
+}
+
+.mobile-container {
+    padding-left: 20px;
+    width: 100%;
+    background-color: white;
+    border: transparent;
+    top: 6px;
+    margin-top: 9px;
+}
+
+.btn:focus {
+    outline: 0;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    border-bottom: 2px solid green !important;
+    box-shadow: 0 0 0 2px white;
+}
+
+.k-dropdown .k-dropdown-wrap:hover {
+    color: #656565;
+    background-color: #ffffff;
+    border-color: rgba(0,0,0,.15) !important;
+    background-image: linear-gradient(#fff,#fff) !important;
+}
+
+.ripple {
+    position: relative;
+    overflow: hidden;
+
+    &:after {
+        background: rgba(116, 187, 121, 0.65);
+        @extend %RippleButtonafter;
+    }
+
+    &:active:after {
+        @extend %RippleButtonactive;
+    }
+}
+
+.k-button, i {
+    position: relative;
+
+    &:after {
+        background: rgba(255, 255, 255, 0.5);
+        @extend %RippleButtonafter;
+    }
+
+    &:active:after {
+        @extend %RippleButtonactive;
+    }
+}
+
+a.nav-link.navbar-toggler.sidebar-toggler i:hover {
+    border-radius: 50px;
+    background: rgba(221, 221, 221, 0.5);
+    padding: 9px;
+}
+
+.ipro-side-container > accordion.panel-group {
+    width: fit-content;
+}
+
+accordion.panel-group {
+    display: block;
+    box-shadow: inset -2px -13px 7px 2px rgba(245, 245, 245, 0.56), 2px 3px 15px 0px rgba(0, 0, 0, 0.12), -1px 0px 20px 0px rgba(0, 0, 0, 0.2);
+    margin: 5px 0px;
+}
+
+.Login_Empolyee {
+    width: 450px;
+
+    .panel-body {
+        padding-left: 5px;
+    }
+
+    .customGreen {
+        display: block;
+        margin-top: 20px;
+    }
+}
+
+.padding-top {
+    padding-top: 10px;
+}
+
+tab > form.row.col-12, tab > form.row.co-md-4, tab > .row.col-lg-4, tab > .row > .col-12, tab > .row > .co-md-4, tab > .row > .col-lg-4, .HeaderRowLength {
+    margin: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: inset 1px 1px 0px 0px rgba(245, 245, 245, 0.56), 0px 1px 5px 0px rgba(0, 0, 0, 0.12), 0px 0px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.ui-treetable-resizable > .ui-treetable-wrapper, .accountheader {
+    box-shadow: inset 1px 2px 20px 0px rgba(245, 245, 245, 0.56), 0px 1px 0px 0px rgba(0, 0, 0, 0.12), 0px 4px 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+.float-left {
+    float: left;
+}
+
+.inline-grid {
+    display: inline-grid;
+}
+
+.inline-flex {
+    display: inline-flex;
+}
+
+.kendoFooter {
+    background-color: transparent !important;
+    height: 50px;
+    top: 0px;
+    right: 14px;
+}
+
+.kendoFooter_Button a {
+    background: white;
+    font-size: 12px;
+    font-weight: 600;
+    color: green;
+    border-radius: 2px;
+    top: -5px;
+    text-transform: uppercase;
+    padding: 10px 36px;
+    text-align: center !important;
+    min-height: 30px;
+    border: 0.5px solid green;
+    box-shadow: 4px 3px 4px 0px #bad8bc, 2px 3px 15px 0px #f9f9fa, 0px 2px 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+.padding-5 {
+    padding: 5px;
+}
+
+.profile_Title {
+    position: relative;
+    display: table;
+    width: 100%;
+    text-align: center;
+}
+
+label.k-radio-label.block {
+    display: block;
+}
+
+.acctTemphead {
+    display: inline-block;
+    text-align: right !important;
+}
+
+.acctTemplatestyle {
+    padding-bottom: 15px;
+    width: 200px;
+    display: inline-flex;
+}
+
+.main-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+#dashboard_card {
+    display: block;
+    position: relative;
+    padding-top: 5px;
+}
+
+dl, dd {
+    padding: 0px;
+    margin: 0px;
+}
+
+.mobileddHead {
+    padding-right: 5px;
+    font-weight: 600;
+}
+
+.NotificationItems {
+    width: 100%;
+    padding: 5px 5px;
+    clear: both;
+    font-weight: normal;
+    color: #384042;
+    text-align: inherit;
+    white-space: inherit !important;
+    border-bottom: 1px solid gray;
+}
+
+.NotificationHeader a, .NotificationFooter a {
+    text-align: center;
+    font-weight: 600;
+    border-bottom: 1px solid gray;
+    padding: 5px;
+}
+
+.parentTree {
+    width: 240px;
+}
+
+.wfTable > .ipro-tb-droppable-body {
+    min-height: 100px;
+    border: dashed 1px #e0e0e0;
+    padding-left: 1px;
+    padding-right: 20px;
 }

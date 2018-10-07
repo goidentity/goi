@@ -1,4 +1,5 @@
 ﻿using GoIdentity.Entities.Core;
+using GoIdentity.Entities.Scores;
 using GoIdentity.Utilities.Constants;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -25,6 +26,11 @@ namespace GoIdentity.ResourceAccess
         public DbSet<IndustryCategoryMap> IndustryCategoryMap { get; set; }
         public DbSet<UserScore> UserScores { get; set; }
         public DbSet<UserNotification> UserNotifications { get; set; }
+
+        public DbSet<Influencer> Influencers { get; set; }
+        public DbSet<UserInfluencerAuth> UserInfluencerAuths { get; set; }
+        public DbSet<EngineLog> EngineLogs { get; set; }
+
         #endregion
 
     }

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [Scores].[dmnInfluencer]
 (
-	[InfluencerId] SMALLINT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[InfluencerId] SMALLINT NOT NULL PRIMARY KEY,
 	Title varchar(500),
 	Category varchar(100),
 
