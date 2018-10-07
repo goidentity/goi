@@ -1172,11 +1172,11 @@ namespace GoIdentity.ResourceAccess
                     .AddColumn("LastName", DbColumnType.String)
                     .AddColumn("Email", DbColumnType.String)
                     .AddColumn("MobileNumber", DbColumnType.String)
-                    
+
                     .AddColumn("DoB", DbColumnType.DateTime)
                     .AddColumn("DoJ", DbColumnType.DateTime)
                     .AddColumn("GenderId", DbColumnType.Int)
-                    
+
                     .AddColumn("UniqueId", DbColumnType.UniqueIdentifier)
                     .AddColumn("JsonFeed", DbColumnType.String)
 
@@ -3135,5 +3135,27 @@ namespace GoIdentity.ResourceAccess
             }
         }
         #endregion
+
+        public static DataTable EngineResponseType
+        {
+            get
+            {
+                var result = new DataTable();
+                var columnCollection = new DataColumnCollection();
+                columnCollection
+                .AddColumn("UserId", DbColumnType.Int)
+                .AddColumn("InfluencerId", DbColumnType.Short)
+
+                .AddColumn("PullStatus", DbColumnType.String)
+                .AddColumn("Response", DbColumnType.String)
+                .AddColumn("Remarks", DbColumnType.String)
+                .AddColumn("TransactionDate", DbColumnType.DateTime);
+
+                foreach (var item in columnCollection)
+                    result.Columns.Add(item);
+
+                return result;
+            }
+        }
     }
 }

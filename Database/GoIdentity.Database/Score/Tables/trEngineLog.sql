@@ -6,6 +6,7 @@
 	[InfluencerId] smallint not null,
 
 	PullStatus VARCHAR(500),
+	Response VARCHAR(MAX),
 	Remarks VARCHAR(MAX),
 
 	TransactionDate DATETIME,

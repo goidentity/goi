@@ -55,6 +55,9 @@ namespace GoIdentity.Scheduler
             ServiceName = NameOfService;
 
 #if DEBUG
+            ConnectionStrings.COMMON_CONNECTION_STRING = ConfigurationManager.AppSettings["COMMON_CONNECTION_STRING"];
+            ConnectionStrings.COMMAND_TIMEOUT = 60;
+
             var processDataJob = new ProcessDataJob();
             processDataJob.Execute(null);
 #else

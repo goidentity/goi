@@ -1,8 +1,8 @@
-﻿CREATE TABLE [Scores].[trUserInfluencerAuthKey]
+﻿CREATE TABLE [Scores].[trUserInfluencerAuth]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1), 
     [UserId] INT NOT NULL, 
-    [InfluencerId] INT NOT NULL, 
+    [InfluencerId] smallint NOT NULL, 
     [UserName] NVARCHAR(MAX) NULL,
 	
     [Secret] NVARCHAR(MAX) NULL, 

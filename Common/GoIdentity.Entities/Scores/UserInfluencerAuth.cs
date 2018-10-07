@@ -21,7 +21,6 @@ namespace GoIdentity.Entities.Scores
 
         public string Other1 { get; set; }
         public string Other2 { get; set; }
-        public string Other3 { get; set; }
 
         public DateTime? LastRefreshedDate { get; set; }
 

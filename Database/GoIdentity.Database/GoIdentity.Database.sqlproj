@@ -66,6 +66,8 @@
     <Folder Include="Core\Views" />
     <Folder Include="Score" />
     <Folder Include="Score\Tables" />
+    <Folder Include="Score\User Defined Types" />
+    <Folder Include="Score\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Core\Tables\trUser.sql" />
@@ -92,6 +94,8 @@
     <Build Include="Score\Tables\dmnInfluencer.sql" />
     <Build Include="Score\Tables\trUserInfluencerAuth.sql" />
     <Build Include="Score\Tables\trEngineLog.sql" />
+    <Build Include="Score\User Defined Types\EngineResponseType.sql" />
+    <Build Include="Score\Stored Procedures\updateEngineLogs.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

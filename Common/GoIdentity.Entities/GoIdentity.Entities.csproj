@@ -56,7 +56,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scores\ConnectorType.cs" />
     <Compile Include="Scores\EngineLog.cs" />
+    <Compile Include="Scores\EngineLogResponse.cs" />
     <Compile Include="Scores\Influencer.cs" />
+    <Compile Include="Scores\UserData.cs" />
     <Compile Include="Scores\UserInfluencerAuth.cs" />
     <Compile Include="Security\Claim.cs" />
     <Compile Include="Security\UserLoginLog.cs" />

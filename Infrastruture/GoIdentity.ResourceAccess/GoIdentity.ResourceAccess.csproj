@@ -52,6 +52,8 @@
   <ItemGroup>
     <Compile Include="Contracts\Core\IScoreDataAccess.cs" />
     <Compile Include="Contracts\Core\IUserDataAccess.cs" />
+    <Compile Include="Implementation\Scores\EngineDataAccess.cs" />
+    <Compile Include="Contracts\Scores\IEngineDataAccess.cs" />
     <Compile Include="DataColumnCollection.cs" />
     <Compile Include="Contracts\Core\IAuthDataAccess.cs" />
     <Compile Include="DbContextExtensions.cs" />
