@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="GoogleHandler.cs" />
     <Compile Include="IHandler.cs" />
+    <Compile Include="LinkedInHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Twitter.cs" />
     <Compile Include="TwitterHandler.cs" />

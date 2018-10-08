@@ -57,6 +57,9 @@ namespace GoIdentity.Scheduler
                                     itemResponse.PullStatus = "Success";
                                     break;
                                 case ConnectorType.LinkedIn:
+                                    var linkedinHandler = new LinkedInHandler();
+                                    itemResponse.Response = linkedinHandler.Handle(item, userInfluencer);
+                                    itemResponse.PullStatus = "Success";
                                     break;
                                 case ConnectorType.Upwork:
                                     break;
