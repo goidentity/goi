@@ -71,6 +71,11 @@ namespace GoIdentity.Scheduler
                                     break;
                                 case ConnectorType.MCA:
                                     break;
+                                case ConnectorType.Facebook:
+                                    var facebookHandler = new FacebookHandler();
+                                    itemResponse.Response = facebookHandler.Handle(item, userInfluencer);
+                                    itemResponse.PullStatus = "Success";
+                                    break;
                                 default:
                                     break;
                             }

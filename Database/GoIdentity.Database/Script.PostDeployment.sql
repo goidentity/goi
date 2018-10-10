@@ -127,4 +127,10 @@
 		INSERT INTO [Scores].[dmnInfluencer] VALUES (1, 'Google', 'Social', '010411868023207416729:pkel_dw1rf8', '', '', NULL, NULL, NULL, 1 ,0, GETDATE(),0, GETDATE())
 		INSERT INTO [Scores].[dmnInfluencer] VALUES (2, 'Twitter', 'Social', '5xgdLaKReD2Z1irzTcTM9IK4c', '', '', '5xfKvmddPhsvqEL6zG6hK15rhyzcusCHWUQDtCmTMZxOti0ra6', '1034118272361218049-tm8qIKXhDToZDYg0QRWrbjsGP13Y7Z', 'IlL7Y8eIWkSm8XiHyWyzIFg5tCF8AFq6BVG0hrvbbyRD1', 1 ,0, GETDATE(),0, GETDATE())
 		INSERT INTO [Scores].[dmnInfluencer] VALUES (3, 'LinkedIn', 'Profession','81pysq4xgvdovo','','','vgUJM0QSJ3JnSvUz',NULL,NULL,1,0,GETDATE(),0,GETDATE())
+		INSERT INTO [Scores].[dmnInfluencer] VALUES (9, 'Facebook', 'Social','557746184671124','','','236104e44d3f8b702102ec87ba67f4aa','v3.1',NULL,1,0,GETDATE(),0,GETDATE())
+	END
+
+	IF NOT EXISTS (SELECT 1 FROM [Scores].trUserInfluencerAuth)
+	BEGIN
+		INSERT INTO [Scores].trUserInfluencerAuth(UserId, InfluencerId, UserName, Secret, Other1, LastRefreshedDate, CreatedBy, CreatedDate, ModifiedBy, ModifiedDate) VALUES ( 1, 9, 'Admin', '236104e44d3f8b702102ec87ba67f4aa','v3.1',GETDATE(),0,GETDATE(),0,GETDATE())
 	END

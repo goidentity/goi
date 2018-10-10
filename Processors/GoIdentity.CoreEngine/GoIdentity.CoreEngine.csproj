@@ -80,6 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FacebookHandler.cs" />
     <Compile Include="GoogleHandler.cs" />
     <Compile Include="IHandler.cs" />
     <Compile Include="LinkedInHandler.cs" />
