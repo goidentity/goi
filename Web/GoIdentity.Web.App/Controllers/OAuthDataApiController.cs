@@ -6,7 +6,6 @@ using GoIdentity.Web.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RestSharp;
 
 namespace GoIdentity.Web.App.Controllers
 {
@@ -38,9 +37,9 @@ namespace GoIdentity.Web.App.Controllers
                                              clientSecret);
 
 
-            var request = new RestRequest(authUrl);
-            var restClient = new RestClient(authUrl);
-            var response = restClient.Get(request);
+            //var request = new RestRequest(authUrl);
+            //var restClient = new RestClient(authUrl);
+            //var response = restClient.Get(request);
 
             return Redirect(@"http://localhost:53106/#/ops/contactus");
         }

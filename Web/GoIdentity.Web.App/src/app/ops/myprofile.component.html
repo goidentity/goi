@@ -1,93 +1,89 @@
-<div class="">
-    <div class="col-lg-12 well">
+<div class="row">
+    <div class="col-sm-12">
         <div class="row">
-            <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                <div class="col-sm-12">
-                    <div class="row">
-                        <div class="col-sm-6 form-group">
-                            <label>First Name</label>
-                            <input type="text" id="firstname" tabindex="1"  placeholder="Enter First Name Here.." class="form-control" [formControl]="form.controls['firstname']" autofocus>
-                        </div>
-                        <div class="col-sm-6 form-group">
-                            <label>Last Name</label>
-                            <input type="text" id="lastname" tabindex="2" [formControl]="form.controls['lastname']" placeholder="Enter Last Name Here.." class="form-control">
-                        </div>
-                        <div class="col-sm-6 form-group">
-                            <label>Middle Name</label>
-                            <input type="text" id="middlename" tabindex="3" [formControl]="form.controls['middlename']" placeholder="Enter Middle Name Here.." class="form-control">
-                        </div>
-                        <div class="col-sm-6 form-group">
-                            <label>Display Name</label>
-                            <input type="text" id="displayname" tabindex="4" [formControl]="form.controls['displayname']" placeholder="Enter Display Name Here.." class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 form-group">
-                            <label>Gender</label>
-                            <input type="text" id="gender" tabindex="5" [formControl]="form.controls['gender']" placeholder="Enter Gender Here.." class="form-control">
-                        </div>
-                        <div class="col-sm-3 form-group">
-                            <label>DOB</label>
-                            <input type="text" id="dob" tabindex="6" [formControl]="form.controls['dob']" placeholder="Enter DOB Here.." class="form-control">
-                        </div>
-                        <div class="col-sm-3 form-group">
-                            <label>Mobile Number</label>
-                            <input type="text" id="mobilenumber" tabindex="7" [formControl]="form.controls['mobilenumber']" placeholder="Enter Phone Number Here.." class="form-control">
-                        </div>
-                        <div class="col-sm-3 form-group">
-                            <label>Alternate Number</label>
-                            <input type="text" id="alternatenumber" tabindex="8" [formControl]="form.controls['alternatenumber']" placeholder="Enter Alternate Number Here.." class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 form-group">
-                            <label>Email Address</label>
-                            <input type="text" id="email" tabindex="9" [formControl]="form.controls['email']" placeholder="Enter Email Address Here.." class="form-control">
-                        </div>
-                        <div class="col-sm-6 form-group">
-                            <label>Website</label>
-                            <input type="text" id="website" tabindex="10" [formControl]="form.controls['website']" placeholder="Enter Website Name Here.." class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Address Line1</label>
-                        <input type="text" id="address1" tabindex="11" [formControl]="form.controls['address1']" placeholder="Enter Address Line1 Here.." class="form-control">
-                        <!--<textarea placeholder="Enter Address Line1 Here.." rows="1" class="form-control"></textarea>-->
-                        <label>Address Line2</label>
-                        <input type="text" id="address2" tabindex="12" [formControl]="form.controls['address2']" placeholder="Enter Address Line2 Here.." class="form-control">
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 form-group">
-                            <label>Area</label>
-                            <input type="text" id="area" tabindex="13" [formControl]="form.controls['area']" placeholder="Enter Area Name Here.." class="form-control">
-                        </div>
-                        <div class="col-sm-3 form-group">
-                            <label>City</label>
-                            <input type="text" id="city" tabindex="14" [formControl]="form.controls['city']" placeholder="Enter City Name Here.." class="form-control">
-                        </div>
-                        <div class="col-sm-3 form-group">
-                            <label>State</label>
-                            <input type="text" id="state" tabindex="15" [formControl]="form.controls['state']" placeholder="Enter State Name Here.." class="form-control">
-                        </div>
-                        <div class="col-sm-3 form-group">
-                            <label>Zip</label>
-                            <input type="text" id="zip" tabindex="16" [formControl]="form.controls['zip']" placeholder="Enter Zip Code Here.." class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 form-group">
-                            <label>Profession</label>
-                            <input type="text" id="profession" tabindex="17" [formControl]="form.controls['profession']" placeholder="Enter Designation Here.." class="form-control">
-                        </div>
-                        <div class="col-sm-6 form-group">
-                            <label>Company</label>
-                            <input type="text"  id="company" tabindex="18" [formControl]="form.controls['company']" placeholder="Enter Company Name Here.." class="form-control">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary bg-goidentity-green text-white btn-pill btn-block px-4" primary="true"> Submit</button>
-                    <!--<button type="button" class="btn btn-lg btn-info">Submit</button>-->
-                </div>
-            </form>
+            <div class="col-sm-6 form-group">
+                <label>First Name</label>
+                <input type="text" id="firstname" tabindex="1" placeholder="Enter First Name Here.." class="form-control" autofocus>
+            </div>
+            <div class="col-sm-6 form-group">
+                <label>Last Name</label>
+                <input type="text" id="lastname" tabindex="2" placeholder="Enter Last Name Here.." class="form-control">
+            </div>
+            <div class="col-sm-6 form-group">
+                <label>Middle Name</label>
+                <input type="text" id="middlename" tabindex="3" placeholder="Enter Middle Name Here.." class="form-control">
+            </div>
+            <div class="col-sm-6 form-group">
+                <label>Display Name</label>
+                <input type="text" id="displayname" tabindex="4" placeholder="Enter Display Name Here.." class="form-control">
+            </div>
         </div>
+        <div class="row">
+            <div class="col-sm-3 form-group">
+                <label>Gender</label>
+                <input type="text" id="gender" tabindex="5" placeholder="Enter Gender Here.." class="form-control">
+            </div>
+            <div class="col-sm-3 form-group">
+                <label>DOB</label>
+                <input type="text" id="dob" tabindex="6" placeholder="Enter DOB Here.." class="form-control">
+            </div>
+            <div class="col-sm-3 form-group">
+                <label>Mobile Number</label>
+                <input type="text" id="mobilenumber" tabindex="7" placeholder="Enter Phone Number Here.." class="form-control">
+            </div>
+            <div class="col-sm-3 form-group">
+                <label>Alternate Number</label>
+                <input type="text" id="alternatenumber" tabindex="8" placeholder="Enter Alternate Number Here.." class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label>Email Address</label>
+                <input type="text" id="email" tabindex="9" placeholder="Enter Email Address Here.." class="form-control">
+            </div>
+            <div class="col-sm-6 form-group">
+                <label>Website</label>
+                <input type="text" id="website" tabindex="10" placeholder="Enter Website Name Here.." class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Address Line1</label>
+            <input type="text" id="address1" tabindex="11" placeholder="Enter Address Line1 Here.." class="form-control">
+            <!--<textarea placeholder="Enter Address Line1 Here.." rows="1" class="form-control"></textarea>-->
+            <label>Address Line2</label>
+            <input type="text" id="address2" tabindex="12" placeholder="Enter Address Line2 Here.." class="form-control">
+        </div>
+        <div class="row">
+            <div class="col-sm-3 form-group">
+                <label>Area</label>
+                <input type="text" id="area" tabindex="13" placeholder="Enter Area Name Here.." class="form-control">
+            </div>
+            <div class="col-sm-3 form-group">
+                <label>City</label>
+                <input type="text" id="city" tabindex="14" placeholder="Enter City Name Here.." class="form-control">
+            </div>
+            <div class="col-sm-3 form-group">
+                <label>State</label>
+                <input type="text" id="state" tabindex="15" placeholder="Enter State Name Here.." class="form-control">
+            </div>
+            <div class="col-sm-3 form-group">
+                <label>Zip</label>
+                <input type="text" id="zip" tabindex="16" placeholder="Enter Zip Code Here.." class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label>Profession</label>
+                <input type="text" id="profession" tabindex="17" placeholder="Enter Designation Here.." class="form-control">
+            </div>
+            <div class="col-sm-6 form-group">
+                <label>Company</label>
+                <input type="text" id="company" tabindex="18" placeholder="Enter Company Name Here.." class="form-control">
+            </div>
+        </div>
+        <button type="submit" (click)="onSave()" class="btn btn-primary bg-goidentity-green text-white btn-pill btn-block px-4" primary="true"> Submit</button>
+        <!--<button type="button" class="btn btn-lg btn-info">Submit</button>-->
     </div>
 </div>
+
+<ng4-loading-spinner class="loader" [loadingText]="'Please wait...'" [zIndex]="99999"></ng4-loading-spinner>

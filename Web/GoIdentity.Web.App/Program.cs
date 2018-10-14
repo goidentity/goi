@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Serilog;
+using Serilog.Configuration;
 using System.IO;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 
 namespace GoIdentity.Web.App
 {
@@ -19,7 +22,11 @@ namespace GoIdentity.Web.App
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseSerilog()
+                .ConfigureLogging((hostingContext, logging) =>
+                {
+                    logging.ClearProviders();
+                    logging.AddDebug();
+                })
                 .Build();
 
             host.Run();

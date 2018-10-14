@@ -1,24 +1,19 @@
 ﻿using GoIdentity.Entities.Core;
 using GoIdentity.Utilities.Constants;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System;
+using GoIdentity.Utilities.Extensions;
 
 namespace GoIdentity.ResourceAccess
 {
     public static class DbContextExtensions
     {
-        /// <summary>
-        /// Execute stored procedure which returns result set
-        /// </summary>
-        /// <typeparam name="T">Result Type</typeparam>
-        /// <param name="procedureName">Stored procedure name</param>
-        /// <param name="parms">SQL parameters</param>
-        /// <returns></returns>
-        public static IList<T> ExecuteStoredProcedure<T>(this DbContext db, string procedureName, List<SqlParameter> parms = null)
+        public static IList<T> ExecuteStoredProcedure<T>(this DbContext db, string procedureName, List<SqlParameter> parms = null) where T : new()
         {
             var result = default(IList<T>);
 
@@ -36,17 +31,55 @@ namespace GoIdentity.ResourceAccess
 
             if (parms == null || parms.Count == 0)
             {
-                result = db.Database.SqlQuery<T>(sqlQuery.ToString()).ToList();
+                //result = db.Database.SqlQuery<T>(sqlQuery.ToString()).ToList();
+                using (var command = db.Database.GetDbConnection().CreateCommand())
+                {
+                    //command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = sqlQuery.ToString();
+                    var sqlAdapter = new SqlDataAdapter(command as SqlCommand);
+                    var dataSet = new DataSet();
+                    sqlAdapter.Fill(dataSet);
+                    result = dataSet.Tables.Count > 0 ? dataSet.Tables[0].ToList<T>() : new List<T>();
+                }
             }
             else
             {
                 parmArray = parms.ToArray();
-                result = db.Database.SqlQuery<T>(sqlQuery.ToString(), parmArray).ToList();
+
+                //result = db.Database.SqlQuery<T>(sqlQuery.ToString(), parmArray).ToList();
+                using (var command = db.Database.GetDbConnection().CreateCommand())
+                {
+                    //command.CommandType = CommandType.StoredProcedure;
+                    foreach (var param in parmArray)
+                    {
+                        command.Parameters.Add(param);
+                    }
+                    command.CommandText = sqlQuery.ToString();
+
+                    var sqlAdapter = new SqlDataAdapter(command as SqlCommand);
+                    var dataSet = new DataSet();
+                    sqlAdapter.Fill(dataSet);
+                    result = dataSet.Tables.Count > 0 ? dataSet.Tables[0].ToList<T>() : new List<T>();
+                }
+
             }
 
             if (null != parmArray) parms = parmArray.ToList();
 
             return result;
+        }
+
+        public static int ExecuteNonQuery(this DbContext db, string sql)
+        {
+            var i = 0;
+            db.Database.OpenConnection();
+            using (var command = db.Database.GetDbConnection().CreateCommand())
+            {
+                command.CommandText = sql;
+                i = command.ExecuteNonQuery();
+            }
+            db.Database.CloseConnection();
+            return i;
         }
 
         /// <summary>
@@ -77,24 +110,24 @@ namespace GoIdentity.ResourceAccess
             {
                 if (parms == null || parms.Count == 0)
                 {
-                    result = db.Database.ExecuteSqlCommand(sqlQuery.ToString());
+                    result = db.Database.ExecuteSqlCommand($"{sqlQuery.ToString()}");
                 }
                 else
                 {
                     parmArray = parms.ToArray();
-                    result = db.Database.ExecuteSqlCommand(sqlQuery.ToString(), parmArray);
+                    result = db.Database.ExecuteSqlCommand($"{sqlQuery.ToString()}", parmArray);
                 }
             }
             else
             {
                 if (parms == null || parms.Count == 0)
                 {
-                    var dbResult = db.Database.ExecuteSqlCommand(sqlQuery.ToString());
+                    var dbResult = db.Database.ExecuteSqlCommand($"{sqlQuery.ToString()}");
                 }
                 else
                 {
                     parmArray = parms.ToArray();
-                    var dbResult = db.Database.ExecuteSqlCommand(sqlQuery.ToString(), parmArray);
+                    var dbResult = db.Database.ExecuteSqlCommand($"{sqlQuery.ToString()}", parmArray);
                 }
             }
 
@@ -110,17 +143,67 @@ namespace GoIdentity.ResourceAccess
         /// <param name="procedureName">Stored procedure name</param>
         /// <param name="parms">SQL parameters</param>
         /// <returns></returns>
-        public static List<T> ExecuteResultSet<T>(this DbContext db, string query, params SqlParameter[] parms)
+        public static List<T> ExecuteResultSet<T>(this DbContext db, string query, params SqlParameter[] parms) where T : new()
         {
             var result = default(List<T>);
 
             if (parms == null || parms.Length == 0)
             {
-                result = db.Database.SqlQuery<T>(query).ToList();
+                //result = db.Database.SqlQuery<T>(sqlQuery.ToString(), parmArray).ToList();
+                using (var command = db.Database.GetDbConnection().CreateCommand())
+                {
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = query.ToString();
+
+                    var sqlAdapter = new SqlDataAdapter(command as SqlCommand);
+                    var dataSet = new DataSet();
+                    sqlAdapter.Fill(dataSet);
+                    result = dataSet.Tables.Count > 0 ? dataSet.Tables[0].ToList<T>() : new List<T>();
+                }
+
             }
             else
             {
-                result = db.Database.SqlQuery<T>(query, parms).ToList();
+                //result = db.Database.SqlQuery<T>(sqlQuery.ToString(), parmArray).ToList();
+                using (var command = db.Database.GetDbConnection().CreateCommand())
+                {
+                    command.CommandType = CommandType.Text;
+                    foreach (var param in parms)
+                    {
+                        command.Parameters.Add(param);
+                    }
+                    command.CommandText = query.ToString();
+
+                    var sqlAdapter = new SqlDataAdapter(command as SqlCommand);
+                    var dataSet = new DataSet();
+                    sqlAdapter.Fill(dataSet);
+                    result = dataSet.Tables.Count > 0 ? dataSet.Tables[0].ToList<T>() : new List<T>();
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Execute stored procedure which doesn't return any result set
+        /// </summary>
+        /// <param name="procedureName">Stored procedure name</param>
+        /// <param name="parms">SQL parameters</param>
+        /// <returns></returns>
+        public static List<T> SqlQuery<T>(this DbContext db, string query) where T : new()
+        {
+            var result = default(List<T>);
+
+            //result = db.Database.SqlQuery<T>(sqlQuery.ToString(), parmArray).ToList();
+            using (var command = db.Database.GetDbConnection().CreateCommand())
+            {
+                command.CommandType = CommandType.Text;
+                command.CommandText = query.ToString();
+
+                var sqlAdapter = new SqlDataAdapter(command as SqlCommand);
+                var dataSet = new DataSet();
+                sqlAdapter.Fill(dataSet);
+                result = dataSet.Tables.Count > 0 ? dataSet.Tables[0].ToList<T>() : new List<T>();
             }
 
             return result;
@@ -136,27 +219,27 @@ namespace GoIdentity.ResourceAccess
         {
             var resultSet = new DataSet();
 
-            using (var conn = new SqlConnection(db.Database.Connection.ConnectionString))
+            using (var conn = new SqlConnection(db.Database.GetDbConnection().ConnectionString))
             {
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = query;
                     cmd.CommandType = CommandType.Text;
-
                     using (var adapter = new SqlDataAdapter(cmd))
                     {
                         adapter.Fill(resultSet);
                     }
                 }
             }
-
             return resultSet.Tables[0];
         }
 
-        #region Create Organization Connection String
+        public static string ExecuteScalar(this DbContext db, string query)
+        {
+            var resultSet = ExecuteQuery(db, query);
 
-        private static object _syncLock = new object();
-
-        #endregion
+            return (resultSet.Rows.Count > 0 && resultSet.Columns.Count > 0 && resultSet.Rows[0][0] != DBNull.Value) ? resultSet.Rows[0][0].ToString() : default(string);
+        }
+        
     }
 }

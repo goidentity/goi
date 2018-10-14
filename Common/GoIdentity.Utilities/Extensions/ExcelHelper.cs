@@ -7,6 +7,7 @@ using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System.Linq;
 
 namespace GoIdentity.Utilities.Extensions
 {
@@ -56,43 +57,7 @@ namespace GoIdentity.Utilities.Extensions
             return (returnValue ?? string.Empty).Trim();
         }
 
-        public static DataTable ReadCsv(string fileName, bool firstLineIsHeader = true)
-        {
-            DataTable result = new DataTable();
-            System.IO.FileInfo fileInfo = new System.IO.FileInfo(fileName);
-
-            // The table name is the actual name of the file.
-            string tableName = fileInfo.Name;
-
-            // Get the folder name in which the file is. This will be part of the 
-            // connection string.
-            string folderName = fileInfo.DirectoryName;
-            string connectionString = "Provider=Microsoft.Jet.OleDb.4.0;" +
-                                      "Data Source=" + folderName + ";" +
-                                      "Extended Properties=\"Text;" +
-                                      "HDR=" + (firstLineIsHeader ? "Yes" : "No") + ";" +
-                                      "FMT=Delimited\"";
-
-            using (System.Data.OleDb.OleDbConnection connection =
-                new System.Data.OleDb.OleDbConnection(connectionString))
-            {
-                // Open the connection 
-                connection.Open();
-
-                // Set up the adapter and query the table.
-                string sqlStatement = "SELECT * FROM " + tableName;
-                using (System.Data.OleDb.OleDbDataAdapter adapter =
-                    new System.Data.OleDb.OleDbDataAdapter(sqlStatement, connection))
-                {
-                    result = new DataTable(tableName);
-                    adapter.Fill(result);
-                }
-            }
-
-            return result;
-        }
-
-        public static DataSet ReadExcel(string filePath)
+        public static DataSet ReadExcel(string filePath, int rowPosition = 0, bool singleSheet = false)
         {
             DataFormatter dataFormatter;
             IFormulaEvaluator formulaEvaluator;
@@ -105,45 +70,48 @@ namespace GoIdentity.Utilities.Extensions
                 dataFormatter = new DataFormatter(CultureInfo.InvariantCulture);
                 formulaEvaluator = WorkbookFactory.CreateFormulaEvaluator(workbook);
             }
-
-            ISheet sheet = workbook.GetSheetAt(0); // zero-based index of your target sheet
-            DataTable dt = new DataTable(sheet.SheetName);
-
-            // write header row
-            IRow headerRow = sheet.GetRow(0);
-            foreach (ICell headerCell in headerRow)
-            {
-                dt.Columns.Add(headerCell.ToString());
-            }
-
-            // write the rest
-            int rowIndex = 0;
-            foreach (IRow row in sheet)
-            {
-                // skip header row
-                if (rowIndex++ == 0) continue;
-                DataRow dataRow = dt.NewRow();
-                for (int i = 0; i < dt.Columns.Count; i++)
-                {
-                    if (row.Cells.Count > i && row.Cells[i] != null)
-                    {
-                        dataRow[i] = GetFormattedValue(row.Cells[i], dataFormatter, formulaEvaluator);
-                        //dataRow[i] = row.Cells[i].ToString();
-                    }
-                    else
-                    {
-                        dataRow[i] = DBNull.Value;
-                    }
-                }
-                dt.Rows.Add(dataRow);
-                dt.AcceptChanges();
-            }
             var dataSet = new DataSet();
-            dataSet.Tables.Add(dt);
+            for (int r = 0; r < (singleSheet ? 1 : workbook.NumberOfSheets); r++)
+            {
+                ISheet sheet = workbook.GetSheetAt(r); // zero-based index of your target sheet
+                DataTable dt = new DataTable(sheet.SheetName);
+
+                // write header row
+                IRow headerRow = sheet.GetRow(rowPosition);
+                foreach (ICell headerCell in headerRow)
+                {
+                    dt.Columns.Add(headerCell.ToString());
+                }
+
+                // write the rest
+                int rowIndex = 0;
+                foreach (IRow row in sheet)
+                {
+                    // skip header row
+                    if (rowIndex++ <= rowPosition) continue;
+                    DataRow dataRow = dt.NewRow();
+                    for (int i = 0; i < dt.Columns.Count; i++)
+                    {
+                        if (row.Cells.Count > i)
+                        {
+                            dataRow[i] = GetFormattedValue(row.Cells[i], dataFormatter, formulaEvaluator);
+                            //dataRow[i] = row.Cells[i].ToString();
+                        }
+                        else
+                        {
+                            dataRow[i] = DBNull.Value;
+                        }
+                    }
+                    dt.Rows.Add(dataRow);
+                    dt.AcceptChanges();
+                }
+                dataSet.Tables.Add(dt);
+            }
             return dataSet;
         }
 
         public static DataTable ToDataTable<T>(this List<T> items)
+            where T : class, new()
         {
             DataTable dataTable = new DataTable(typeof(T).Name);
 
@@ -170,7 +138,65 @@ namespace GoIdentity.Utilities.Extensions
             return dataTable;
         }
 
-        public static void CreateExcel(this DataTable dataTable, int organizationId, string fileName)
+        public static List<T> ToList<T>(this DataTable table) where T : new()
+        {
+            IDictionary<Type, ICollection<PropertyInfo>> _Properties = new Dictionary<Type, ICollection<PropertyInfo>>();
+
+            try
+            {                
+                var tableColumns = new List<string>();
+                foreach (DataColumn item in table.Columns)
+                {
+                    tableColumns.Add(item.ColumnName);
+                }
+
+                var objType = typeof(T);
+                ICollection<PropertyInfo> properties;
+
+                lock (_Properties)
+                {
+                    if (!_Properties.TryGetValue(objType, out properties))
+                    {
+                        properties = objType.GetProperties().Where(property => property.CanWrite).ToList();
+                        _Properties.Add(objType, properties);
+                    }
+                }
+
+                var list = new List<T>(table.Rows.Count);
+
+                foreach (var row in table.AsEnumerable())
+                {
+                    var obj = new T();
+
+                    foreach (var prop in properties)
+                    {
+                        if (!tableColumns.Contains(prop.Name)) continue;
+
+                        try
+                        {
+                            var propType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
+                            var safeValue = row[prop.Name] == DBNull.Value ? null : Convert.ChangeType(row[prop.Name], propType);
+
+                            prop.SetValue(obj, safeValue, null);
+                        }
+                        catch (Exception ex)
+                        {
+                            continue;
+                        }
+                    }
+
+                    list.Add(obj);
+                }
+
+                return list;
+            }
+            catch
+            {
+                return new List<T>();
+            }
+        }
+
+        public static void CreateExcel(this DataTable dataTable, int organizationId, string fileName, bool hideFirstRow = false)
         {
             var wb = new XSSFWorkbook();
             var sheet = wb.CreateSheet();
@@ -178,6 +204,7 @@ namespace GoIdentity.Utilities.Extensions
             var headerRow = sheet.CreateRow(0); //To add a row in the table
             foreach (DataColumn column in dataTable.Columns)
                 headerRow.CreateCell(column.Ordinal).SetCellValue(column.Caption);
+
             int rowIndex = 1;
             foreach (DataRow row in dataTable.Rows)
             {

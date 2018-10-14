@@ -1,22 +1,25 @@
 ﻿using GoIdentity.Entities.Core;
 using GoIdentity.Entities.Scores;
 using GoIdentity.Utilities.Constants;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace GoIdentity.ResourceAccess
 {
     public class IdentityDbContext : DbContext
     {
         public IdentityDbContext()
-            : base(ConnectionStrings.COMMON_CONNECTION_STRING)
+            : base(GetOptions(ConnectionStrings.COMMON_CONNECTION_STRING))
         {
-            this.Configuration.AutoDetectChangesEnabled = false;
-            Database.SetInitializer<IdentityDbContext>(null);
-            var objectContext = (this as IObjectContextAdapter).ObjectContext;
-            objectContext.CommandTimeout = ConnectionStrings.COMMAND_TIMEOUT;
+            this.ChangeTracker.AutoDetectChangesEnabled = false;
+            //Database.SetInitializer<CommonDbContext>(null);
+            Database.SetCommandTimeout(ConnectionStrings.COMMAND_TIMEOUT);
         }
-        
+
+        private static DbContextOptions GetOptions(string connectionString)
+        {
+            return SqlServerDbContextOptionsExtensions.UseSqlServer(new DbContextOptionsBuilder(), connectionString).Options;
+        }
+
         #region Core
         public DbSet<User> Users { get; set; }
         public DbSet<Navigation> Navigations { get; set; }

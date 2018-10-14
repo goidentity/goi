@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Text;
-using Humanizer;
+using System.Linq;
+using System.Globalization;
 
 namespace GoIdentity.Utilities.Extensions
 {
@@ -113,20 +115,39 @@ namespace GoIdentity.Utilities.Extensions
         }
 
         #region Number to words
-        public static String ChangeToWords(this string numb, bool isCurrency,string change)
+        public static String ChangeToWords(this string numb, bool isCurrency, string change)
         {
-            var point = numb.IndexOf(".") > -1 ? ((numb.Substring(numb.LastIndexOf(".") + 1, 1)[0]=='0')?"zero":""): "";
-            return System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(numb.IndexOf(".") > -1 ?
-                     Convert.ToInt32(Math.Floor(Convert.ToDecimal(numb))).ToWords() +
-                     (Convert.ToInt32(numb.Substring(numb.LastIndexOf(".") + 1, 2)).ToWords()=="zero"? " " : " and " + point + " " + Convert.ToInt32(numb.Substring(numb.LastIndexOf(".") + 1, 2)).ToWords()+" "+ change)
-                     : int.Parse(numb).ToWords());
+            var inputValue = double.Parse(numb);
+            var parsedValueString = inputValue.ToString();
+            var parts = parsedValueString.Split('.');
+            long leftNum = long.Parse(parts[0]);
+            long rightNum = (parts.Length > 1) ? long.Parse(parts[1]) : 0;
+
+            var numToWordConverter = new EnglishNumberToWordsConverter();
+            var words = numToWordConverter.Convert(leftNum);
+
+            if (rightNum > 0)
+            {
+                words = words + " and "+ change+" " + numToWordConverter.Convert(rightNum);
+            }
+            else
+            {
+                words=words + " " + change;
+            }
+            return words;
+
+            //var point = numb.IndexOf(".") > -1 ? ((numb.Substring(numb.LastIndexOf(".") + 1, 1)[0] == '0') ? "zero" : "") : "";
+            //return System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(numb.IndexOf(".") > -1 ?
+            //         Convert.ToInt32(Math.Floor(Convert.ToDecimal(numb))).ToString(cultureInfo) +
+            //         (Convert.ToInt32(numb.Substring(numb.LastIndexOf(".") + 1, 2)).ToString(cultureInfo) == "zero" ? " " : " and " + point + " " + Convert.ToInt32(numb.Substring(numb.LastIndexOf(".") + 1, 2)).ToString(cultureInfo) + " " + change)
+            //         : int.Parse(numb).ToString(cultureInfo));
             //Convert.ToInt32(Math.Floor(Convert.ToDecimal(numb))).ToWords() 
             //         : int.Parse(numb).ToWords();
         }
 
-            #endregion
+        #endregion
 
-            public static string GetContentType(this string path)
+        public static string GetContentType(this string path)
         {
             var types = GetMimeTypes();
             var ext = Path.GetExtension(path).ToLowerInvariant();
@@ -189,5 +210,13 @@ namespace GoIdentity.Utilities.Extensions
 
             return ToServerTime(DateTime.Parse(dateTimeValue), timezoneOffset);
         }
+
+        private static Type[] GetNumberDataColumnTypes()
+        {
+            return new[] { typeof(Byte), typeof(Decimal), typeof(Double),
+                typeof(Int16), typeof(Int32), typeof(Int64), typeof(SByte),
+                typeof(Single), typeof(UInt16), typeof(UInt32), typeof(UInt64)};
+        }
+
     }
 }

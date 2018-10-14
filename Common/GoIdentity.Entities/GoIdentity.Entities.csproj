@@ -1,68 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1AA8F53D-AAA3-4AE6-BA0A-46F238C1C399}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GoIdentity.Entities</RootNamespace>
-    <AssemblyName>GoIdentity.Entities</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Core\BusinessProfile.cs" />
-    <Compile Include="Core\Category.cs" />
-    <Compile Include="Core\Industry.cs" />
-    <Compile Include="Core\IndustryCategoryMap.cs" />
-    <Compile Include="Core\Navigation.cs" />
-    <Compile Include="Core\User.cs" />
-    <Compile Include="Core\UserContext.cs" />
-    <Compile Include="Core\UserNotification.cs" />
-    <Compile Include="Core\UserProfile.cs" />
-    <Compile Include="Core\UserScore.cs" />
-    <Compile Include="Core\vUserScore.cs" />
-    <Compile Include="Entity.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scores\ConnectorType.cs" />
-    <Compile Include="Scores\EngineLog.cs" />
-    <Compile Include="Scores\EngineLogResponse.cs" />
-    <Compile Include="Scores\Influencer.cs" />
-    <Compile Include="Scores\UserData.cs" />
-    <Compile Include="Scores\UserInfluencerAuth.cs" />
-    <Compile Include="Security\Claim.cs" />
-    <Compile Include="Security\UserLoginLog.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>
