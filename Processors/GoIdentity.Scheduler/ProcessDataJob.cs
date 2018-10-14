@@ -57,6 +57,9 @@ namespace GoIdentity.Scheduler
                                     itemResponse.PullStatus = "Success";
                                     break;
                                 case ConnectorType.LinkedIn:
+                                    var linkedinHandler = new LinkedInHandler();
+                                    itemResponse.Response = linkedinHandler.Handle(item, userInfluencer);
+                                    itemResponse.PullStatus = "Success";
                                     break;
                                 case ConnectorType.Upwork:
                                     break;
@@ -67,6 +70,11 @@ namespace GoIdentity.Scheduler
                                 case ConnectorType.Paisabazaar:
                                     break;
                                 case ConnectorType.MCA:
+                                    break;
+                                case ConnectorType.Facebook:
+                                    var facebookHandler = new FacebookHandler();
+                                    itemResponse.Response = facebookHandler.Handle(item, userInfluencer);
+                                    itemResponse.PullStatus = "Success";
                                     break;
                                 default:
                                     break;

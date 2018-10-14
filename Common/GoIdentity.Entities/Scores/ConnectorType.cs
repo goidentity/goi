@@ -12,6 +12,7 @@
         Naukri = 5,
         Payoneer = 6,
         Paisabazaar = 7,
-        MCA = 8
+        MCA = 8,
+        Facebook = 9
     }
 }
