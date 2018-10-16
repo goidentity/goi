@@ -72,6 +72,10 @@
 				[CreatedBy],[CreatedDate], [ModifiedBy], [ModifiedDate])
 		VALUES('Contact us', '/ops/contactus', 2, @navigationId, '', 6,
 				0, GETDATE(), 0, GETDATE());
+		INSERT INTO Core.trNavigation([Title], [NavigationPath], [LevelId], [ParentNavigationId], [ImagePath], [SortId],
+				[CreatedBy],[CreatedDate], [ModifiedBy], [ModifiedDate])
+		VALUES('Connectors', '/ops/connectors', 2, @navigationId, '', 7,
+				0, GETDATE(), 0, GETDATE());
 
 	END
 
