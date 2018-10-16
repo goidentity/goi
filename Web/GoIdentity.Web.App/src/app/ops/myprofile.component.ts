@@ -26,6 +26,14 @@ export class MyprofileComponent implements OnInit {
 
     public deviceId: string = "";
 
+    public genders = [
+        { name: "Male" },
+        { name: "Female" },
+        { name: "Other" },
+    ];
+
+    public user1 = new User(1, "banu", "saladi", "Male", "sankar");
+
     constructor(private fb: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
@@ -37,7 +45,11 @@ export class MyprofileComponent implements OnInit {
 
 
     public onSaveClick() { }
-    public onUpdateClick() { }
+    public onUpdateClick(form: any) {
+        console.log(form.value);
+        alert("The form was submitted");
+        form.reset();
+    }
 
     ngOnInit() {
         //this.getUserProfileData();
@@ -86,8 +98,14 @@ export class MyprofileComponent implements OnInit {
     */
 
 }
-class Widget {
-    constructor(public name: string) { }
+export class User {
+    constructor(
+        public id: number,
+        public firstName: string,
+        public lastName: string,
+        public gender: string,
+        public middleName?: string
+    ) { }
 }
 
 

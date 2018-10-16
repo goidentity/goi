@@ -1,89 +1,55 @@
-<div class="row">
-    <div class="col-sm-12">
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label>First Name</label>
-                <input type="text" id="firstname" tabindex="1" placeholder="Enter First Name Here.." class="form-control" autofocus>
-            </div>
-            <div class="col-sm-6 form-group">
-                <label>Last Name</label>
-                <input type="text" id="lastname" tabindex="2" placeholder="Enter Last Name Here.." class="form-control">
-            </div>
-            <div class="col-sm-6 form-group">
-                <label>Middle Name</label>
-                <input type="text" id="middlename" tabindex="3" placeholder="Enter Middle Name Here.." class="form-control">
-            </div>
-            <div class="col-sm-6 form-group">
-                <label>Display Name</label>
-                <input type="text" id="displayname" tabindex="4" placeholder="Enter Display Name Here.." class="form-control">
+<form #userProfile="ngForm" (ngSubmit)="onUpdateClick(userProfile.form)">
+    <div class="form-group">
+        <label for="firstName">First Name : </label>
+        <input type="text" class="form-control" name="firstName" placeholder="FirstName" #firstName="ngModel"
+               [(ngModel)]="user1.firstName"
+               required>
+        <div *ngIf="firstName.touched && firstName.errors">
+            <div class="alert alert-danger"
+                 *ngIf="firstName.errors.required">
+                The first name is required
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-3 form-group">
-                <label>Gender</label>
-                <input type="text" id="gender" tabindex="5" placeholder="Enter Gender Here.." class="form-control">
-            </div>
-            <div class="col-sm-3 form-group">
-                <label>DOB</label>
-                <input type="text" id="dob" tabindex="6" placeholder="Enter DOB Here.." class="form-control">
-            </div>
-            <div class="col-sm-3 form-group">
-                <label>Mobile Number</label>
-                <input type="text" id="mobilenumber" tabindex="7" placeholder="Enter Phone Number Here.." class="form-control">
-            </div>
-            <div class="col-sm-3 form-group">
-                <label>Alternate Number</label>
-                <input type="text" id="alternatenumber" tabindex="8" placeholder="Enter Alternate Number Here.." class="form-control">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label>Email Address</label>
-                <input type="text" id="email" tabindex="9" placeholder="Enter Email Address Here.." class="form-control">
-            </div>
-            <div class="col-sm-6 form-group">
-                <label>Website</label>
-                <input type="text" id="website" tabindex="10" placeholder="Enter Website Name Here.." class="form-control">
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Address Line1</label>
-            <input type="text" id="address1" tabindex="11" placeholder="Enter Address Line1 Here.." class="form-control">
-            <!--<textarea placeholder="Enter Address Line1 Here.." rows="1" class="form-control"></textarea>-->
-            <label>Address Line2</label>
-            <input type="text" id="address2" tabindex="12" placeholder="Enter Address Line2 Here.." class="form-control">
-        </div>
-        <div class="row">
-            <div class="col-sm-3 form-group">
-                <label>Area</label>
-                <input type="text" id="area" tabindex="13" placeholder="Enter Area Name Here.." class="form-control">
-            </div>
-            <div class="col-sm-3 form-group">
-                <label>City</label>
-                <input type="text" id="city" tabindex="14" placeholder="Enter City Name Here.." class="form-control">
-            </div>
-            <div class="col-sm-3 form-group">
-                <label>State</label>
-                <input type="text" id="state" tabindex="15" placeholder="Enter State Name Here.." class="form-control">
-            </div>
-            <div class="col-sm-3 form-group">
-                <label>Zip</label>
-                <input type="text" id="zip" tabindex="16" placeholder="Enter Zip Code Here.." class="form-control">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <label>Profession</label>
-                <input type="text" id="profession" tabindex="17" placeholder="Enter Designation Here.." class="form-control">
-            </div>
-            <div class="col-sm-6 form-group">
-                <label>Company</label>
-                <input type="text" id="company" tabindex="18" placeholder="Enter Company Name Here.." class="form-control">
-            </div>
-        </div>
-        <button type="submit" (click)="onSave()" class="btn btn-primary bg-goidentity-green text-white btn-pill btn-block px-4" primary="true"> Submit</button>
-        <!--<button type="button" class="btn btn-lg btn-info">Submit</button>-->
     </div>
-</div>
+    <div class="form-group">
+        <label for="middleName">Middle Name : </label>
+        <input type="text" class="form-control" name="middleName" placeholder="MiddleName" #middleName="ngModel"
+               [(ngModel)]="user1.middleName">
+    </div>
 
-<ng4-loading-spinner class="loader" [loadingText]="'Please wait...'" [zIndex]="99999"></ng4-loading-spinner>
+    <div class="form-group">
+        <label for="lastName">Last Name : </label>
+        <input type="text" class="form-control" name="lastName" placeholder="LastName" #lastName="ngModel"
+               [(ngModel)]="user1.lastName"
+               required>
+        <div *ngIf="lastName.touched && lastName.errors">
+            <div class="alert alert-danger"
+                 *ngIf="lastName.errors.required">
+                The last name is required
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="gender">Gender : </label>
+        <select class="form-control"
+                name="gender"
+                #gender="ngModel"
+                required
+                [(ngModel)]="user1.gender">
+            >
+            <option *ngFor="let gender of genders"
+                    [value]="gender.name">
+                {{ gender.name }}
+            </option>
+        </select>
+        <div class="alert alert-danger"
+             *ngIf="gender.touched && !gender.valid">
+            Gender is required
+        </div>
+    </div>
+
+    <button class="btn" [disabled]="!userProfile.valid">Submit</button>
+</form>
+<div>
+    {{user1 | json}}
+</div>
