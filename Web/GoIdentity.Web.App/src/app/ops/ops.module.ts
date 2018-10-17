@@ -30,6 +30,8 @@ import { NotificationsComponent } from './notifications.component';
 import { AboutComponent } from './about.component';
 import { ContactusComponent } from './contactus.component';
 import { ConnectorComponent } from './connector.component';
+import { GoogleAddressBoxDirective } from './../shared/google-addressbox.directive';
+
 
 @NgModule({
     imports: [
@@ -53,7 +55,9 @@ import { ConnectorComponent } from './connector.component';
         ChartsModule,
         OpsRoutingModule, RippleModule
     ],
-    declarations: [DashboardComponent, MyidentityComponent, MyprofileComponent, NotificationsComponent, AboutComponent, ContactusComponent, ConnectorComponent
+    declarations: [
+        DashboardComponent, MyidentityComponent, MyprofileComponent, NotificationsComponent, AboutComponent, ContactusComponent, ConnectorComponent,
+        GoogleAddressBoxDirective
     ],
     providers: [ToasterService,
         {

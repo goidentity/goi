@@ -2,7 +2,7 @@
     <div class="form-group">
         <label for="firstName">First Name : </label>
         <input type="text" class="form-control" name="firstName" placeholder="FirstName" #firstName="ngModel"
-               [(ngModel)]="user1.firstName"
+               [(ngModel)]="currentUser.firstName"
                required>
         <div *ngIf="firstName.touched && firstName.errors">
             <div class="alert alert-danger"
@@ -14,13 +14,13 @@
     <div class="form-group">
         <label for="middleName">Middle Name : </label>
         <input type="text" class="form-control" name="middleName" placeholder="MiddleName" #middleName="ngModel"
-               [(ngModel)]="user1.middleName">
+               [(ngModel)]="currentUser.middleName">
     </div>
 
     <div class="form-group">
         <label for="lastName">Last Name : </label>
         <input type="text" class="form-control" name="lastName" placeholder="LastName" #lastName="ngModel"
-               [(ngModel)]="user1.lastName"
+               [(ngModel)]="currentUser.lastName"
                required>
         <div *ngIf="lastName.touched && lastName.errors">
             <div class="alert alert-danger"
@@ -35,7 +35,7 @@
                 name="gender"
                 #gender="ngModel"
                 required
-                [(ngModel)]="user1.gender">
+                [(ngModel)]="currentUser.gender">
             >
             <option *ngFor="let gender of genders"
                     [value]="gender.name">
@@ -47,9 +47,49 @@
             Gender is required
         </div>
     </div>
+    <div class="form-group">
+        <label for="dob">DOB : </label>
+        <input type="date" class="form-control" name="dob"
+               [ngModel] ="currentUser.dob | date:'yyyy-MM-dd'" (ngModelChange)="currentUser.dob = $event"
+               #dob="ngModel" />
+    </div>
+    <div class="form-group">
+        <label for="placeOfBirth">Place Of Birth : </label>
+        <input google-addressbox type="text" name="placeOfBirth"
+               (onSelect)="setAddress($event)"
+               [(ngModel)]="currentUser.placeOfBirth"
+               placeholder="Type to enter..">
+    </div>
+    <div class="form-group">
+        <label for="currentCity">Current City : </label>
+        <input google-addressbox type="text" name="currentCity"
+               (onSelect)="setAddress($event)"
+               [(ngModel)]="currentUser.currentCity"
+               placeholder="Type to enter..">
+    </div>
+    <div class="form-group">
+        <label for="homeTown">Home Town : </label>
+        <input google-addressbox type="text" name="homeTown"
+               (onSelect)="setAddress($event)"
+               [(ngModel)]="currentUser.homeTown"
+               placeholder="Type to enter..">
+    </div>
+    <div class="form-group">
+        <label for="maritialStatus">Maritial Status : </label>
+        <select class="form-control"
+                name="maritialStatus"
+                #maritialStatus="ngModel"
+                [(ngModel)]="currentUser.maritialStatus">
+            >
+            <option *ngFor="let maritialStatus of maritialStatuses"
+                    [value]="maritialStatus.name">
+                {{ maritialStatus.name }}
+            </option>
+        </select>       
+    </div>
 
     <button class="btn" [disabled]="!userProfile.valid">Submit</button>
 </form>
 <div>
-    {{user1 | json}}
+    {{currentUser | json}}
 </div>

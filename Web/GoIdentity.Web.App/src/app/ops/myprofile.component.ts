@@ -9,11 +9,13 @@ import { ChangePassword, Client } from '../models/domain/user-entities';
 import { DeviceInfo, DeviceDetectorService } from 'ngx-device-detector';
 import { ToasterService } from 'angular2-toaster/angular2-toaster';
 
-import { Component, OnInit, Inject, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Inject, Input, OnDestroy, NgZone, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { Broadcaster, MessageEvent } from '../models/utilities/broadcaster';
 import { BaseComponent } from '../shared/base-component';
+import { Element } from '@progress/kendo-drawing';
+import { element } from '@angular/core/src/render3/instructions';
 
 @Component({
     templateUrl: './myprofile.component.html',
@@ -23,6 +25,7 @@ export class MyprofileComponent implements OnInit {
     public returnUrl: string;
     public errorMsg: string;
     public client: Client;
+    public currentUser: User
 
     public deviceId: string = "";
 
@@ -31,8 +34,11 @@ export class MyprofileComponent implements OnInit {
         { name: "Female" },
         { name: "Other" },
     ];
-
-    public user1 = new User(1, "banu", "saladi", "Male", "sankar");
+    public maritialStatuses = [
+        { name: "Single" },
+        { name: "Married" },
+        { name: "Divorced" },
+    ];
 
     constructor(private fb: FormBuilder,
         private route: ActivatedRoute,
@@ -41,7 +47,8 @@ export class MyprofileComponent implements OnInit {
         private spinnerService: Ng4LoadingSpinnerService,
         private deviceService: DeviceDetectorService,
         private toasterService: ToasterService,
-        private userService: UserService) { }
+        private userService: UserService,
+        private zone: NgZone) { }
 
 
     public onSaveClick() { }
@@ -51,8 +58,15 @@ export class MyprofileComponent implements OnInit {
         form.reset();
     }
 
+    setAddress(event: any) {
+        console.log(event.target);
+        this.zone.run(() => {
+            this.currentUser[event.target] = event.address.formatted_address;
+        });
+    }
+
     ngOnInit() {
-        //this.getUserProfileData();
+        this.getUserProfileData();
         this.spinnerService.show();
         var emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -73,38 +87,25 @@ export class MyprofileComponent implements OnInit {
 
         this.spinnerService.show();
     }
-
-    /*
-
-        this.userService.createUserProfile(this.form.controls['firstname'].value
-            , this.form.controls['lastname'].value
-            , this.form.controls['middlename'].value
-            , this.form.controls['displayname'].value
-            , this.form.controls['dob'].value
-            , this.form.controls['mobilenumber'].value
-            , this.form.controls['alternatenumber'].value
-            , this.form.controls['email'].value
-            , this.form.controls['address1'].value)
-            .subscribe(data => {
-                this.toasterService.pop('success', '', 'Profile Created successfully.');
-                //this.router.navigate(['/settings/login']);
-                this.form.reset();
-                this.spinnerService.hide();
-            },
-            error => {
-                this.errorMsg = "Invalid data exists";
-                this.spinnerService.hide();
-            });
-    */
-
+    getUserProfileData() {
+        this.currentUser = new User(1, "banu", "saladi", "Male", "sankar", new Date(1990, 10, 26), "");
+        this.userService
+    }
+    
 }
 export class User {
+    [key: string]: string | number | Date;
     constructor(
         public id: number,
         public firstName: string,
         public lastName: string,
         public gender: string,
-        public middleName?: string
+        public middleName?: string,
+        public dob?: Date,
+        public placeOfBirth?: string,
+        public currentCity?: string,
+        public homeTown?: string
+
     ) { }
 }
 
