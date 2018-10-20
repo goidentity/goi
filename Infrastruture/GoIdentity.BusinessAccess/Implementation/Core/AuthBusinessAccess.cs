@@ -36,14 +36,18 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
             var handler = handlerContainer.GetHandler(connectorType);
 
             string authToken = await handler.GetAuthToken(influencer,authCode);
-            UserInfluencerAuth userInfluencer = new UserInfluencerAuth()
+            if (!string.IsNullOrEmpty(authToken))
             {
-                UserId = 100,
-                InfluencerId = connectorType,
-                Secret = authToken
-            };
-            bool isSuccess = authDataAccess.StoreAuthToken(userInfluencer);
-            return isSuccess;
+                UserInfluencerAuth userInfluencer = new UserInfluencerAuth()
+                {
+                    UserId = 100,
+                    InfluencerId = connectorType,
+                    Secret = authToken
+                };
+                bool isSuccess = authDataAccess.StoreAuthToken(userInfluencer);
+                return isSuccess;
+            }
+            return false;
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using GoIdentity.Entities.Scores;
+using Newtonsoft.Json;
 
 namespace GoIdentity.BusinessAccess.Handlers
 {
@@ -33,14 +34,40 @@ namespace GoIdentity.BusinessAccess.Handlers
         
         public override string AuthorizeUser(Influencer influencer)
         {
-            //LinkedIn login logic
-            return string.Empty;
+            var clientId = influencer.ApiKey;
+            string callBackUrl = @"https://localhost:44344/api/oauth/linkedin/callback";
+
+            return @"https://www.linkedin.com/oauth/v2/authorization?" +
+                           "response_type=code" +
+                           "&client_id=" + clientId +
+                           "&redirect_uri="+ callBackUrl +
+                           "&scope=r_basicprofile";            
         }
 
-        public override Task<string> GetAuthToken(Influencer influencer, string authCode)
+        public override async Task<string> GetAuthToken(Influencer influencer, string authCode)
         {
-            //logic for LinkedIn Auth token get
-            return Task.FromResult(string.Empty);
+            var clientId = influencer.ApiKey;
+            var clientSecret = influencer.Other1;
+            string callBackUrl = @"https://localhost:44344/api/oauth/linkedin/callback";
+
+            //get access token            
+            using (var httpClient = new HttpClient() { BaseAddress = new Uri(@"https://www.linkedin.com/") })
+            {
+                httpClient.DefaultRequestHeaders.Accept
+                    .Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var authRelUrl = $"/oauth/v2/accessToken?grant_type=authorization_code&code={authCode}" +
+                                $"&redirect_uri={callBackUrl}&client_id={clientId}&client_secret={clientSecret}";
+
+                var tokenresponse = await httpClient.GetAsync(authRelUrl);
+                if (tokenresponse?.IsSuccessStatusCode ?? false)
+                {
+                    var token = await tokenresponse.Content.ReadAsStringAsync();
+                    var tokenJson = JsonConvert.DeserializeObject<dynamic>(token);
+
+                    return tokenJson.access_token;
+                }
+                return string.Empty;
+            }                
         }
     }
 }

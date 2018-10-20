@@ -48,24 +48,27 @@ namespace GoIdentity.BusinessAccess.Handlers
             string appId = "557746184671124",
                    appSecret = "236104e44d3f8b702102ec87ba67f4aa",
                    redirectUri = @"https://localhost:44344/api/oauth/facebook/callback";
-            
-            var httpClient = new HttpClient()
+
+            using (var httpClient = new HttpClient() { BaseAddress = new Uri(@"https://graph.facebook.com/") })
             {
-                BaseAddress = new Uri(@"https://graph.facebook.com/"),
-            };
-            httpClient.DefaultRequestHeaders.Accept
-                .Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            string authRelUrl = $"oauth/access_token?client_id={appId}&redirect_uri={redirectUri}&client_secret={appSecret}&code={authCode}";
-            var tokenresponse = await httpClient.GetAsync(authRelUrl);
-            var token = await tokenresponse.Content.ReadAsStringAsync();
-            var tokenJson = JsonConvert.DeserializeObject<dynamic>(token);
+                httpClient.DefaultRequestHeaders.Accept
+                   .Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                string authRelUrl = $"oauth/access_token?client_id={appId}&redirect_uri={redirectUri}&client_secret={appSecret}&code={authCode}";
+                var tokenresponse = await httpClient.GetAsync(authRelUrl);
+                if (tokenresponse?.IsSuccessStatusCode ?? false)
+                {
+                    var token = await tokenresponse.Content.ReadAsStringAsync();
+                    var tokenJson = JsonConvert.DeserializeObject<dynamic>(token);
 
-            //string endpoint = "me";
-            //string args = "fields=id,name,email,first_name,last_name,age_range,birthday,gender,location";
-            //var response = await httpClient.GetAsync($"{endpoint}?access_token={tokenJson.access_token}&{args}");
-            //var result = await response.Content.ReadAsStringAsync();
+                    //string endpoint = "me";
+                    //string args = "fields=id,name,email,first_name,last_name,age_range,birthday,gender,location";
+                    //var response = await httpClient.GetAsync($"{endpoint}?access_token={tokenJson.access_token}&{args}");
+                    //var result = await response.Content.ReadAsStringAsync();
 
-            return tokenJson.access_token;            
+                    return tokenJson.access_token;
+                }
+                return string.Empty;
+            }                           
         }
     }
 }
