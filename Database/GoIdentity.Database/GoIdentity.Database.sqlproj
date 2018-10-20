@@ -96,6 +96,7 @@
     <Build Include="Score\Tables\trEngineLog.sql" />
     <Build Include="Score\User Defined Types\EngineResponseType.sql" />
     <Build Include="Score\Stored Procedures\updateEngineLogs.sql" />
+    <Build Include="Score\Stored Procedures\UpdateAuthToken.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

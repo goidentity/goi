@@ -1,4 +1,4 @@
-﻿using GoIdentity.CoreEngine;
+﻿using GoIdentity.BusinessAccess.Handlers;
 using GoIdentity.Entities.Core;
 using GoIdentity.Entities.Scores;
 using GoIdentity.ResourceAccess;

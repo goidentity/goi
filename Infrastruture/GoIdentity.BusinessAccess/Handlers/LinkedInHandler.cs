@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GoIdentity.Entities.Scores;
 
-namespace GoIdentity.CoreEngine
+namespace GoIdentity.BusinessAccess.Handlers
 {
     public class LinkedInHandler : Handler
     {
@@ -29,6 +29,18 @@ namespace GoIdentity.CoreEngine
 
                 return response.Content.ReadAsStringAsync().Result;
             }
+        }
+        
+        public override string AuthorizeUser(Influencer influencer)
+        {
+            //LinkedIn login logic
+            return string.Empty;
+        }
+
+        public override Task<string> GetAuthToken(Influencer influencer, string authCode)
+        {
+            //logic for LinkedIn Auth token get
+            return Task.FromResult(string.Empty);
         }
     }
 }

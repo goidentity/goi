@@ -1,8 +1,9 @@
 ﻿using GoIdentity.Entities.Scores;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 
-namespace GoIdentity.CoreEngine
+namespace GoIdentity.BusinessAccess.Handlers
 {
     public class GoogleHandler : Handler
     {
@@ -23,6 +24,18 @@ namespace GoIdentity.CoreEngine
                 
                 return response.Content.ReadAsStringAsync().Result;
             }            
+        }
+
+        public override string AuthorizeUser(Influencer influencer)
+        {
+            //Google login logic
+            return string.Empty;
+        }
+
+        public override Task<string> GetAuthToken(Influencer influencer, string authCode)
+        {
+            //logic for google Auth token get
+            return Task.FromResult(string.Empty);
         }
     }
 }

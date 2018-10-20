@@ -1,4 +1,5 @@
-﻿using GoIdentity.Utilities.Constants;
+﻿using GoIdentity.BusinessAccess.Handlers;
+using GoIdentity.Utilities.Constants;
 using GoIdentity.Web.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -84,6 +85,8 @@ namespace GoIdentity.Web.App
                 c.SwaggerDoc("v1", new Info { Title = "API", Version = "v1" });
                 c.OperationFilter<HeaderOperationFilter>();
             });
+
+            services.AddSingleton(new HandlerContainer());
 
         }
 

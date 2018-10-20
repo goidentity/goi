@@ -1,12 +1,17 @@
 ﻿using GoIdentity.Entities.Scores;
+using System.Threading.Tasks;
 
-namespace GoIdentity.CoreEngine
+namespace GoIdentity.BusinessAccess.Handlers
 {
     public interface IHandler
     {
         ConnectorType Connector { get; set; }
 
         string Handle(Influencer influencer, UserInfluencerAuth userInfluencerAuthKey);
+
+        string AuthorizeUser(Influencer influencer);
+
+        Task<string> GetAuthToken(Influencer influencer, string authCode);
     }
 
     public abstract class Handler : IHandler
@@ -20,7 +25,17 @@ namespace GoIdentity.CoreEngine
 
         public virtual string Handle(Influencer influencer, UserInfluencerAuth userInfluencerAuthKey)
         {
-            return "";
+            return string.Empty;
+        }
+
+        public virtual string AuthorizeUser(Influencer influencer)
+        {
+            return string.Empty;
+        }
+
+        public virtual Task<string> GetAuthToken(Influencer influencer, string authCode)
+        {
+            return Task.FromResult(string.Empty);
         }
     }
 }

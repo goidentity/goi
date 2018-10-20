@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoIdentity.Entities.Scores;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,7 @@ namespace GoIdentity.ResourceAccess.Contracts.Core
 {
     public interface IAuthDataAccess
     {
+        Influencer GetInfluncerAuthInfo(ConnectorType connectorType);
+        bool StoreAuthToken(UserInfluencerAuth userInfluencer);
     }
 }

@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 
-namespace GoIdentity.CoreEngine
+namespace GoIdentity.BusinessAccess.Handlers
 {
     public class Twitter
     {

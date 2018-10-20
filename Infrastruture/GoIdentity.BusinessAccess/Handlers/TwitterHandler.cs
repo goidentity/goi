@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GoIdentity.Entities.Scores;
 
-namespace GoIdentity.CoreEngine
+namespace GoIdentity.BusinessAccess.Handlers
 {
     public class TwitterHandler : Handler
     {
@@ -21,6 +21,18 @@ namespace GoIdentity.CoreEngine
             var response = twitter.GetTweets(userInfluencerAuthKey.UserName, 50);
 
             return response;
+        }
+        
+        public override string AuthorizeUser(Influencer influencer)
+        {
+            //Twitter login logic
+            return string.Empty;
+        }
+
+        public override Task<string> GetAuthToken(Influencer influencer, string authCode)
+        {
+            //logic for twitter Auth token get
+            return Task.FromResult(string.Empty);
         }
     }
 }
