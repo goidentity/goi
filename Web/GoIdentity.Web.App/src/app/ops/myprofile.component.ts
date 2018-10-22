@@ -88,7 +88,7 @@ export class MyprofileComponent implements OnInit {
         this.spinnerService.show();
     }
     getUserProfileData() {
-        this.currentUser = new User(1, "banu", "saladi", "Male", "sankar", new Date(1990, 10, 26), "");
+        this.currentUser = new User(1, "banu", "saladi", "Male", "bhanu499@gmail.com", "9642013699", "sankar", new Date(1990, 10, 26), "Hyderabad, Telangana, India");
         this.userService
     }
     
@@ -100,12 +100,14 @@ export class User {
         public firstName: string,
         public lastName: string,
         public gender: string,
+        public emailId: string,
+        public phoneNumber: string,
         public middleName?: string,
         public dob?: Date,
         public placeOfBirth?: string,
         public currentCity?: string,
-        public homeTown?: string
-
+        public homeTown?: string,
+        public aadharCard?: string
     ) { }
 }
 

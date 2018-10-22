@@ -26,7 +26,7 @@ export class GoogleAddressBoxDirective implements OnInit {
     getFormattedAddress(place: any) {
         //@params: place - Google Autocomplete place object
         //@returns: location_obj - An address object in human readable format
-        let location_obj = {};
+        let location_obj: any = {};
         for (let i in place.address_components) {
             let item = place.address_components[i];
 

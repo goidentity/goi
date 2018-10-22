@@ -48,9 +48,33 @@
         </div>
     </div>
     <div class="form-group">
+        <label for="emailId">Email Id : </label>
+        <input type="text" class="form-control" name="emailId" placeholder="enter email id" #emailId="ngModel"
+               [(ngModel)]="currentUser.emailId"
+               required>
+        <div *ngIf="emailId.touched && emailId.errors">
+            <div class="alert alert-danger"
+                 *ngIf="emailId.errors.required">
+                Email Id is required
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="phoneNumber">Phone Number : </label>
+        <input type="text" class="form-control" name="phoneNumber" placeholder="enter your phone number" #phoneNumber="ngModel"
+               [(ngModel)]="currentUser.phoneNumber"
+               required>
+        <div *ngIf="phoneNumber.touched && phoneNumber.errors">
+            <div class="alert alert-danger"
+                 *ngIf="emphoneNumberailId.errors.required">
+                Mobile number is required
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
         <label for="dob">DOB : </label>
         <input type="date" class="form-control" name="dob"
-               [ngModel] ="currentUser.dob | date:'yyyy-MM-dd'" (ngModelChange)="currentUser.dob = $event"
+               [ngModel]="currentUser.dob | date:'yyyy-MM-dd'" (ngModelChange)="currentUser.dob = $event"
                #dob="ngModel" />
     </div>
     <div class="form-group">
@@ -85,7 +109,12 @@
                     [value]="maritialStatus.name">
                 {{ maritialStatus.name }}
             </option>
-        </select>       
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="aadharCard">Aadhar Card Number : </label>
+        <input type="text" class="form-control" name="aadharCard" placeholder="Enter your 12 digit aadhar number" #aadharCard="ngModel"
+               [(ngModel)]="currentUser.aadharCard">
     </div>
 
     <button class="btn" [disabled]="!userProfile.valid">Submit</button>
