@@ -85,6 +85,21 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
                 return this.unitOfWork.GetIdentityDbContext().UserProfile.FirstOrDefault();
             }
         }
+
+        public MyUserProfile GetMyUserProfile(int? userId = null)
+        {
+            var parmsCollection = new ParmsCollection();
+            if (userId.HasValue)
+            {
+                var result = this.unitOfWork.GetIdentityDbContext().ExecuteStoredProcedure<MyUserProfile>("[Core].[getMyUserProfile]", parmsCollection.AddParm("@userId", SqlDbType.Int, userId));
+
+                return result.ToList().FirstOrDefault();
+            }
+            else
+            {
+                return this.unitOfWork.GetIdentityDbContext().MyUserProfile.FirstOrDefault();
+            }
+        }
         public int CreateUserProfile(UserProfile userProfile)
         { 
             var primaryDbContext = this.unitOfWork.GetIdentityDbContext();
@@ -115,6 +130,29 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
                     .AddParm("@rolesplayed", SqlDbType.VarChar, userProfile.RolesPlayed)
                     .AddParm("@rolesinterested", SqlDbType.VarChar, userProfile.RolesInterested)
                     .AddParm("@userId", SqlDbType.Int, userProfile.UserId)
+                );
+            return result;
+        }
+
+        public int UpdateMyUserProfile(MyUserProfile userProfile)
+        {
+            var primaryDbContext = this.unitOfWork.GetIdentityDbContext();
+            var parmsCollection = new ParmsCollection();
+            var result = primaryDbContext.ExecuteNonQuery("[Core].[updateMyUserProfile]",
+                parmsCollection
+                    .AddParm("@firstName", SqlDbType.VarChar, userProfile.FirstName)
+                    .AddParm("@middleName", SqlDbType.VarChar, userProfile.MiddleName)
+                    .AddParm("@lastName", SqlDbType.VarChar, userProfile.LastName)
+                    .AddParm("@gender", SqlDbType.VarChar, userProfile.Gender)
+                    .AddParm("@emailId", SqlDbType.VarChar, userProfile.EmailId)
+                    .AddParm("@phoneNumber", SqlDbType.VarChar, userProfile.PhoneNumber)
+                    .AddParm("@dob", SqlDbType.DateTime, userProfile.DOB)
+                    .AddParm("@placeOfBirth", SqlDbType.VarChar, userProfile.PlaceOfBirth)
+                    .AddParm("@currentCity", SqlDbType.VarChar, userProfile.CurrentCity)
+                    .AddParm("@homeTown", SqlDbType.VarChar, userProfile.HomeTown)
+                    .AddParm("@martialStatus", SqlDbType.VarChar, userProfile.MartialStatus)
+                    .AddParm("@aadharCard", SqlDbType.VarChar, userProfile.AadharCard)
+                    .AddParm("@Id", SqlDbType.Int, userProfile.Id)
                 );
             return result;
         }

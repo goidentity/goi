@@ -1,10 +1,10 @@
-<form #userProfile="ngForm" (ngSubmit)="onUpdateClick(userProfile.form)">
+<form #userProfile="ngForm" (ngSubmit)="onSubmitClick(userProfile.form)">
     <div class="form-group">
         <label for="firstName">First Name : </label>
-        <input type="text" class="form-control" name="firstName" placeholder="FirstName" #firstName="ngModel"
-               [(ngModel)]="currentUser.firstName"
+        <input [readonly]="!editMode" type="text" class="form-control" name="firstName" placeholder="FirstName" #firstName="ngModel"
+               [(ngModel)]="currentUser.FirstName"
                required>
-        <div *ngIf="firstName.touched && firstName.errors">
+        <div *ngIf="firstName.dirty && firstName.errors">
             <div class="alert alert-danger"
                  *ngIf="firstName.errors.required">
                 The first name is required
@@ -13,16 +13,16 @@
     </div>
     <div class="form-group">
         <label for="middleName">Middle Name : </label>
-        <input type="text" class="form-control" name="middleName" placeholder="MiddleName" #middleName="ngModel"
-               [(ngModel)]="currentUser.middleName">
+        <input [readonly]="!editMode" type="text" class="form-control" name="middleName" placeholder="MiddleName" #middleName="ngModel"
+               [(ngModel)]="currentUser.MiddleName">
     </div>
 
     <div class="form-group">
         <label for="lastName">Last Name : </label>
-        <input type="text" class="form-control" name="lastName" placeholder="LastName" #lastName="ngModel"
-               [(ngModel)]="currentUser.lastName"
+        <input [readonly]="!editMode" type="text" class="form-control" name="lastName" placeholder="LastName" #lastName="ngModel"
+               [(ngModel)]="currentUser.LastName"
                required>
-        <div *ngIf="lastName.touched && lastName.errors">
+        <div *ngIf="lastName.dirty && lastName.errors">
             <div class="alert alert-danger"
                  *ngIf="lastName.errors.required">
                 The last name is required
@@ -31,11 +31,11 @@
     </div>
     <div class="form-group">
         <label for="gender">Gender : </label>
-        <select class="form-control"
+        <select [disabled]="!editMode" class="form-control"
                 name="gender"
                 #gender="ngModel"
                 required
-                [(ngModel)]="currentUser.gender">
+                [(ngModel)]="currentUser.Gender">
             >
             <option *ngFor="let gender of genders"
                     [value]="gender.name">
@@ -43,53 +43,84 @@
             </option>
         </select>
         <div class="alert alert-danger"
-             *ngIf="gender.touched && !gender.valid">
+             *ngIf="gender.dirty && !gender.valid">
             Gender is required
         </div>
     </div>
     <div class="form-group">
+        <label for="emailId">Email Id : </label>
+        <input [readonly]="!editMode" type="text" class="form-control" name="emailId" placeholder="enter email id" #emailId="ngModel"
+               [(ngModel)]="currentUser.EmailId"
+               required>
+        <div *ngIf="emailId.dirty && emailId.errors">
+            <div class="alert alert-danger"
+                 *ngIf="emailId.errors.required">
+                Email Id is required
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="phoneNumber">Phone Number : </label>
+        <input [readonly]="!editMode" type="text" class="form-control" name="phoneNumber" placeholder="enter your phone number" #phoneNumber="ngModel"
+               [(ngModel)]="currentUser.PhoneNumber"
+               required>
+        <div *ngIf="phoneNumber.dirty && phoneNumber.errors">
+            <div class="alert alert-danger"
+                 *ngIf="emphoneNumberailId.errors.required">
+                Mobile number is required
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
         <label for="dob">DOB : </label>
-        <input type="date" class="form-control" name="dob"
-               [ngModel] ="currentUser.dob | date:'yyyy-MM-dd'" (ngModelChange)="currentUser.dob = $event"
+        <input [readonly]="!editMode" type="date" class="form-control" name="dob"
+               [ngModel]="currentUser.DOB | date:'yyyy-MM-dd'" (ngModelChange)="currentUser.DOB = $event"
                #dob="ngModel" />
     </div>
     <div class="form-group">
         <label for="placeOfBirth">Place Of Birth : </label>
-        <input google-addressbox type="text" name="placeOfBirth"
+        <input [readonly]="!editMode" google-addressbox type="text" name="placeOfBirth"
                (onSelect)="setAddress($event)"
-               [(ngModel)]="currentUser.placeOfBirth"
+               [(ngModel)]="currentUser.PlaceOfBirth"
                placeholder="Type to enter..">
     </div>
     <div class="form-group">
         <label for="currentCity">Current City : </label>
-        <input google-addressbox type="text" name="currentCity"
+        <input [readonly]="!editMode" google-addressbox type="text" name="currentCity"
                (onSelect)="setAddress($event)"
-               [(ngModel)]="currentUser.currentCity"
+               [(ngModel)]="currentUser.CurrentCity"
                placeholder="Type to enter..">
     </div>
     <div class="form-group">
         <label for="homeTown">Home Town : </label>
-        <input google-addressbox type="text" name="homeTown"
+        <input [readonly]="!editMode" google-addressbox type="text" name="homeTown"
                (onSelect)="setAddress($event)"
-               [(ngModel)]="currentUser.homeTown"
+               [(ngModel)]="currentUser.HomeTown"
                placeholder="Type to enter..">
     </div>
     <div class="form-group">
         <label for="maritialStatus">Maritial Status : </label>
-        <select class="form-control"
+        <select [disabled]="!editMode" class="form-control"
                 name="maritialStatus"
                 #maritialStatus="ngModel"
-                [(ngModel)]="currentUser.maritialStatus">
+                [(ngModel)]="currentUser.MartialStatus">
             >
             <option *ngFor="let maritialStatus of maritialStatuses"
                     [value]="maritialStatus.name">
                 {{ maritialStatus.name }}
             </option>
-        </select>       
+        </select>
     </div>
+    <div class="form-group">
+        <label for="aadharCard">Aadhar Card Number : </label>
+        <input [readonly]="!editMode" type="text" class="form-control" name="aadharCard" placeholder="Enter your 12 digit aadhar number" #aadharCard="ngModel"
+               [(ngModel)]="currentUser.AadharCard">
+    </div>
+    <!--<div>
+        {{currentUser | json}}
+    </div>-->
+    <button *ngIf="editMode" class="btn" [disabled]="!userProfile.valid" type="submit">Submit</button>
+    <button *ngIf="!editMode" class="btn" (click)="toggleEdit()" type="button">Edit</button>
+    <button class="btn" type="button" (click)="onCancel($event)">Cancel</button>
 
-    <button class="btn" [disabled]="!userProfile.valid">Submit</button>
 </form>
-<div>
-    {{currentUser | json}}
-</div>

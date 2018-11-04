@@ -97,6 +97,9 @@
     <Build Include="Score\User Defined Types\EngineResponseType.sql" />
     <Build Include="Score\Stored Procedures\updateEngineLogs.sql" />
     <Build Include="Score\Stored Procedures\UpdateAuthToken.sql" />
+    <Build Include="Core\Stored Procedures\getMyUserProfile.sql" />
+    <Build Include="Core\Tables\trMyUserProfile.sql" />
+    <Build Include="Core\Stored Procedures\updateMyUserProfile.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

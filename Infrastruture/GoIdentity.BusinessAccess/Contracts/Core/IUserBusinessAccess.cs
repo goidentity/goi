@@ -16,8 +16,11 @@ namespace GoIdentity.BusinessAccess.Contracts.Core
         List<Navigation> GetNavigationItems(int? userId = null);
 
         UserProfile GetUserProfile(int? userId = null);
+
+        MyUserProfile GetMyUserProfile(int? userId = null);
         int CreateUserProfile(UserProfile userProfile);
         int UpdateUserProfile(UserProfile userProfile);
+        int UpdateMyUserProfile(MyUserProfile userProfile);
 
     }
 }

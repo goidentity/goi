@@ -33,6 +33,11 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
             return this.userDataAccess.GetUserProfile(userId);
         }
 
+        public MyUserProfile GetMyUserProfile(int? userId = null)
+        {
+            return this.userDataAccess.GetMyUserProfile(userId);
+        }
+
         public int CreateUserProfile(UserProfile userProfile)
         {
             return this.userDataAccess.CreateUserProfile(userProfile);
@@ -41,6 +46,11 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
         public int UpdateUserProfile(UserProfile userProfile)
         {
             return this.userDataAccess.UpdateUserProfile(userProfile);
+        }
+
+        public int UpdateMyUserProfile(MyUserProfile userProfile)
+        {
+            return this.userDataAccess.UpdateMyUserProfile(userProfile);
         }
 
         private List<Navigation> ToModuleFormat(List<Navigation> navigationItemsList)

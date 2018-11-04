@@ -24,6 +24,7 @@ namespace GoIdentity.Entities.Core
 
         public int UserId { get; set; }
 
-        //public ICollection<BusinessProfile> BusinessProfile {get; set; }        
+        //public ICollection<BusinessProfile> BusinessProfile {get; set; }  
+               
     }
 }
