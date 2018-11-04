@@ -6,7 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 import { BaseService } from './base.service';
 import { AuthenticationService } from './authentication.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Navigation, UserProfile } from "../models/domain/user-entities";
+import { Navigation, UserProfile, MyUserProfile } from "../models/domain/user-entities";
 import { ChangePassword, Client } from '../models/domain/user-entities';
 
 import { AccessControl, vAccessControl } from '../models/domain/accesscontrol-entities';
@@ -32,6 +32,10 @@ export class UserService extends BaseService {
     
     getUserProfile(): Observable<UserProfile> {
         return this.authHttp.get<UserProfile>(this.baseServiceUrl + 'GetUserProfile/');
+    }
+
+    getMyUserProfile(): Observable<MyUserProfile> {
+        return this.authHttp.get<MyUserProfile>(this.baseServiceUrl + 'GetMyUserProfile/');
     }
 
     //createUserProfile(userProfileViewmodel: UserProfileViewmodel) {
@@ -66,6 +70,12 @@ export class UserService extends BaseService {
                 return result;
             }
         }));
+    }
+
+    updateMyUserProfile(myUserProfile: MyUserProfile) {
+        return this.authHttp.post(this.baseServiceUrl + 'UpdateMyUserProfile', JSON.stringify(myUserProfile)).subscribe(data => {
+            console.log('done with updation');
+        });
     }
 
     updateUserProfile(userProfileViewmodel: UserProfileViewmodel) {

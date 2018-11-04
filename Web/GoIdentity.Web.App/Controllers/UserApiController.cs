@@ -55,6 +55,14 @@ namespace GoIdentity.Web.Controllers
             return Ok(this.userBusinessAccess.GetUserProfile(loggedInUserId));
         }
 
+        [Route("[action]")]
+        [HttpGet]
+        public IActionResult GetMyUserProfile()
+        {
+            var loggedInUserId = this.LoggedInUserId;
+            return Ok(this.userBusinessAccess.GetMyUserProfile(loggedInUserId));
+        }
+
         [HttpPost]
         [Route("[action]")]
         [AllowAnonymous]
@@ -93,6 +101,15 @@ namespace GoIdentity.Web.Controllers
             };
 
             return userBusinessAccess.UpdateUserProfile(userProfile);
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        [AllowAnonymous]
+        public int UpdateMyUserProfile([FromBody]MyUserProfile userProfile)
+        {
+            var loggedInUserId = this.LoggedInUserId;           
+            return userBusinessAccess.UpdateMyUserProfile(userProfile);
         }
 
         [Route("[action]")]

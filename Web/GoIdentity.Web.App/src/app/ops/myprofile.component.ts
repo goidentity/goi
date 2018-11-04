@@ -5,7 +5,7 @@ import { Subscription, Observable } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { ChangePassword, Client } from '../models/domain/user-entities';
+import { ChangePassword, Client, MyUserProfile } from '../models/domain/user-entities';
 import { DeviceInfo, DeviceDetectorService } from 'ngx-device-detector';
 import { ToasterService } from 'angular2-toaster/angular2-toaster';
 
@@ -25,7 +25,9 @@ export class MyprofileComponent implements OnInit {
     public returnUrl: string;
     public errorMsg: string;
     public client: Client;
-    public currentUser: User
+    public currentUser: MyUserProfile;
+    public user: MyUserProfile;
+
 
     public deviceId: string = "";
 
@@ -40,6 +42,8 @@ export class MyprofileComponent implements OnInit {
         { name: "Divorced" },
     ];
 
+    public editMode: boolean = false;
+
     constructor(private fb: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
@@ -52,10 +56,13 @@ export class MyprofileComponent implements OnInit {
 
 
     public onSaveClick() { }
-    public onUpdateClick(form: any) {
+    public onSubmitClick(form: any) {
         console.log(form.value);
         alert("The form was submitted");
-        form.reset();
+        this.user = this.currentUser;
+        console.log(JSON.stringify(this.user));
+        this.userService.updateMyUserProfile(this.currentUser);
+        this.editMode = false;
     }
 
     setAddress(event: any) {
@@ -88,27 +95,21 @@ export class MyprofileComponent implements OnInit {
         this.spinnerService.show();
     }
     getUserProfileData() {
-        this.currentUser = new User(1, "banu", "saladi", "Male", "bhanu499@gmail.com", "9642013699", "sankar", new Date(1990, 10, 26), "Hyderabad, Telangana, India");
-        this.userService
+        //this.currentUser = new MyUserProfile(1, "banu", "saladi", "Male", "bhanu499@gmail.com", "9642013699", "sankar", new Date(1990, 10, 26), "Hyderabad, Telangana, India");
+        this.userService.getMyUserProfile().subscribe(data => {
+            this.user = data;
+            this.currentUser = data;
+        })
+    }
+    toggleEdit() {
+        this.editMode = !this.editMode;
+    }
+    onCancel(event:any) {
+        this.editMode = false;
+        this.currentUser = this.user;
+        event.preve
     }
     
-}
-export class User {
-    [key: string]: string | number | Date;
-    constructor(
-        public id: number,
-        public firstName: string,
-        public lastName: string,
-        public gender: string,
-        public emailId: string,
-        public phoneNumber: string,
-        public middleName?: string,
-        public dob?: Date,
-        public placeOfBirth?: string,
-        public currentCity?: string,
-        public homeTown?: string,
-        public aadharCard?: string
-    ) { }
 }
 
 

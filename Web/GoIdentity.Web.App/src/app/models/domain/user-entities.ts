@@ -133,3 +133,24 @@ export class UserProfile
     public Organizations: Organization[];
     public Navigations: Navigation[];
 }
+
+
+export class MyUserProfile {
+    [key: string]: string | number | Date;
+    constructor(
+        public Id: number,
+        public FirstName: string,
+        public LastName: string,
+        public Gender: string,
+        public EmailId: string,
+        public PhoneNumber: string,
+        public MiddleName?: string,
+        public DOB?: Date,
+        public PlaceOfBirth?: string,
+        public CurrentCity?: string,
+        public HomeTown?: string,
+        public AadharCard?: string,
+        public MartialStatus?: string
+
+    ) { }
+}
