@@ -32,7 +32,7 @@ namespace GoIdentity.BusinessAccess.Handlers
         public override Task<(string authToken, int expiresIn)> GetAuthToken(Influencer influencer, string authCode)
         {
             //logic for twitter Auth token get
-            return Task.FromResult((string.Empty);
+            return Task.FromResult((string.Empty,0));
         }
     }
 }
