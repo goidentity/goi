@@ -43,10 +43,10 @@ namespace GoIdentity.BusinessAccess.Handlers
                            "&redirect_uri= " + callBackUrl;
         }
 
-        public override async Task<string> GetAuthToken(Influencer influencer, string authCode)
+        public override async Task<(string authToken, int expiresIn)> GetAuthToken(Influencer influencer, string authCode)
         {
-            string appId = "557746184671124",
-                   appSecret = "236104e44d3f8b702102ec87ba67f4aa",
+            string appId = influencer.ApiKey,
+                   appSecret = influencer.Other1,
                    redirectUri = @"https://localhost:44344/api/oauth/facebook/callback";
 
             using (var httpClient = new HttpClient() { BaseAddress = new Uri(@"https://graph.facebook.com/") })
@@ -65,9 +65,9 @@ namespace GoIdentity.BusinessAccess.Handlers
                     //var response = await httpClient.GetAsync($"{endpoint}?access_token={tokenJson.access_token}&{args}");
                     //var result = await response.Content.ReadAsStringAsync();
 
-                    return tokenJson.access_token;
+                    return (tokenJson.access_token, tokenJson.expires_in);
                 }
-                return string.Empty;
+                return (string.Empty, 0);
             }                           
         }
     }

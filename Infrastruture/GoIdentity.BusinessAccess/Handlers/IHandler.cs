@@ -11,7 +11,7 @@ namespace GoIdentity.BusinessAccess.Handlers
 
         string AuthorizeUser(Influencer influencer);
 
-        Task<string> GetAuthToken(Influencer influencer, string authCode);
+        Task<(string authToken, int expiresIn)> GetAuthToken(Influencer influencer, string authCode);
     }
 
     public abstract class Handler : IHandler
@@ -33,9 +33,9 @@ namespace GoIdentity.BusinessAccess.Handlers
             return string.Empty;
         }
 
-        public virtual Task<string> GetAuthToken(Influencer influencer, string authCode)
+        public virtual Task<(string authToken, int expiresIn)> GetAuthToken(Influencer influencer, string authCode)
         {
-            return Task.FromResult(string.Empty);
+            return Task.FromResult((string.Empty,0));
         }
     }
 }

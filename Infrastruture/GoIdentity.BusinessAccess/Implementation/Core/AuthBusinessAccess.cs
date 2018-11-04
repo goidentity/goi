@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GoIdentity.BusinessAccess.Implementation.Core
 {
-    public class AuthBusinessAccess :IAuthBusinessAccess
+    public class AuthBusinessAccess : IAuthBusinessAccess
     {
         private readonly IAuthDataAccess authDataAccess;
         private readonly HandlerContainer handlerContainer;
@@ -30,19 +30,20 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
             return authRequestUrl;
         }
 
-        public async Task<bool> StoreAuthToken(string authCode, ConnectorType connectorType)
+        public async Task<bool> StoreAuthToken(string authCode, ConnectorType connectorType, int LoggedInUserId)
         {
             Influencer influencer = authDataAccess.GetInfluncerAuthInfo(connectorType);
             var handler = handlerContainer.GetHandler(connectorType);
 
-            string authToken = await handler.GetAuthToken(influencer,authCode);
-            if (!string.IsNullOrEmpty(authToken))
+            var authTokenDetails = await handler.GetAuthToken(influencer,authCode);
+            if (!string.IsNullOrEmpty(authTokenDetails.authToken))
             {
                 UserInfluencerAuth userInfluencer = new UserInfluencerAuth()
                 {
-                    UserId = 100,
+                    UserId = LoggedInUserId,
                     InfluencerId = connectorType,
-                    Secret = authToken
+                    Secret = authTokenDetails.authToken,
+                    Other1 = authTokenDetails.expiresIn.ToString()
                 };
                 bool isSuccess = authDataAccess.StoreAuthToken(userInfluencer);
                 return isSuccess;

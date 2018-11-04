@@ -44,7 +44,7 @@ namespace GoIdentity.BusinessAccess.Handlers
                            "&scope=r_basicprofile";            
         }
 
-        public override async Task<string> GetAuthToken(Influencer influencer, string authCode)
+        public override async Task<(string authToken, int expiresIn)> GetAuthToken(Influencer influencer, string authCode)
         {
             var clientId = influencer.ApiKey;
             var clientSecret = influencer.Other1;
@@ -64,9 +64,9 @@ namespace GoIdentity.BusinessAccess.Handlers
                     var token = await tokenresponse.Content.ReadAsStringAsync();
                     var tokenJson = JsonConvert.DeserializeObject<dynamic>(token);
 
-                    return tokenJson.access_token;
+                    return (tokenJson.access_token, tokenJson.expires_in);
                 }
-                return string.Empty;
+                return (string.Empty,0);
             }                
         }
     }

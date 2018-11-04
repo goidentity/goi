@@ -29,10 +29,10 @@ namespace GoIdentity.BusinessAccess.Handlers
             return string.Empty;
         }
 
-        public override Task<string> GetAuthToken(Influencer influencer, string authCode)
+        public override Task<(string authToken, int expiresIn)> GetAuthToken(Influencer influencer, string authCode)
         {
             //logic for twitter Auth token get
-            return Task.FromResult(string.Empty);
+            return Task.FromResult((string.Empty);
         }
     }
 }

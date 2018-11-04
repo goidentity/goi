@@ -23,7 +23,7 @@ namespace GoIdentity.Web.App.Controllers
         [Route("linkedin/callback")]
         public async Task<IActionResult> LinkedInCallback(string code, string state)
         {           
-            bool isSuccess = await authBusinessAccess.StoreAuthToken(code, ConnectorType.LinkedIn);
+            bool isSuccess = await authBusinessAccess.StoreAuthToken(code, ConnectorType.LinkedIn, 1); //used LoggedInUserId instead of 1
             return Redirect(@"https://localhost:44344/#/ops/connectors");
         }
         [HttpGet]
@@ -40,7 +40,7 @@ namespace GoIdentity.Web.App.Controllers
         [Route("facebook/callback")]
         public async Task<IActionResult> FacebookCallback(string code)
         {
-            bool isSuccess = await authBusinessAccess.StoreAuthToken(code, ConnectorType.Facebook);
+            bool isSuccess = await authBusinessAccess.StoreAuthToken(code, ConnectorType.Facebook, 1);
             return Redirect(@"https://localhost:44344/#/ops/connectors");
         }
 
@@ -59,7 +59,7 @@ namespace GoIdentity.Web.App.Controllers
         [Route("twitter/callback")]
         public async Task<IActionResult> TwitterCallback(string code)
         {
-            bool isSuccess = await authBusinessAccess.StoreAuthToken(code, ConnectorType.Twitter);
+            bool isSuccess = await authBusinessAccess.StoreAuthToken(code, ConnectorType.Twitter, 1);
             return Redirect(@"https://localhost:44344/#/ops/connectors");
         }
         [HttpGet]
@@ -77,7 +77,7 @@ namespace GoIdentity.Web.App.Controllers
         [Route("googleplus/callback")]
         public async Task<IActionResult> GoogleCallback(string code)
         {
-            bool isSuccess = await authBusinessAccess.StoreAuthToken(code, ConnectorType.Google);
+            bool isSuccess = await authBusinessAccess.StoreAuthToken(code, ConnectorType.Google, 1);
             return Redirect(@"https://localhost:44344/#/ops/connectors");
         }
 
