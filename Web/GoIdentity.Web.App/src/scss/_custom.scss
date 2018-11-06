@@ -6000,3 +6000,28 @@ dl, dd {
     padding-left: 1px;
     padding-right: 20px;
 }
+
+
+.form-inline label {
+    display: table-header-group
+}
+
+.form-inline .form-control, .form-control {
+    width: 100%;
+}
+button.btn.btn-sm.btn-primary.customGreen {
+    padding: 10px !important;
+    background: green;
+    color: white;
+    border-radius: 25px !important;
+    
+    }
+.btn-list button {
+    padding: 10px !important;
+    background: green;
+    color: white;
+    border-radius: 25px !important;
+}.padding-10 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
