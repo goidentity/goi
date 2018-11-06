@@ -1,13 +1,13 @@
 
 <header class="app-header navbar" [style.background-color]="color">
     <ul class="nav navbar-nav hidden-md-down">
-        <li class="nav-item">
+        <li class="leftToogle">
             <a class="nav-link navbar-toggler sidebar-toggler" href="#">&#9776;</a>
         </li>
     </ul>
     <button class="navbar-toggler mobile-sidebar-toggler hidden-lg-up" type="button">&#9776;</button>
-    <a class="navbar-brand" href="#" [style.background-color]="color" *ngIf="client">
-        goidentity
+    <a class="navbar-brand" href="#" [style.background-color]="color">
+        <img src="../../assets/img/goidentity-logo.png" height="40" />
     </a>
 
     <form class="form-inline ipro-search-form b-r-1 px-1 hidden-md-down">

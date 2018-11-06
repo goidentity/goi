@@ -849,6 +849,8 @@ header.navbar .navbar-brand {
     font-size: 18px !important;
     border-bottom: none;
     text-align: left;
+    padding:0px;
+    margin:0px;
 }
 
 .navbar-toggle {
@@ -3511,6 +3513,13 @@ header.navbar .dropdown-menu {
 
 .hidden-sm-show {
     float: right !important;
+}
+
+header.navbar .leftToogle {
+    position: relative;
+    min-width: 50px;
+    margin-right:0px !important;
+    text-align: center;
 }
 
 header.navbar .nav-item {
