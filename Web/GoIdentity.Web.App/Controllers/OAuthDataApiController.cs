@@ -64,12 +64,14 @@ namespace GoIdentity.Web.App.Controllers
         }
         [HttpGet]
         [Route("twitter")]
-        public IActionResult TwitterAuthUrl()
+        public async Task<IActionResult> TwitterAuthUrl()
         {
-            return Ok(new
-            {
-                Url = authBusinessAccess.AuthorizeUser(ConnectorType.Twitter)
-            });
+            bool? isSuccess = await authBusinessAccess.StoreAuthToken(string.Empty, ConnectorType.Twitter, 1);
+            return Redirect(@"https://localhost:44344/#/ops/connectors");
+            //return Ok(new
+            //{
+            //    Url = authBusinessAccess.AuthorizeUser(ConnectorType.Twitter)
+            //});
         }
 
         [AllowAnonymous]
