@@ -49,22 +49,39 @@
                     <div class="col-lg-3">
                         <div class="card">
                             <div class="card-body">
-                                <div style="padding-bottom: 15px;color: green;"><h3>Your Score</h3></div><h1 class="" style="color: gray;padding-bottom: 30px;font-size: 55px;padding-left: 25%;padding-right: 15%;padding-top: 8px;"> 89 % </h1>
+                                <div style="padding-bottom: 15px;color: green;"><h3>Your Score</h3></div>
+                                <div class="card-body">
                                 <div class="row">
-                                    <div class="col-lg-2">
-                                        <span class="badge badge-warning"><i class="fa fa-arrow-down"></i>  25 </span>
-                                    </div><div class="col-lg-9"><span class="font-sm">Compare to last week</span></div>
+                                    <div class="col-lg-9">
+                                        <kendo-chart [seriesColors]="['orange', '#ffe']">
+                                            <kendo-chart-legend position="top"></kendo-chart-legend>
+                                            <kendo-chart-series>
+                                                <kendo-chart-series-item type="pie"
+                                                                         [data]="pieData"
+                                                                         field="value"
+                                                                         categoryField="category">
+                                                </kendo-chart-series-item>
+                                            </kendo-chart-series>
+                                        </kendo-chart>
+                                    </div>
+                                    </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                       
                     </div>
                     <div class="col-lg-9">
                         <div class="card-group">
                             <div class="card">
                                 <div class="card-body">
-                                    <div style="padding-bottom: 15px;color: green;"><h5>Positive</h5></div><h1 class="" style="color: gray;padding-left: 20px;font-size: 55px;">
-                                        89<span class="font-sm" style="padding-left: 20px;">This week</span>
-                                    </h1>
+                                    <kendo-chart>
+                                        <kendo-chart-area background="#eee" [margin]="30">
+                                        </kendo-chart-area>
+                                        <kendo-chart-series>
+                                            <kendo-chart-series-item name="Fibonacci" [data]="seriesData1">
+                                            </kendo-chart-series-item>
+                                        </kendo-chart-series>
+                                    </kendo-chart>
                                     <div class="progress progress-xs my-2">
                                         <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
@@ -73,24 +90,43 @@
                             </div>
                             <div class="card">
                                 <div class="card-body">
-                                    <div style="padding-bottom: 15px;color: blue;"><h5>Neutral</h5></div><h1 class="" style="color: gray;padding-left: 20px;font-size: 55px;">
-                                        89<span class="font-sm" style="padding-left: 20px;">This week</span>
-                                    </h1>
-                                    <div class="progress progress-xs my-2">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <span class="font-sm">Last week 25</span>
+                                    <kendo-chart>
+                                        <kendo-chart-title text="Hybrid car mileage report"></kendo-chart-title>
+                                        <kendo-chart-legend position="top"></kendo-chart-legend>
+
+                                        <kendo-chart-value-axis>
+                                            <kendo-chart-value-axis-item *ngFor="let item of valueAxes" [name]="item.name" [title]="{ text: item.title }"
+                                                                         [min]="item.min" [max]="item.max" [majorUnit]="item.majorUnit" [color]="item.color">
+                                            </kendo-chart-value-axis-item>
+                                        </kendo-chart-value-axis>
+
+                                        <kendo-chart-series>
+                                            <kendo-chart-series-item *ngFor="let item of series" [name]="item.name" [data]="item.data" [type]="item.type"
+                                                                     [stack]="item.stack" [color]="item.color" [axis]="item.axis">
+                                            </kendo-chart-series-item>
+                                        </kendo-chart-series>
+                                    </kendo-chart>
+                                    
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="card-body">
-                                    <div style="padding-bottom: 15px;color: orangered;"><h5>Negative</h5></div><h1 class="" style="color: gray;padding-left: 20px;font-size: 55px;">
-                                        89<span class="font-sm" style="padding-left: 20px;">This week</span>
-                                    </h1>
-                                    <div class="progress progress-xs my-2">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <span class="font-sm">Last week 25</span>
+                                    <kendo-chart>
+                                        <kendo-chart-title text="Sales funnel"></kendo-chart-title>
+                                        <kendo-chart-series>
+                                            <kendo-chart-series-item type="funnel" [data]="model"
+                                                                     field="count" categoryField="stat" colorField="color">
+                                                <kendo-chart-series-item-labels background="none" color="white" format="N0">
+                                                </kendo-chart-series-item-labels>
+                                            </kendo-chart-series-item>
+                                        </kendo-chart-series>
+                                        <kendo-chart-tooltip>
+                                            <ng-template kendoChartSeriesTooltipTemplate let-category="category">
+                                                {{ category }}
+                                            </ng-template>
+                                        </kendo-chart-tooltip>
+                                        <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+                                    </kendo-chart>
                                 </div>
                             </div>
                         </div>
@@ -153,46 +189,52 @@
                 </div>
 
                 <div class="row mb-3">
-                    
-                        <div class="col-lg-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div style="padding-bottom: 15px;color: green;"><h5>Identity spread</h5></div><h1 class="" style="color: gray;padding-left: 20px;font-size: 55px;">89</h1>
-                                        <div class="row">
 
-                                    </div>
-                                </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div style="padding-bottom: 15px;color: green;"><h5>Identity spread</h5></div><h1 class="" style="color: gray;padding-left: 20px;font-size: 55px;">89</h1>
+                                <div class="row">
+
                                 </div>
                             </div>
-                        <div class="col-lg-6">
-                            
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div style="padding-bottom: 15px;color: green;"><h5>Recommandations</h5></div><h1 class="" style="color: gray;padding-left: 20px;font-size: 55px;">89</h1>
-                                        <div class="row">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
 
-                                        </div>
-                                    </div>
-                                    
+                        <div class="card">
+                            <div class="card-body">
+                                <div style="padding-bottom: 15px;color: green;"><h5>Recommandations</h5></div><h1 class="" style="color: gray;padding-left: 20px;font-size: 55px;">89</h1>
+                                <div class="row">
+
                                 </div>
                             </div>
-                       
+
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
         </div>
     </div>
-    
+
 </div>
 <style>
     .bgcolor {
         background-color: #f5f5f5 !important;
     }
+
     .card {
         border-radius: 25px;
     }
+
     .ipro-side-container {
         width: 97.5% !important;
         background: #f5f5f5 !important;
+    }
+    .kendo-chart {
+        margin: 0 auto;
+        width: 300px;
     }
 </style>

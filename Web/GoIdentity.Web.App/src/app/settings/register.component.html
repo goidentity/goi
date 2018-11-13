@@ -6,11 +6,14 @@
                 <div class="card-group">
                     <div class="card text-white bg-goidentity-green py-5 d-md-down-none">
                         <div class="card-body text-center">
-                            <img src="./assets/img/logo_white.png" class="login-image" alt="goidentity">
+                            <img src="./assets/img/goidentity-logo.png" class="login-image d-none d-sm-block" alt="goidentity">
+                            <div class="d-block d-sm-none col-offset-3 col-offset-6">
+                                <img src="./assets/img/mobile-logo.png" width="75" height="75" class="login-image  fc-center" alt="goidentity">
+                            </div>
                         </div>
                     </div>
                     <div class="card p-4">
-                        <div class="">
+                        <div class="d-none d-sm-block">
                             <a href="#" class="active pad-10">Login</a> |<a class="pad-10 active" href="#">Signup</a>
                         </div>
 
@@ -20,10 +23,10 @@
                                     <div class="col-6">
                                         <input type="text" id="firstname" tabindex="1" class="form-control md-text" placeholder="First name" [formControl]="form.controls['firstname']" autofocus />
                                     </div>
-                                    <div class="col-6">
-                                        <input type="text" id="lastname" tabindex="2" class="form-control md-text" placeholder="Last name" [formControl]="form.controls['lastname']" />
+                                   <div class="col-6">
+                                            <input type="text" id="lastname" tabindex="2" class="form-control md-text" placeholder="Last name" [formControl]="form.controls['lastname']" />
+                                        </div>
                                     </div>
-                                </div>
                                 <div class="form-group mb-4">
                                     <div>
                                         <input type="text" id="email" tabindex="3" class="form-control md-text" placeholder="Email" [formControl]="form.controls['email']" />
@@ -38,29 +41,33 @@
                                     <div class="col-6">
                                         <input type="password" id="password" tabindex="5" class="form-control md-text" placeholder="Password" [formControl]="form.controls['password']" />
                                     </div>
+
                                     <div class="col-6">
                                         <input type="password" id="confirmPassword" tabindex="6" class="form-control md-text" placeholder="Confirm password" [formControl]="form.controls['confirmPassword']" />
                                     </div>
                                 </div>
-                                <div class="row" style="margin-bottom:60px !important">
+                                <div class="row" style="margin-bottom:20px !important">
 
                                 </div>
                                 <div class="row">
-                                    <div class="col-6">
-                                        <button type="submit" class="btn btn-primary bg-goidentity-green text-white btn-pill btn-block px-4" primary="true"> Rigister</button>
+                                    <div class="col-12 col-md-6 col-sm-6  col-xs-12">
+                                        <button type="submit" class="btn btn-sm btn-primary loginbutton customGreen ng-star-inserted" primary="true"> Rigister</button>
                                     </div>
-                                    <div class="col-6">
-                                        <button type="button" class="btn-icon btn-i-default btn-pill" title="facebook">
-                                            <i class="fa fa-facebook-f"></i>
-                                        </button>
-                                        &nbsp;
-                                        <button type="button" class="btn-icon btn-i-default btn-pill" title="linkedIn">
-                                            <i class="fa fa-linkedin"></i>
-                                        </button>
-                                        &nbsp;
-                                        <button type="button" class="btn-icon btn-i-default btn-pill" title="twitter">
-                                            <i class="fa fa-twitter"></i>
-                                        </button>
+                                    <div class="col-12 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="row mb-4 social">
+                                            <button type="button" class="btn-icon btn-i-default btn-pill" title="facebook">
+                                                <i class="fa fa-facebook-f"></i>
+                                            </button>
+                                            &nbsp;
+                                            <button type="button" class="btn-icon btn-i-default btn-pill" title="linkedIn">
+                                                <i class="fa fa-linkedin"></i>
+                                            </button>
+                                            &nbsp;
+                                            <button type="button" class="btn-icon btn-i-default btn-pill" title="twitter">
+                                                <i class="fa fa-twitter"></i>
+                                            </button>
+                                        </div>
+
                                     </div>
                                 </div>
                             </form>

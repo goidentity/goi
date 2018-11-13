@@ -76,6 +76,10 @@
 				[CreatedBy],[CreatedDate], [ModifiedBy], [ModifiedDate])
 		VALUES('Connectors', '/ops/connectors', 2, @navigationId, '', 7,
 				0, GETDATE(), 0, GETDATE());
+				INSERT INTO Core.trNavigation([Title], [NavigationPath], [LevelId], [ParentNavigationId], [ImagePath], [SortId],
+				[CreatedBy],[CreatedDate], [ModifiedBy], [ModifiedDate])
+		VALUES('Self Profile', '/ops/profile', 2, @navigationId, '', 8,
+				0, GETDATE(), 0, GETDATE());
 
 	END
 

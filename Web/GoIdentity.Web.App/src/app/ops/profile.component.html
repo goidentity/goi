@@ -1,0 +1,148 @@
+<div class="ipro-side-container">
+    <tabset>
+        <tab>
+            <ng-template tabHeading>
+                <i class="fa fa-exchange"></i> Basic Info
+            </ng-template>
+            <div class="row justify-content-left">
+
+                <div class="col-md-4 col-12">
+                    <div class="form-group">
+                        <label>First Name <span class="startMark">*</span></label>
+                        <input type="text" class="form-control" autofocus />
+                    </div>
+                    <div class="form-group">
+                        <label>Middle Name <span class="startMark">*</span></label>
+                        <input type="text" class="form-control" autofocus />
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name <span class="startMark">*</span></label>
+                        <input type="text" class="form-control" autofocus />
+                    </div>
+                    <div class="form-group">
+                        <label>DOB <span class="startMark">*</span></label>
+                        <kendo-datepicker [(value)]="value"></kendo-datepicker>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gender <span class="startMark">*</span></label>
+                        <kendo-dropdownlist [data]="gender"
+                                            [(ngModel)]="selectedValue"
+                                            style="width:100%;">
+                        </kendo-dropdownlist>
+                    </div>
+                    <div class="form-group">
+                        <label>Place of Birth <span class="startMark">*</span></label>
+                        <input type="text" class="form-control" autofocus />
+                    </div>
+                    <div class="form-group">
+                        <label>City of Living <span class="startMark">*</span></label>
+                        <input type="text" class="form-control" autofocus />
+                    </div>
+                   
+ </div>
+
+
+                <div class="col-md-4 col-12">
+
+                    <div class="form-group">
+                        <label>City of work <span class="startMark">*</span></label>
+                        <input type="text" class="form-control" autofocus />
+                    </div>
+                    <div class="form-group">
+                        <label> Maritial Status <span class="startMark">*</span></label>
+                        <kendo-dropdownlist [data]="Maritial"
+                                            [(ngModel)]="selectedValue1"
+                                            style="width:100%;">
+                        </kendo-dropdownlist>
+                    </div>
+                    <div class="form-group">
+                        <label>Birth of Origen <span class="startMark">*</span></label>
+                        <input type="text" class="form-control" autofocus />
+                    </div>
+                    <div class="form-group">
+                        <label> Maritial Status <span class="startMark">*</span></label>
+                        <kendo-dropdownlist [data]="Maritial"
+                                            [(ngModel)]="selectedValue1"
+                                            style="width:100%;">
+                        </kendo-dropdownlist>
+                    </div>
+                    <div class="form-group">
+                        <label> Nationality <span class="startMark">*</span></label>
+                        <kendo-dropdownlist [data]="Nationality"
+                                            [(ngModel)]="selectedNationality"
+                                            style="width:100%;">
+                        </kendo-dropdownlist>
+                    </div>
+                    <div class="form-group">
+                        <label> CitizanShip <span class="startMark">*</span></label>
+                        <kendo-dropdownlist [data]="Nationality"
+                                            [(ngModel)]="selectedNationality"
+                                            style="width:100%;">
+                        </kendo-dropdownlist>
+                    </div>
+                    <div class="form-group">
+                        <label> PR Status <span class="startMark">*</span></label>
+                        <kendo-multiselect [data]="Nationality"
+                                           [(ngModel)]="selectedNationality"
+                                           style="width:100%;">
+                        </kendo-multiselect>
+                    </div>
+
+                </div>
+
+            </div>
+        </tab>
+
+
+        <tab>
+            <ng-template tabHeading>
+                <i class="fa fa-info"></i> Basic info
+            </ng-template>
+            <div class="row">
+
+            </div>
+        </tab>
+
+        <tab>
+            <ng-template tabHeading>
+                <i class="fa fa-info"></i>Industry
+            </ng-template>
+            <div class="row">
+
+            </div>
+        </tab>
+
+        <tab>
+            <ng-template tabHeading>
+                <i class="fa fa-info"></i> Education
+            </ng-template>
+            <div class="row">
+
+            </div>
+        </tab>
+        <tab>
+            <ng-template tabHeading>
+                <i class="fa fa-copyright"></i> Employement
+            </ng-template>
+            <div>
+
+            </div>
+        </tab>
+
+        <tab>
+            <ng-template tabHeading>
+                <i class="fa fa-copyright"></i> Future Aspirations
+            </ng-template>
+            <div>
+
+            </div>
+        </tab>
+
+    </tabset>
+</div>
+<style>
+    .ipro-side-container {
+        width: 97.5% !important;
+    }
+</style>

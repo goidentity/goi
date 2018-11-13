@@ -4,7 +4,6 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpClientModule,
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputsModule } from '@progress/kendo-angular-inputs';
-
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { DialogModule } from '@progress/kendo-angular-dialog';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
@@ -30,6 +29,7 @@ import { NotificationsComponent } from './notifications.component';
 import { AboutComponent } from './about.component';
 import { ContactusComponent } from './contactus.component';
 import { ConnectorComponent } from './connector.component';
+import { ProfileComponent } from './profile.component';
 import { GoogleAddressBoxDirective } from './../shared/google-addressbox.directive';
 
 
@@ -56,7 +56,7 @@ import { GoogleAddressBoxDirective } from './../shared/google-addressbox.directi
         OpsRoutingModule, RippleModule
     ],
     declarations: [
-        DashboardComponent, MyidentityComponent, MyprofileComponent, NotificationsComponent, AboutComponent, ContactusComponent, ConnectorComponent,
+        DashboardComponent, MyidentityComponent, ProfileComponent, MyprofileComponent, NotificationsComponent, AboutComponent, ContactusComponent, ConnectorComponent,
         GoogleAddressBoxDirective
     ],
     providers: [ToasterService,

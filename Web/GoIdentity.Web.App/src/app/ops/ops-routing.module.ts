@@ -9,6 +9,7 @@ import { NotificationsComponent } from './notifications.component';
 import { AboutComponent } from './about.component';
 import { ContactusComponent } from './contactus.component';
 import { ConnectorComponent } from './connector.component';
+import { ProfileComponent } from './profile.component';
 
 const routes: Routes = [
     {
@@ -64,6 +65,14 @@ const routes: Routes = [
         data: {
             title: 'connectors'
         }
+    }  ,{
+        path: 'profile',
+        component: ProfileComponent,
+        canActivate: [AuthGuard],
+        data: {
+            title: 'Self Profile'
+        }
+    
     }
 ];
 
