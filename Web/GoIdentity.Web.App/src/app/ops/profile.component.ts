@@ -3,16 +3,19 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Subscription ,  Observable } from 'rxjs';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { ToasterService } from "angular2-toaster";
 import { AuthenticationService } from '../services/authentication.service';
 import { Broadcaster, MessageEvent } from '../models/utilities/broadcaster';
 import { BaseComponent } from '../shared/base-component';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+
 import { DialogModule } from '@progress/kendo-angular-dialog';
 import { GridModule } from '@progress/kendo-angular-grid';
+import { InputsModule } from '@progress/kendo-angular-inputs';
 
 @Component({
-    templateUrl: './about.component.html',
+    templateUrl: './profile.component.html',
     providers: []
 })
 export class ProfileComponent extends BaseComponent implements OnInit {
