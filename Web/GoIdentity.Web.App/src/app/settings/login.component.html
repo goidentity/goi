@@ -6,47 +6,56 @@
                 <div class="card-group">
                     <div class="card text-white bg-goidentity-green py-5 d-md-down-none">
                         <div class="card-body text-center">
-                            <img src="./assets/img/logo_white.png" class="login-image" alt="goidentity">
+                            <img src="./assets/img/goidentity-logo.png" class="login-image d-none d-sm-block" alt="goidentity">
+                            <div class="d-block d-sm-none col-offset-3 col-offset-6">
+                                <img src="./assets/img/mobile-logo.png" width="75" height="75" class="login-image  fc-center" alt="goidentity">
+                            </div>
                         </div>
                     </div>
                     <div class="card p-4 no-pad-b">
-                        <div class="">
+                        <div class="d-none d-sm-block">
                             <a [routerLink]="['/settings/login']" class="active pad-10">Login</a> | <a class="pad-10 active" [routerLink]="['/settings/register']">Signup</a>
                         </div>
-                        <div class="card-body pad-l-10 pad-r-5 no-pad-b">
+                        <div class="card-body">
                             <form [formGroup]="form" (ngSubmit)="onSubmit()">
                                 <div class="form-group mb-4">
                                     <div>
                                         <input type="text" id="username" tabindex="1" class="form-control big-text" placeholder="Email / Phone number" [formControl]="form.controls['uname']" autofocus />
-                                    </div> 
+                                    </div>
                                 </div>
 
-                                <div class="form-group mb-4 no-m-b no-pad-b">
+                                <div class="form-group">
                                     <div>
                                         <input type="password" id="password" tabindex="2" class="form-control big-text" placeholder="Password" [formControl]="form.controls['password']">
-                                    </div> 
-                                </div> 
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-12 text-right mb-4" style="margin-bottom:60px !important">
                                         <button class="btn btn-link px-0 font-sm text-gray-dark no-pad" type="button" [routerLink]="['/settings/forgot']">Forgot password</button>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-6">
-                                        <button type="submit" class="btn btn-primary bg-goidentity-green text-white btn-pill btn-block px-4" primary="true"> Login</button>
+                                    <div class="col-12 col-md-6 col-sm-6 col-xs-12">
+                                        <button type="submit" class="btn btn-sm btn-primary loginbutton customGreen ng-star-inserted" primary="true" width="100%"> Login</button>
                                     </div>
-                                    <div class="col-6">
-                                        <button type="button" class="btn-icon btn-i-default btn-pill" title="facebook">
-                                            <i class="fa fa-facebook-f"></i>
-                                        </button>
-                                        &nbsp;
-                                        <button type="button" class="btn-icon btn-i-default btn-pill" title="linkedIn">
-                                            <i class="fa fa-linkedin"></i>
-                                        </button>
+                                    <div class="col-12 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="row mb-4 social">
+                                            <button type="button" class="btn-icon btn-i-default btn-pill" title="facebook">
+                                                <i class="fa fa-facebook-f"></i>
+                                            </button>
                                             &nbsp;
-                                        <button type="button" class="btn-icon btn-i-default btn-pill" title="twitter">
-                                            <i class="fa fa-twitter"></i>
-                                        </button>
+                                            <button type="button" class="btn-icon btn-i-default btn-pill" title="linkedIn">
+                                                <i class="fa fa-linkedin"></i>
+                                            </button>
+                                            &nbsp;
+                                            <button type="button" class="btn-icon btn-i-default btn-pill" title="twitter">
+                                                <i class="fa fa-twitter"></i>
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-12 col-md-6 col-sm-6 col-xs-12 d-block d-sm-none">
+                                        <button type="submit" class="btn btn-sm  signinbutton customGreen ng-star-inserted" primary="true" width="100%"> SignUp</button>
                                     </div>
                                 </div>
                             </form>

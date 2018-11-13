@@ -849,8 +849,8 @@ header.navbar .navbar-brand {
     font-size: 18px !important;
     border-bottom: none;
     text-align: left;
-    padding:0px;
-    margin:0px;
+    padding: 0px;
+    margin: 0px;
 }
 
 .navbar-toggle {
@@ -1293,6 +1293,35 @@ label.editButton.ipro-edit-btns {
 }
 /*Media tree 480 max*/
 @media (max-width:480px) {
+    .social.mb-4 {
+        padding-top: 20px;
+        text-align: center;
+        display: block;
+    }
+
+    .social.mb-4 button{
+        border-radius: 25px;
+    }
+
+    button.btn.customGreen.loginbutton.ng-star-inserted, button.signinbutton {
+        width: 100%;
+        border-radius: 25px !important;
+    }
+
+    .pb-5, .py-5, .p-4 {
+        padding-top: 2px !important;
+        padding-bottom: 2px !important;
+    }
+
+    .login-bg {
+        background: white;
+    }
+
+    .justify-content-center {
+        justify-content: center !important;
+        background: white;
+    }
+
     .image-flex > img.img-avatar {
         width: 80px;
         height: 80px;
@@ -2136,7 +2165,7 @@ main .breadcrumb-main {
     padding-bottom: 5px;
     position: fixed;
     z-index: 1;
-    min-height:35px;
+    min-height: 35px;
 }
 
 ul.breadcrumb-header {
@@ -3518,7 +3547,7 @@ header.navbar .dropdown-menu {
 header.navbar .leftToogle {
     position: relative;
     min-width: 50px;
-    margin-right:0px !important;
+    margin-right: 0px !important;
     text-align: center;
 }
 
@@ -6018,19 +6047,25 @@ dl, dd {
 .form-inline .form-control, .form-control {
     width: 100%;
 }
+
 button.btn.btn-sm.btn-primary.customGreen {
     padding: 10px !important;
     background: green;
     color: white;
     border-radius: 25px !important;
-    
-    }
+}
+
 .btn-list button {
     padding: 10px !important;
     background: green;
     color: white;
     border-radius: 25px !important;
-}.padding-10 {
+}
+
+.padding-10 {
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+img.login-image {
 }
