@@ -12,7 +12,7 @@
                         <input type="text" class="form-control" autofocus />
                     </div>
                     <div class="form-group">
-                        <label>Middle Name <span class="startMark">*</span></label>
+                        <label>Middle Name </label>
                         <input type="text" class="form-control" autofocus />
                     </div>
                     <div class="form-group">
@@ -39,9 +39,8 @@
                         <label>City of Living <span class="startMark">*</span></label>
                         <input type="text" class="form-control" autofocus />
                     </div>
-                   
- </div>
 
+                </div>
 
                 <div class="col-md-4 col-12">
 
@@ -76,15 +75,15 @@
                     </div>
                     <div class="form-group">
                         <label> CitizanShip <span class="startMark">*</span></label>
-                        <kendo-dropdownlist [data]="Nationality"
-                                            [(ngModel)]="selectedNationality"
+                        <kendo-dropdownlist [data]="Nationality1"
+                                            [(ngModel)]="selectedNationality1"
                                             style="width:100%;">
                         </kendo-dropdownlist>
                     </div>
                     <div class="form-group">
                         <label> PR Status <span class="startMark">*</span></label>
-                        <kendo-multiselect [data]="Nationality"
-                                           [(ngModel)]="selectedNationality"
+                        <kendo-multiselect [data]="Nationality2"
+                                           [(ngModel)]="selectedPRStatus"
                                            style="width:100%;">
                         </kendo-multiselect>
                     </div>
@@ -94,31 +93,132 @@
             </div>
         </tab>
 
-
-        <tab>
-            <ng-template tabHeading>
-                <i class="fa fa-info"></i> Basic info
-            </ng-template>
-            <div class="row">
-
-            </div>
-        </tab>
-
         <tab>
             <ng-template tabHeading>
                 <i class="fa fa-info"></i>Industry
             </ng-template>
-            <div class="row">
+            <div class="col-md-4 col-12">
 
+                <div class="form-group">
+                    <label> Primary Industry of Work <span class="startMark">*</span></label>
+                    <kendo-multiselect [data]="Industries"
+                                       [(ngModel)]="selectedIndustries"
+                                       style="width:100%;">
+                    </kendo-multiselect>
+                </div>
+                <div class="form-group">
+                    <label> Secondary Industry of work<span class="startMark">*</span></label>
+                    <kendo-multiselect [data]="Industries1"
+                                       [(ngModel)]="selectedIndustries1"
+                                       style="width:100%;">
+                    </kendo-multiselect>
+                </div>
+                <div class="form-group">
+                    <label> Primary Industry of Business <span class="startMark">*</span></label>
+                    <kendo-multiselect [data]="Industries2"
+                                       [(ngModel)]="selectedIndustries2"
+                                       style="width:100%;">
+                    </kendo-multiselect>
+                </div>
+                <div class="form-group">
+                    <label> Secondary Industry of Business<span class="startMark">*</span></label>
+                    <kendo-multiselect [data]="Industries3"
+                                       [(ngModel)]="selectedIndustries3"
+                                       style="width:100%;">
+                    </kendo-multiselect>
+                </div>
             </div>
+
         </tab>
 
         <tab>
             <ng-template tabHeading>
                 <i class="fa fa-info"></i> Education
             </ng-template>
-            <div class="row">
+            <div class=" ipro-side-table">
+                <div class="form-group">
+                    <button kendoButton (click)="addEducation()" [primary]="true"><i class="k-icon k-i-plus"></i>Education</button>
+                </div>
 
+                <kendo-grid [data]="EducationData">
+                    <kendo-grid-column field="ProductID" title="ID" width="40">
+                    </kendo-grid-column>
+                    <kendo-grid-column field="ProductName" title="Title" width="150">
+                    </kendo-grid-column>
+                    <kendo-grid-column field="Category.CategoryName" title="University" width="150">
+                    </kendo-grid-column>
+                    <kendo-grid-column field="Category.CategoryName" title="Institution" width="150">
+                    </kendo-grid-column>
+                    <kendo-grid-column field="Category.CategoryName" title="Year Of Pass">
+                    </kendo-grid-column>
+                    <kendo-grid-column field="Category.CategoryName" title="Type">
+                    </kendo-grid-column>
+                    <kendo-grid-column field="Category.CategoryName" title="Specilization">
+                    </kendo-grid-column>
+
+                </kendo-grid>
+            </div>
+            <div class="example-wrapper" *ngIf="OpenDialogStatus">
+                <div id="{{themepanel}}">
+                    <kendo-dialog [minWidth]="250" [width]="450" title="{{ DialogTitle }}" (close)="closeDialog()">
+
+
+                        <div class="form-group">
+                            <label> Type <span class="startMark">*</span></label>
+                            <kendo-dropdownlist [data]="EdcuationType"
+                                                [(ngModel)]="selectedEdcuationType"
+                                                style="width:100%;">
+                            </kendo-dropdownlist>
+                        </div>
+                        <div class="form-group">
+                            <label>Title <span class="startMark">*</span></label>
+                            <input type="text" class="form-control" autofocus />
+
+                        </div>
+                        <div class="form-group">
+                            <label>University of Board <span class="startMark">*</span></label>
+                            <kendo-dropdownlist [data]="EdcuationType2"
+                                                [(ngModel)]="selectedEdcuationType"
+                                                style="width:100%;">
+                            </kendo-dropdownlist>
+                        </div>
+                        <div class="form-group">
+                            <label>Institution Of Board <span class="startMark">*</span></label>
+                            <kendo-dropdownlist [data]="EdcuationType3"
+                                                [(ngModel)]="selectedEdcuationType"
+                                                style="width:100%;">
+                            </kendo-dropdownlist>
+                        </div>
+                        <div class="form-group">
+                            <label>Year Of Pass <span class="startMark">*</span></label>
+                            <kendo-datepicker [(value)]="value3"></kendo-datepicker>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Specilization <span class="startMark">*</span></label>
+                            <kendo-dropdownlist [data]="EdcuationType2"
+                                                [(ngModel)]="selectedEdcuationType"
+                                                style="width:100%;">
+                            </kendo-dropdownlist>
+                        </div>
+
+
+                        <kendo-dialog-actions>
+                            <button kendoButton (click)="onSaveRole()" primary="true"><i class="fa fa-floppy-o"></i> &nbsp; Save</button>
+                            <button kendoButton (click)="closeDialog()" class="buttonred"><i class="fa fa-ban"></i> &nbsp; Cancel</button>
+
+                        </kendo-dialog-actions>
+                    </kendo-dialog>
+                </div>
+            </div>
+            <div *ngIf="OpenConfirmationStatus" id="{{themepanel}}">
+                <kendo-dialog [minWidth]="250" [width]="450" title="Please confirm" (close)="closeConfirmation('cancel')">
+                    <p style="margin: 30px; text-align: center;">Are you sure you want to Delete?</p>
+                    <kendo-dialog-actions>
+                        <button kendoButton (click)="onDeleteRole()" primary="true">Yes</button>
+                        <button kendoButton (click)="closeConfirmation('no')">No</button>
+                    </kendo-dialog-actions>
+                </kendo-dialog>
             </div>
         </tab>
         <tab>
@@ -126,7 +226,95 @@
                 <i class="fa fa-copyright"></i> Employement
             </ng-template>
             <div>
+                <div class=" ipro-side-table">
+                    <div class="form-group">
+                        <button kendoButton (click)="addEmployment()" [primary]="true"><i class="k-icon k-i-plus"></i>Employment</button>
+                    </div>
 
+                    <kendo-grid [data]="EducationData">
+                        <kendo-grid-column field="ProductID" title="ID" width="40">
+                        </kendo-grid-column>
+                        <kendo-grid-column field="ProductName" title="Name" width="150">
+                        </kendo-grid-column>
+                        <kendo-grid-column field="Category.CategoryName" title="Designation" width="150">
+                        </kendo-grid-column>
+                        <kendo-grid-column field="Category.CategoryName" title="Roles" width="150">
+                        </kendo-grid-column>
+                        <kendo-grid-column field="UnitPrice" title="Start Date/ End Date">
+                        </kendo-grid-column>
+                        <kendo-grid-column field="Category.CategoryName" title="Type">
+                        </kendo-grid-column>
+                        <kendo-grid-column field="Category.CategoryName" title="Specilization">
+                        </kendo-grid-column>
+                        <kendo-grid-checkbox-column field="Category.CategoryName" title="Link Item">
+                            <ng-template kendoGridCellTemplate let-idx="rowIndex">
+                                <a href="#" class="">{{idx.ProductName}}</a>
+                            </ng-template>
+                        </kendo-grid-checkbox-column>
+
+                    </kendo-grid>
+                </div>
+                <div class="example-wrapper" *ngIf="OpenDialogStatus1">
+                    <div id="{{themepanel}}">
+                        <kendo-dialog [minWidth]="250" [width]="450" title="{{ DialogTitle }}" (close)="closeDialog1()">
+
+
+                            <div class="form-group">
+                                <label> Company Name <span class="startMark">*</span></label>
+                                <kendo-dropdownlist [data]="EdcuationType"
+                                                    [(ngModel)]="selectedEdcuationType"
+                                                    style="width:100%;">
+                                </kendo-dropdownlist>
+                            </div>
+                            <div class="form-group">
+                                <label>Designation <span class="startMark">*</span></label>
+                                <kendo-dropdownlist [data]="EdcuationType"
+                                                    [(ngModel)]="selectedEdcuationType"
+                                                    style="width:100%;">
+                                </kendo-dropdownlist>
+                            </div>
+                            <div class="form-group">
+                                <label>Roles and Responsiblities <span class="startMark">*</span></label>
+                                <kendo-dropdownlist [data]="EdcuationType"
+                                                    [(ngModel)]="selectedEdcuationType"
+                                                    style="width:100%;">
+                                </kendo-dropdownlist>
+                            </div>
+                            <div class="form-group">
+                                <label>Start Date <span class="startMark">*</span></label>
+                                <kendo-datepicker [(value)]="value1"></kendo-datepicker>
+
+                            </div>
+                            <div class="form-group">
+                                <label>End Date <span class="startMark">*</span></label>
+                                <kendo-datepicker [(value)]="value2"></kendo-datepicker>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="Current" class="k-checkbox"> <label class="k-checkbox-label checkbox-left-padding" for="Current">Is Current</label>
+                            </div>
+                            <div class="form-group">
+                                <label>Reson for a Change <span class="startMark">*</span></label>
+                                <textarea rows="3" cols="4" class="form-control"></textarea>
+                            </div>
+
+
+                            <kendo-dialog-actions>
+                                <button kendoButton (click)="onSaveRole()" primary="true"><i class="fa fa-floppy-o"></i> &nbsp; Save</button>
+                                <button kendoButton (click)="closeDialog1()" class="buttonred"><i class="fa fa-ban"></i> &nbsp; Cancel</button>
+
+                            </kendo-dialog-actions>
+                        </kendo-dialog>
+                    </div>
+                </div>
+                <div *ngIf="OpenConfirmationStatus1" id="{{themepanel}}">
+                    <kendo-dialog [minWidth]="250" [width]="450" title="Please confirm" (close)="closeConfirmation('cancel')">
+                        <p style="margin: 30px; text-align: center;">Are you sure you want to Delete?</p>
+                        <kendo-dialog-actions>
+                            <button kendoButton (click)="onDeleteRole()" primary="true">Yes</button>
+                            <button kendoButton (click)="closeConfirmation('no')">No</button>
+                        </kendo-dialog-actions>
+                    </kendo-dialog>
+                </div>
             </div>
         </tab>
 
@@ -135,14 +323,102 @@
                 <i class="fa fa-copyright"></i> Future Aspirations
             </ng-template>
             <div>
+                <div class=" ipro-side-table">
+                    <div class="form-group">
+                        <button kendoButton (click)="addAspirations()" [primary]="true"><i class="k-icon k-i-plus"></i>Aspirations</button>
+                    </div>
+
+                    <kendo-grid [data]="EducationData">
+                        <kendo-grid-column field="ProductID" title="ID" width="40">
+                        </kendo-grid-column>
+                        <kendo-grid-column field="ProductName" title="Title" width="150">
+                        </kendo-grid-column>
+                        <kendo-grid-column field="Category.CategoryName" title="University" width="150">
+                        </kendo-grid-column>
+                        <kendo-grid-column field="Category.CategoryName" title="Institution" width="150">
+                        </kendo-grid-column>
+                        <kendo-grid-column field="UnitPrice" title="Year Of Pass">
+                        </kendo-grid-column>
+                        <kendo-grid-column field="UnitsInStock" title="Type">
+                        </kendo-grid-column>
+                        <kendo-grid-column field="UnitsInStock" title="Specilization">
+                        </kendo-grid-column>
+
+                    </kendo-grid>
+                </div>
+                <!--<div class="example-wrapper" *ngIf="OpenDialogStatus">
+                    <div id="{{themepanel}}">
+                        <kendo-dialog [minWidth]="250" [width]="450" title="{{ DialogTitle }}" (close)="closeDialog()">
+
+
+                            <div class="form-group">
+                                <label> Type <span class="startMark">*</span></label>
+                                <kendo-dropdownlist [data]="EdcuationType"
+                                                    [(ngModel)]="selectedEdcuationType"
+                                                    style="width:100%;">
+                                </kendo-dropdownlist>
+                            </div>
+                            <div class="form-group">
+                                <label>Title <span class="startMark">*</span></label>
+                                <input type="text" class="form-control" autofocus />
+
+                            </div>
+                            <div class="form-group">
+                                <label>University of Board <span class="startMark">*</span></label>
+                                <input type="text" class="form-control" autofocus />
+
+                            </div>
+                            <div class="form-group">
+                                <label>Institution Of Board <span class="startMark">*</span></label>
+                                <input type="text" class="form-control" autofocus />
+
+                            </div>
+                            <div class="form-group">
+                                <label>Year Of Pass <span class="startMark">*</span></label>
+                                <input type="text" class="form-control" autofocus />
+
+                            </div>
+                            <div class="form-group">
+                                <label>Specilization <span class="startMark">*</span></label>
+                                <input type="text" class="form-control" autofocus />
+                            </div>
+
+
+                            <kendo-dialog-actions>
+                                <button kendoButton (click)="onSaveRole()" primary="true"><i class="fa fa-floppy-o"></i> &nbsp; Save</button>
+                                <button kendoButton (click)="closeDialog()" class="buttonred"><i class="fa fa-ban"></i> &nbsp; Cancel</button>
+
+                            </kendo-dialog-actions>
+                        </kendo-dialog>
+                    </div>
+                </div>
+                <div *ngIf="OpenConfirmationStatus" id="{{themepanel}}">
+                    <kendo-dialog [minWidth]="250" [width]="450" title="Please confirm" (close)="closeConfirmation('cancel')">
+                        <p style="margin: 30px; text-align: center;">Are you sure you want to Delete?</p>
+                        <kendo-dialog-actions>
+                            <button kendoButton (click)="onDeleteRole()" primary="true">Yes</button>
+                            <button kendoButton (click)="closeConfirmation('no')">No</button>
+                        </kendo-dialog-actions>
+                    </kendo-dialog>
+                </div>-->
+                
 
             </div>
         </tab>
 
     </tabset>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="lignright">
+                <button kendoButton class="customGreen" (click)="onSave()" [icon]="'save'" [primary]="true">Save</button>
+                <button kendoButton (click)="onCancel()" class="customMeroon" [primary]="true" title="cancel"><i class="fa fa-ban"></i>&nbsp; Cancel</button>
+            </div>
+
+        </div>
+    </div>
 </div>
 <style>
     .ipro-side-container {
-        width: 97.5% !important;
+        width: 95% !important;
     }
 </style>
