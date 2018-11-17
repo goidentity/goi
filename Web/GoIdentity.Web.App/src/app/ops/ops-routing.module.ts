@@ -10,6 +10,7 @@ import { AboutComponent } from './about.component';
 import { ContactusComponent } from './contactus.component';
 import { ConnectorComponent } from './connector.component';
 import { ProfileComponent } from './profile.component';
+import { MyConnectorComponent } from './myconnector.component';
 
 const routes: Routes = [
     {
@@ -73,6 +74,15 @@ const routes: Routes = [
             title: 'Self Profile'
         }
     
+    },
+    {
+        path: 'myconnector',
+        component: MyConnectorComponent,
+        canActivate: [AuthGuard],
+        data: {
+            title: 'My Connector'
+        }
+
     }
 ];
 
