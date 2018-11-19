@@ -1,3 +1,4 @@
+<toaster-container [toasterconfig]="toasterconfig"></toaster-container>
 <div class="ipro-side-container" *ngIf="user">
     <tabset>
         <tab>
@@ -58,7 +59,7 @@
                     <div class="form-group">
                         <label>Birth of Origen <span class="startMark">*</span></label>
                         <input type="text" [(ngModel)]="user.PersonnelInfo.BirthOfOrigin" class="form-control" autofocus />
-                    </div>                    
+                    </div>
                     <div class="form-group">
                         <label> Nationality <span class="startMark">*</span></label>
                         <kendo-dropdownlist [data]="nationalitiesList"
@@ -221,13 +222,13 @@
                         </kendo-grid-column>
                         <kendo-grid-column field="Roles" title="Roles & Responsibilities" width="150">
                         </kendo-grid-column>
-                        <kendo-grid-column field="StartDate" title="From" format='{0:dd-MMM-yyyy}' >
+                        <kendo-grid-column field="StartDate" title="From" format='{0:dd-MMM-yyyy}'>
                         </kendo-grid-column>
-                        <kendo-grid-column field="EndDate" title="To" format='{0:dd-MMM-yyyy}' >
+                        <kendo-grid-column field="EndDate" title="To" format='{0:dd-MMM-yyyy}'>
                         </kendo-grid-column>
                         <kendo-grid-column field="IsCurrent" title="Is Current">
                         </kendo-grid-column>
-                        
+
                     </kendo-grid>
                 </div>
                 <div class="example-wrapper" *ngIf="OpenDialogStatus1">
@@ -249,17 +250,16 @@
                             </div>
                             <div class="form-group">
                                 <label>Start Date <span class="startMark">*</span></label>
-                                <kendo-datepicker [(ngModel)]="selectedUserExperience.StartDate" [format]="'dd-MMM-yyyy'" ></kendo-datepicker>
+                                <kendo-datepicker [(ngModel)]="selectedUserExperience.StartDate" [format]="'dd-MMM-yyyy'"></kendo-datepicker>
 
                             </div>
                             <div class="form-group">
                                 <label>End Date <span class="startMark">*</span></label>
-                                <kendo-datepicker [(ngModel)]="selectedUserExperience.EndDate" [format]="'dd-MMM-yyyy'" ></kendo-datepicker>
+                                <kendo-datepicker [(ngModel)]="selectedUserExperience.EndDate" [format]="'dd-MMM-yyyy'"></kendo-datepicker>
                             </div>
                             <div class="form-group">
                                 <input type="checkbox" id="Current" class="k-checkbox"
-                                       [(ngModel)]="selectedUserExperience.IsCurrent"
-                                       > <label class="k-checkbox-label checkbox-left-padding" for="Current">Is Current</label>
+                                       [(ngModel)]="selectedUserExperience.IsCurrent"> <label class="k-checkbox-label checkbox-left-padding" for="Current">Is Current</label>
                             </div>
                             <div class="form-group">
                                 <label>Reson for a Change <span class="startMark">*</span></label>
@@ -315,7 +315,7 @@
                     </div>
 
                 </div>
-                
+
 
             </div>
         </tab>

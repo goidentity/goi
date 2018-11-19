@@ -69,13 +69,66 @@ export class ProfileComponent extends BaseComponent implements OnInit, AfterView
 
     ngOnInit() {
 
-
     }
 
     ngAfterViewInit(): void {
+        this.getUser();
+    }
+
+    getUser() {
         this.userService.getUserProfile().subscribe(u => {
             this.user = u;
+
+            if (this.user.PersonnelInfo.PrimaryIndustryOfWork != null) {
+                this.user.PersonnelInfo.PrimaryIndustryOfWorkArray = this.user.PersonnelInfo.PrimaryIndustryOfWork.split(',').map(function (value) {
+                    return value;
+                })
+            } else {
+                this.user.PersonnelInfo.PrimaryIndustryOfWorkArray = [];
+            }
+
+            if (this.user.PersonnelInfo.SecondaryIndustryOfWork != null) {
+                this.user.PersonnelInfo.SecondaryIndustryOfWorkArray = this.user.PersonnelInfo.SecondaryIndustryOfWork.split(',').map(function (value) {
+                    return value;
+                })
+            } else {
+                this.user.PersonnelInfo.SecondaryIndustryOfWorkArray = [];
+            }
+
+            if (this.user.PersonnelInfo.PrimaryIndustryOfBusiness != null) {
+                this.user.PersonnelInfo.PrimaryIndustryOfBusinessArray = this.user.PersonnelInfo.PrimaryIndustryOfBusiness.split(',').map(function (value) {
+                    return value;
+                })
+            } else {
+                this.user.PersonnelInfo.PrimaryIndustryOfBusinessArray = [];
+            }
+
+            if (this.user.PersonnelInfo.SecondaryIndustryOfBusiness != null) {
+                this.user.PersonnelInfo.SecondaryIndustryOfBusinessArray = this.user.PersonnelInfo.SecondaryIndustryOfBusiness.split(',').map(function (value) {
+                    return value;
+                })
+            } else {
+                this.user.PersonnelInfo.SecondaryIndustryOfBusinessArray = [];
+            }
+
+            if (this.user.PersonnelInfo.FutureIndustryOfWork != null) {
+                this.user.PersonnelInfo.FutureIndustryOfWorkArray = this.user.PersonnelInfo.FutureIndustryOfWork.split(',').map(function (value) {
+                    return value;
+                })
+            } else {
+                this.user.PersonnelInfo.FutureIndustryOfWorkArray = [];
+            }
+
+            if (this.user.PersonnelInfo.FutureIndustryOfBusiness != null) {
+                this.user.PersonnelInfo.FutureIndustryOfBusinessArray = this.user.PersonnelInfo.FutureIndustryOfBusiness.split(',').map(function (value) {
+                    return value;
+                })
+            } else {
+                this.user.PersonnelInfo.FutureIndustryOfBusinessArray = [];
+            }
+
         });
+
     }
 
     sourceList: Widget[] = [
@@ -164,6 +217,12 @@ export class ProfileComponent extends BaseComponent implements OnInit, AfterView
 
     public onSave() {
         this.userService.updateUserProfile(this.user).subscribe(u => {
+            this.user.PersonnelInfo.PrimaryIndustryOfWork = this.user.PersonnelInfo.PrimaryIndustryOfWorkArray.toString();
+            this.user.PersonnelInfo.SecondaryIndustryOfWork = this.user.PersonnelInfo.SecondaryIndustryOfWorkArray.toString();
+            this.user.PersonnelInfo.PrimaryIndustryOfBusiness = this.user.PersonnelInfo.PrimaryIndustryOfBusinessArray.toString();
+            this.user.PersonnelInfo.SecondaryIndustryOfBusiness = this.user.PersonnelInfo.SecondaryIndustryOfBusinessArray.toString();
+            this.user.PersonnelInfo.FutureIndustryOfWork = this.user.PersonnelInfo.FutureIndustryOfWorkArray.toString();
+            this.user.PersonnelInfo.FutureIndustryOfBusiness = this.user.PersonnelInfo.FutureIndustryOfBusinessArray.toString();
             this.showSuccess("Success", "Profile updated successfully");
         });
     }
