@@ -96,6 +96,20 @@ export class RegisterComponent implements OnInit {
                 //this.router.navigate(['/settings/login']);
                 this.form.reset();
                 this.spinnerService.hide();
+
+
+                this.authenticationService.SignIn(this.form.controls['email'].value
+                    , this.form.controls['password'].value)
+                    .subscribe(data => {
+                        this.returnUrl = 'ops/dashboard';
+                        this.router.navigate([this.returnUrl]);
+                        this.spinnerService.hide();
+                    },
+                        error => {
+                            this.errorMsg = "Invalid credentials";
+                            this.spinnerService.hide();
+                        });
+
             },
                 error => {
                     this.errorMsg = "Invalid credentials";
