@@ -56,6 +56,14 @@ namespace GoIdentity.Web.Controllers
         }
 
         [Route("[action]")]
+        [HttpGet]
+        public IActionResult GetUserScores()
+        {
+            var loggedInUserId = this.LoggedInUserId;
+            return Ok(this.userBusinessAccess.GetUserScores(loggedInUserId));
+        }
+
+        [Route("[action]")]
         [HttpPost]
         public IActionResult UpdateUserProfile([FromBody]User user)
         {

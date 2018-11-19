@@ -51,15 +51,12 @@ export class DashboardComponent extends BaseComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (!this.authenticationService.isLoggedIn()) {
-            var routeUrl: string = 'api/ScoreApi/GetLatestScoreByUserId/1'; //'home/' + 'dashboard/';
-            this.router.navigate([routeUrl]);
-        }
-        this.getReportData();
+
+        var routeUrl = 'ops/dashboard';
+        this.router.navigate([routeUrl]);
+
     }
-    private getReportData(): void {
-        
-    }
+    
     sourceList: Widget[] = [
         new Widget('onebyone'),
         new Widget('twobytwo'),

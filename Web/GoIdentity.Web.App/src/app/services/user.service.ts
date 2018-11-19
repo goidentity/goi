@@ -38,6 +38,10 @@ export class UserService extends BaseService {
         return this.authHttp.post<boolean>(this.baseServiceUrl + 'UpdateUserProfile/', JSON.stringify(user));
     }
 
+    getUserScores(): Observable<any[]> {
+        return this.authHttp.get<any[]>(this.baseServiceUrl + 'GetUserScores/');
+    }
+
     forgotPassword(userName: string): Observable<boolean> {
         return this.authHttp.get<boolean>(this.baseServiceUrl + "ForgotPassword?userName=" + userName);
     }

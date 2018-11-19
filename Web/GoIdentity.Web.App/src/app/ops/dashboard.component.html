@@ -1,224 +1,57 @@
 
-<div class="ipro-side-container">
-    <div class="row bgcolor">
-        <div class="col-sm-12">
-            <table style="padding-top:25px;background:white;" class="table table-sm table-striped">
-                <tr>
-                    <th>
-                        Score | Last Score
-                    </th>
-                    <td>
-                        {{finalScore}} | {{finalLastScore}}
-                    </td>
-                </tr>
-            </table>
-            <table class="table table-sm table-striped" style="background:white;">
-                <tr>
-                    <th>Positive Score | Last Score</th>
-                    <th>Neutral Score | Last Score</th>
-                    <th>Negative Score | Last Score</th>
-                </tr>
-                <tr>
-                    <td>{{positiveScore}} | {{positiveLastScore}}</td>
-                    <td>{{neutralScore}} | {{neutralLastScore}}</td>
-                    <td>{{negativeScore}} | {{negativeLastScore}}</td>
-                </tr>
-            </table>
-            <table class="table table-sm table-striped">
-                <tr>
-                    <th *ngFor="let category of scoreData">
-                        {{category.key}}
-                    </th>
-                </tr>
-                <tr>
-                    <td *ngFor="let category of scoreData">
-                        {{category.score}}
-                    </td>
-                </tr>
-                <tr>
-                    <td *ngFor="let category of scoreData">
-                        {{category.lastScore}}
-                    </td>
-                </tr>
-            </table>
+<div class="ipro-side-container" *ngIf="scoresList">
 
-            <div class="">
+    <div class="row mb-3">
 
-                <div class="row mb-3" style="margin-top:60px">
+        <div class="col-lg-12">
 
-                    <div class="col-lg-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-body">
+            <div class="card-group">
 
-                                    <div class="col-lg-9">
-                                        <kendo-chart [seriesColors]="['orange', '#ffe']">
-                                            <kendo-chart-legend position="top"></kendo-chart-legend>
-                                            <kendo-chart-series>
-                                                <kendo-chart-series-item type="pie"
-                                                                         [data]="pieData"
-                                                                         field="value"
-                                                                         categoryField="category">
-                                                </kendo-chart-series-item>
-                                            </kendo-chart-series>
-                                        </kendo-chart>
+                <div *ngFor="let sl of scoresList; let x = index" class="card">
+                    <div class="card-body">
+                        <div style="padding-bottom: 15px;color: dimgray;">
+                            <h5>{{sl.ScoreType}}</h5>
+                        </div><h1 class="" style="color: gray;padding-left: 20px;font-size: 55px;">
+                            {{sl.Score}}
+                        </h1>
+                        <div class="row">
+                            <div class="col-lg-9 no-pad">
+                                <div class="progress progress-xs my-2">
+                                    <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar bg-success" role="progressbar" style="width: 25%">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                   
-
-                </div>
-                <div class="col-lg-9">
-                    <div class="card-group">
-                        <div class="card">
-                            <div class="card-body">
-                                <kendo-chart>
-                                    <kendo-chart-area background="#eee" [margin]="30">
-                                    </kendo-chart-area>
-                                    <kendo-chart-series>
-                                        <kendo-chart-series-item name="Fibonacci" [data]="seriesData1">
-                                        </kendo-chart-series-item>
-                                    </kendo-chart-series>
-                                </kendo-chart>
-                                <div class="progress progress-xs my-2">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span class="font-sm">Last week 25</span>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <kendo-chart>
-                                    <kendo-chart-title text="Hybrid car mileage report"></kendo-chart-title>
-                                    <kendo-chart-legend position="top"></kendo-chart-legend>
-
-                                    <kendo-chart-value-axis>
-                                        <kendo-chart-value-axis-item *ngFor="let item of valueAxes" [name]="item.name" [title]="{ text: item.title }"
-                                                                     [min]="item.min" [max]="item.max" [majorUnit]="item.majorUnit" [color]="item.color">
-                                        </kendo-chart-value-axis-item>
-                                    </kendo-chart-value-axis>
-
-                                    <kendo-chart-series>
-                                        <kendo-chart-series-item *ngFor="let item of series" [name]="item.name" [data]="item.data" [type]="item.type"
-                                                                 [stack]="item.stack" [color]="item.color" [axis]="item.axis">
-                                        </kendo-chart-series-item>
-                                    </kendo-chart-series>
-                                </kendo-chart>
-
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <kendo-chart>
-                                    <kendo-chart-title text="Sales funnel"></kendo-chart-title>
-                                    <kendo-chart-series>
-                                        <kendo-chart-series-item type="funnel" [data]="model"
-                                                                 field="count" categoryField="stat" colorField="color">
-                                            <kendo-chart-series-item-labels background="none" color="white" format="N0">
-                                            </kendo-chart-series-item-labels>
-                                        </kendo-chart-series-item>
-                                    </kendo-chart-series>
-                                    <kendo-chart-tooltip>
-                                        <ng-template kendoChartSeriesTooltipTemplate let-category="category">
-                                            {{ category }}
-                                        </ng-template>
-                                    </kendo-chart-tooltip>
-                                    <kendo-chart-legend [visible]="false"></kendo-chart-legend>
-                                </kendo-chart>
+                            </div><div class="col-lg-3 no-pad" style="padding-top: 15px !important;padding-left: 5px !important;">
+                                <span class="font-sm"> + {{sl.ChangeScore}}</span>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row mb-3">
-                <div class="col-lg-12">
-                    <div class="card-group">
-                        <div class="card">
-                            <div class="card-body">
-                                <div style="padding-bottom: 15px;color: dimgray;"><h5>Profile</h5></div><h1 class="" style="color: gray;padding-left: 20px;font-size: 55px;">89</h1>
-                                <div class="row">
-                                    <div class="col-lg-9 no-pad"><div class="progress progress-xs my-2"><div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar bg-success" role="progressbar" style="width: 25%"></div></div></div><div class="col-lg-3 no-pad" style="padding-top: 15px !important;padding-left: 5px !important;"><span class="font-sm"> + 25</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div style="padding-bottom: 15px;color: dimgray;"><h5>Profile</h5></div><h1 class="" style="color: gray;padding-left: 20px;font-size: 55px;">89</h1>
-                                <div class="row">
-                                    <div class="col-lg-9 no-pad"><div class="progress progress-xs my-2"><div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar bg-success" role="progressbar" style="width: 25%"></div></div></div><div class="col-lg-3 no-pad" style="padding-top: 15px !important;padding-left: 5px !important;"><span class="font-sm"> + 25</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div style="padding-bottom: 15px;color: dimgray;"><h5>Profile</h5></div><h1 class="" style="color: gray;padding-left: 20px;font-size: 55px;">89</h1>
-                                <div class="row">
-                                    <div class="col-lg-9 no-pad"><div class="progress progress-xs my-2"><div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar bg-success" role="progressbar" style="width: 25%"></div></div></div><div class="col-lg-3 no-pad" style="padding-top: 15px !important;padding-left: 5px !important;"><span class="font-sm"> + 25</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div style="padding-bottom: 15px;color: dimgray;"><h5>Profile</h5></div><h1 class="" style="color: gray;padding-left: 20px;font-size: 55px;">89</h1>
-                                <div class="row">
-                                    <div class="col-lg-9 no-pad"><div class="progress progress-xs my-2"><div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar bg-success" role="progressbar" style="width: 25%"></div></div></div><div class="col-lg-3 no-pad" style="padding-top: 15px !important;padding-left: 5px !important;"><span class="font-sm"> + 25</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div style="padding-bottom: 15px;color: dimgray;"><h5>Profile</h5></div><h1 class="" style="color: gray;padding-left: 20px;font-size: 55px;">89</h1>
-                                <div class="row">
-                                    <div class="col-lg-9 no-pad"><div class="progress progress-xs my-2"><div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar bg-success" role="progressbar" style="width: 25%"></div></div></div><div class="col-lg-3 no-pad" style="padding-top: 15px !important;padding-left: 5px !important;"><span class="font-sm"> + 25</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div style="padding-bottom: 15px;color: dimgray;"><h5>Profile</h5></div><h1 class="" style="color: gray;padding-left: 20px;font-size: 55px;">89</h1>
-                                <div class="row">
-                                    <div class="col-lg-9 no-pad"><div class="progress progress-xs my-2"><div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar bg-success" role="progressbar" style="width: 25%"></div></div></div><div class="col-lg-3 no-pad" style="padding-top: 15px !important;padding-left: 5px !important;"><span class="font-sm"> + 25</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div style="padding-bottom: 15px;color: green;"><h5>Identity spread</h5></div><h1 class="" style="color: gray;padding-left: 20px;font-size: 55px;">89</h1>
-                            <div class="row">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-
-                    <div class="card">
-                        <div class="card-body">
-                            <div style="padding-bottom: 15px;color: green;"><h5>Recommandations</h5></div><h1 class="" style="color: gray;padding-left: 20px;font-size: 55px;">89</h1>
-                            <div class="row">
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
 
             </div>
 
         </div>
+
     </div>
-</div>
+
+    <div class="row">
+        <div class="col">
+            <kendo-chart>
+                <kendo-chart-series>
+                    <kendo-chart-series-item type="donut" [data]="scoresList"
+                                             categoryField="ScoreType" field="Score">
+                        <kendo-chart-series-item-labels [content]="labelContent"
+                                                        color="#fff" background="none">
+                        </kendo-chart-series-item-labels>
+                    </kendo-chart-series-item>
+                </kendo-chart-series>
+                <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+            </kendo-chart>
+        </div>
+    </div>
 
 </div>
+
 <style>
     .bgcolor {
         background-color: #f5f5f5 !important;

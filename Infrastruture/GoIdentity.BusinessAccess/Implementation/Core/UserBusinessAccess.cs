@@ -58,6 +58,11 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
             return userDataAccess.GetUserProfile(userId);            
         }
 
+        public List<UserScore> GetUserScores(int? userId = null)
+        {
+            return userDataAccess.GetUserScores(userId);
+        }
+
         public bool UpdateUserProfile(User user)
         {
             return userDataAccess.UpdateUserProfile(user);

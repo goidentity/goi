@@ -16,6 +16,7 @@ namespace GoIdentity.BusinessAccess.Contracts.Core
         List<Navigation> GetNavigationItems(int? userId = null);
 
         User GetUserProfile(int? userId = null);
+        List<UserScore> GetUserScores(int? userId = null);
         bool UpdateUserProfile(User user);
 
     }

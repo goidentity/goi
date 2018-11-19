@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit {
         this.authenticationService.SignIn(this.form.controls['uname'].value
             , this.form.controls['password'].value)
             .subscribe(data => {
+                this.returnUrl = 'ops/dashboard';
                 this.router.navigate([this.returnUrl]);
                 this.spinnerService.hide();
             },

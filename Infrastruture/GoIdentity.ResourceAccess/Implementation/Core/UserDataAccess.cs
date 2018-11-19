@@ -48,8 +48,32 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
 
         public User Register(User user, string password)
         {
-            var primaryDbContext = this.unitOfWork.GetIdentityDbContext();
-            return new User();
+            var userTypeTable = UserDefinedTableTypes.UserType;
+            var userPersonnelInfoTypeTable = UserDefinedTableTypes.UserPersonnelInfoType;
+            var userEducationTypeTable = UserDefinedTableTypes.UserEducationType;
+            var userExperienceTypeTable = UserDefinedTableTypes.UserExperienceType;
+
+            userTypeTable.Rows.Add(new object[]
+                {
+                    user.UserId,
+                    user.UserName,
+
+                    user.FirstName,
+                    user.LastName,
+                    user.Email,
+                    user.MobileNumber,
+
+                    user.UniqueId,
+                    user.JsonFeed
+                });
+
+            var parmsCollection = new ParmsCollection();
+            var result = this.unitOfWork.GetIdentityDbContext(true).ExecuteStoredProcedure<User>("[Core].[createUser]",
+                            parmsCollection
+                            .AddParm("@user", SqlDbType.Structured, userTypeTable, "[Core].[UserType]")
+                            .AddParm("@password", SqlDbType.VarChar, password)).FirstOrDefault();
+
+            return result;
         }
 
         public List<Navigation> GetNavigationItems(int? userId = null)
@@ -82,6 +106,12 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
             if (result.PersonnelInfo == null) result.PersonnelInfo = new UserPersonnelInfo();
 
             return result;
+        }
+
+        public List<UserScore> GetUserScores(int? userId = null)
+        {
+            var scores = this.unitOfWork.GetIdentityDbContext().UserScores.Where(u => u.UserId == userId).ToList();
+            return scores;
         }
 
         public bool UpdateUserProfile(User user)

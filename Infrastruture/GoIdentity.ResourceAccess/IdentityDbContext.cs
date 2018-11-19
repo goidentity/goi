@@ -28,10 +28,11 @@ namespace GoIdentity.ResourceAccess
 
         public DbSet<Navigation> Navigations { get; set; }
 
+        public DbSet<UserScore> UserScores { get; set; }
+
         public DbSet<Industry> Industries { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<IndustryCategoryMap> IndustryCategoryMap { get; set; }
-        public DbSet<UserScore> UserScores { get; set; }
         public DbSet<UserNotification> UserNotifications { get; set; }
 
         public DbSet<Influencer> Influencers { get; set; }

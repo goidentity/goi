@@ -104,6 +104,7 @@
     <Build Include="Core\User Defined Types\UserExperienceType.sql" />
     <Build Include="Core\User Defined Types\UserPersonnelInfoType.sql" />
     <Build Include="Core\Stored Procedures\updateUser.sql" />
+    <Build Include="Core\Stored Procedures\createUser.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
