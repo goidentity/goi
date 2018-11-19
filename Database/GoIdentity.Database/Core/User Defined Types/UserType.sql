@@ -1,0 +1,13 @@
+﻿CREATE TYPE [Core].[UserType] as TABLE
+(
+	[UserId] INT NOT NULL,
+	[UserName] VARCHAR(500) NULL,
+
+	[FirstName] VARCHAR(100) NOT NULL,
+	[LastName] VARCHAR(100) NOT NULL,
+	[Email] VARCHAR(500) NULL,
+	[MobileNumber] VARCHAR(15) NULL,
+
+	[UniqueId] UNIQUEIDENTIFIER DEFAULT(NEWID()),
+	[JsonFeed] VARCHAR(8000) NULL
+)

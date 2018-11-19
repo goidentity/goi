@@ -30,8 +30,7 @@ export class RegisterComponent implements OnInit {
         private authenticationService: AuthenticationService,
         private spinnerService: Ng4LoadingSpinnerService,
         private deviceService: DeviceDetectorService,
-        private toasterService: ToasterService)
-    { }
+        private toasterService: ToasterService) { }
 
     ngOnInit() {
         this.spinnerService.show();
@@ -74,10 +73,10 @@ export class RegisterComponent implements OnInit {
             this.toasterService.pop('error', '', 'Please enter email or phone number');
             return false;
         }
-        if (!isEmailOrMobileNotExists && (this.form.controls['mobile'].value != "" && this.form.controls['mobile'].value != null) && (this.form.controls['mobile'].value!=null && (this.form.controls['mobile'].value.length < 10 || this.form.controls['mobile'].value.length > 12 || Number(this.form.controls['mobile'].value) == NaN))) {
+        if (!isEmailOrMobileNotExists && (this.form.controls['mobile'].value != "" && this.form.controls['mobile'].value != null) && (this.form.controls['mobile'].value != null && (this.form.controls['mobile'].value.length < 10 || this.form.controls['mobile'].value.length > 12 || Number(this.form.controls['mobile'].value) == NaN))) {
             this.toasterService.pop('error', '', 'Invalid phone number');
             return false;
-        } 
+        }
         if (this.form.controls['password'] == null || this.form.controls['password'].value == "" || this.form.controls['password'].value == null) {
             this.toasterService.pop('error', '', 'Invalid password');
             return false;
@@ -98,9 +97,9 @@ export class RegisterComponent implements OnInit {
                 this.form.reset();
                 this.spinnerService.hide();
             },
-            error => {
-                this.errorMsg = "Invalid credentials";
-                this.spinnerService.hide();
-            });
+                error => {
+                    this.errorMsg = "Invalid credentials";
+                    this.spinnerService.hide();
+                });
     }
 }

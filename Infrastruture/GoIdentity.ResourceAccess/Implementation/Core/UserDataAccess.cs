@@ -71,91 +71,111 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
             }
         }
 
-        public UserProfile GetUserProfile(int? userId = null)
+        public User GetUserProfile(int? userId = null)
         {
-            var parmsCollection = new ParmsCollection();
-            if (userId.HasValue)
-            {
-                var result = this.unitOfWork.GetIdentityDbContext().ExecuteStoredProcedure<UserProfile>("[Core].[getUserProfile]", parmsCollection.AddParm("@userId", SqlDbType.Int, userId));                                
-
-                return result.ToList().FirstOrDefault();
-            }
-            else
-            {
-                return this.unitOfWork.GetIdentityDbContext().UserProfile.FirstOrDefault();
-            }
-        }
-
-        public MyUserProfile GetMyUserProfile(int? userId = null)
-        {
-            var parmsCollection = new ParmsCollection();
-            if (userId.HasValue)
-            {
-                var result = this.unitOfWork.GetIdentityDbContext().ExecuteStoredProcedure<MyUserProfile>("[Core].[getMyUserProfile]", parmsCollection.AddParm("@userId", SqlDbType.Int, userId));
-
-                return result.ToList().FirstOrDefault();
-            }
-            else
-            {
-                return this.unitOfWork.GetIdentityDbContext().MyUserProfile.FirstOrDefault();
-            }
-        }
-        public int CreateUserProfile(UserProfile userProfile)
-        { 
-            var primaryDbContext = this.unitOfWork.GetIdentityDbContext();
-            var parmsCollection = new ParmsCollection();
-            var result = primaryDbContext.ExecuteNonQuery("[Core].[createUserProfile]",
-                parmsCollection
-                    .AddParm("@dob", SqlDbType.VarChar, userProfile.DOB)
-                    .AddParm("@area", SqlDbType.VarChar, userProfile.Area)
-                    .AddParm("@gender", SqlDbType.VarChar, userProfile.Gender)
-                    .AddParm("@profession", SqlDbType.VarChar, userProfile.Profession)
-                    .AddParm("@rolesplayed", SqlDbType.VarChar, userProfile.RolesPlayed)
-                    .AddParm("@rolesinterested", SqlDbType.VarChar, userProfile.RolesInterested)
-                    .AddParm("@userId", SqlDbType.Int, userProfile.UserId),CommandType.StoredProcedure
-                );          
+            var result = this.unitOfWork.GetIdentityDbContext().Users.First(u => u.UserId == userId);
+            result.PersonnelInfo = this.unitOfWork.GetIdentityDbContext().UserPersonnelInfos.First(u => u.UserId == userId);
+            result.Experience = this.unitOfWork.GetIdentityDbContext().UserExperiences.Where(u => u.UserId == userId).ToList();
+            result.Education = this.unitOfWork.GetIdentityDbContext().UserEducations.Where(u => u.UserId == userId).ToList();
 
             return result;
         }
-        public int UpdateUserProfile(UserProfile userProfile)
-        {
-            var primaryDbContext = this.unitOfWork.GetIdentityDbContext();
-            var parmsCollection = new ParmsCollection();
-            var result = primaryDbContext.ExecuteNonQuery("[Core].[updateUserProfile]",
-                parmsCollection
-                    .AddParm("@dob", SqlDbType.VarChar, userProfile.DOB)
-                    .AddParm("@area", SqlDbType.VarChar, userProfile.Area)
-                    .AddParm("@gender", SqlDbType.VarChar, userProfile.Gender)
-                    .AddParm("@profession", SqlDbType.VarChar, userProfile.Profession)
-                    .AddParm("@rolesplayed", SqlDbType.VarChar, userProfile.RolesPlayed)
-                    .AddParm("@rolesinterested", SqlDbType.VarChar, userProfile.RolesInterested)
-                    .AddParm("@userId", SqlDbType.Int, userProfile.UserId)
-                );
-            return result;
-        }
 
-        public int UpdateMyUserProfile(MyUserProfile userProfile)
+        public bool UpdateUserProfile(User user)
         {
-            var primaryDbContext = this.unitOfWork.GetIdentityDbContext();
-            var parmsCollection = new ParmsCollection();
-            var result = primaryDbContext.ExecuteNonQuery("[Core].[updateMyUserProfile]",
-                parmsCollection
-                    .AddParm("@firstName", SqlDbType.VarChar, userProfile.FirstName)
-                    .AddParm("@middleName", SqlDbType.VarChar, userProfile.MiddleName)
-                    .AddParm("@lastName", SqlDbType.VarChar, userProfile.LastName)
-                    .AddParm("@gender", SqlDbType.VarChar, userProfile.Gender)
-                    .AddParm("@emailId", SqlDbType.VarChar, userProfile.EmailId)
-                    .AddParm("@phoneNumber", SqlDbType.VarChar, userProfile.PhoneNumber)
-                    .AddParm("@dob", SqlDbType.DateTime, userProfile.DOB)
-                    .AddParm("@placeOfBirth", SqlDbType.VarChar, userProfile.PlaceOfBirth)
-                    .AddParm("@currentCity", SqlDbType.VarChar, userProfile.CurrentCity)
-                    .AddParm("@homeTown", SqlDbType.VarChar, userProfile.HomeTown)
-                    .AddParm("@martialStatus", SqlDbType.VarChar, userProfile.MartialStatus)
-                    .AddParm("@aadharCard", SqlDbType.VarChar, userProfile.AadharCard)
-                    .AddParm("@Id", SqlDbType.Int, userProfile.Id)
-                );
-            return result;
-        }
+            var userTypeTable = UserDefinedTableTypes.UserType;
+            var userPersonnelInfoTypeTable = UserDefinedTableTypes.UserPersonnelInfoType;
+            var userEducationTypeTable = UserDefinedTableTypes.UserEducationType;
+            var userExperienceTypeTable = UserDefinedTableTypes.UserExperienceType;
 
+            userTypeTable.Rows.Add(new object[]
+                {
+                    user.UserId,
+                    user.UserName,
+
+                    user.FirstName,
+                    user.LastName,
+                    user.Email,
+                    user.MobileNumber,
+
+                    user.UniqueId,
+                    user.JsonFeed
+                });
+
+            userPersonnelInfoTypeTable.Rows.Add(new object[]
+                {
+                    user.PersonnelInfo.UserPersonnelInfoId,
+                    user.PersonnelInfo.UserId,
+                    user.PersonnelInfo.DoB,
+
+                    user.PersonnelInfo.Gender,
+                    user.PersonnelInfo.PlaceOfBirth,
+                    user.PersonnelInfo.CityOfLiving,
+
+                    user.PersonnelInfo.CityOfWork,
+                    user.PersonnelInfo.MaritalStatus,
+                    user.PersonnelInfo.BirthOfOrigin,
+                    user.PersonnelInfo.Nationality,
+                    user.PersonnelInfo.Citizenship,
+                    user.PersonnelInfo.PRStatus,
+
+                    user.PersonnelInfo.PrimaryIndustryOfWork,
+                    user.PersonnelInfo.SecondaryIndustryOfWork,
+
+                    user.PersonnelInfo.PrimaryIndustryOfBusiness,
+                    user.PersonnelInfo.SecondaryIndustryOfBusiness,
+
+                    user.PersonnelInfo.FutureRole,
+                    user.PersonnelInfo.FutureIndustryOfWork,
+                    user.PersonnelInfo.FutureIndustryOfBusiness,
+
+                });
+
+            foreach (var item in user.Experience)
+            {
+                userExperienceTypeTable.Rows.Add(new object[]
+                {
+                    item.UserExperienceId,
+                    item.UserId,
+
+                    item.OrganizationName,
+                    item.Designation,
+                    item.Roles,
+
+                    item.StartDate,
+                    item.EndDate,
+                    item.IsCurrent,
+                    item.ReasonForChange
+                });
+            }
+
+            foreach (var item in user.Education)
+            {
+                userEducationTypeTable.Rows.Add(new object[]
+                {
+                    item.UserEducationId,
+                    item.UserId,
+
+                    item.DegreeType,
+                    item.Title,
+                    item.UniversityOrBoard,
+
+                    item.InstitutionOrBoard,
+                    item.YearOfPass,
+                    item.Specialization
+                });
+            }
+
+            var parmsCollection = new ParmsCollection();
+            var result = this.unitOfWork.GetIdentityDbContext(true).ExecuteStoredProcedure<User>("[Core].[updateUser]",
+                            parmsCollection
+                            .AddParm("@user", SqlDbType.Structured, userTypeTable, "[Core].[UserType]")
+                            .AddParm("@userPersonnelInfo", SqlDbType.Structured, userPersonnelInfoTypeTable, "[Core].[UserPersonnelInfoType]")
+                            .AddParm("@userExperience", SqlDbType.Structured, userExperienceTypeTable, "[Core].[UserExperienceType]")
+                            .AddParm("@userEducation", SqlDbType.Structured, userEducationTypeTable, "[Core].[UserEducationType]")
+                            ).FirstOrDefault();
+
+            return true;
+        }
     }
 }

@@ -27,31 +27,7 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
         {
             return this.ToModuleFormat(this.userDataAccess.GetNavigationItems(userId));
         }
-
-        public UserProfile GetUserProfile(int? userId = null)
-        {
-            return this.userDataAccess.GetUserProfile(userId);
-        }
-
-        public MyUserProfile GetMyUserProfile(int? userId = null)
-        {
-            return this.userDataAccess.GetMyUserProfile(userId);
-        }
-
-        public int CreateUserProfile(UserProfile userProfile)
-        {
-            return this.userDataAccess.CreateUserProfile(userProfile);
-        }
-
-        public int UpdateUserProfile(UserProfile userProfile)
-        {
-            return this.userDataAccess.UpdateUserProfile(userProfile);
-        }
-
-        public int UpdateMyUserProfile(MyUserProfile userProfile)
-        {
-            return this.userDataAccess.UpdateMyUserProfile(userProfile);
-        }
+        
 
         private List<Navigation> ToModuleFormat(List<Navigation> navigationItemsList)
         {
@@ -71,9 +47,20 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
 
             return modules;
         }
+
         public User Register(User user, string password)
         {
             return userDataAccess.Register(user, password);
+        }
+
+        public User GetUserProfile(int? userId = null)
+        {
+            return userDataAccess.GetUserProfile(userId);            
+        }
+
+        public bool UpdateUserProfile(User user)
+        {
+            return userDataAccess.UpdateUserProfile(user);
         }
     }
 }

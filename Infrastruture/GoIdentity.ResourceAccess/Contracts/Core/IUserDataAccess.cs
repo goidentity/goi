@@ -9,12 +9,8 @@ namespace GoIdentity.ResourceAccess.Contracts.Core
         List<Claim> ValidateUser(UserLoginLog userLoginLog, out User user);
         User Register(User user, string password);
         List<Navigation> GetNavigationItems(int? userId = null);
-        UserProfile GetUserProfile(int? userId = null);
 
-        MyUserProfile GetMyUserProfile(int? userId = null);
-        int CreateUserProfile(UserProfile userProfile);
-        int UpdateUserProfile(UserProfile userProfile);
-        int UpdateMyUserProfile(MyUserProfile userProfile);
-
+        User GetUserProfile(int? userId = null);
+        bool UpdateUserProfile(User user);
     }
 }

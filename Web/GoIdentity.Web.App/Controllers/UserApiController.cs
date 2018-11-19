@@ -16,7 +16,7 @@ namespace GoIdentity.Web.Controllers
     {
         private IUserBusinessAccess userBusinessAccess = default(IUserBusinessAccess);
 
-        public UserApiController(UserContext userContext, IUserBusinessAccess userBusinessAccess) 
+        public UserApiController(UserContext userContext, IUserBusinessAccess userBusinessAccess)
         {
             this.userContext = userContext;
             this.userBusinessAccess = userBusinessAccess;
@@ -54,6 +54,16 @@ namespace GoIdentity.Web.Controllers
             var loggedInUserId = this.LoggedInUserId;
             return Ok(this.userBusinessAccess.GetUserProfile(loggedInUserId));
         }
+
+        [Route("[action]")]
+        [HttpGet]
+        public IActionResult UpdateUserProfile(User user)
+        {
+            var loggedInUserId = this.LoggedInUserId;
+            return Ok(this.userBusinessAccess.UpdateUserProfile(user));
+        }
+
+        /*
 
         [Route("[action]")]
         [HttpGet]
@@ -119,5 +129,7 @@ namespace GoIdentity.Web.Controllers
         {
             return Ok(true);
         }
+
+    */
     }
 }

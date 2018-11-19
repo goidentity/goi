@@ -68,6 +68,7 @@
     <Folder Include="Score\Tables" />
     <Folder Include="Score\User Defined Types" />
     <Folder Include="Score\Stored Procedures" />
+    <Folder Include="Core\User Defined Types" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Core\Tables\trUser.sql" />
@@ -84,7 +85,6 @@
     <Build Include="Core\Tables\dmnCategory.sql" />
     <Build Include="Core\Tables\dmnIndustryCategoryMap.sql" />
     <Build Include="Core\Tables\trUserScore.sql" />
-    <Build Include="Core\Tables\trUserProfile.sql" />
     <Build Include="Core\Stored Procedures\createUserProfile.sql" />
     <Build Include="Core\Stored Procedures\getUserProfile.sql" />
     <Build Include="Core\Stored Procedures\updateUserProfile.sql" />
@@ -98,8 +98,15 @@
     <Build Include="Score\Stored Procedures\updateEngineLogs.sql" />
     <Build Include="Score\Stored Procedures\UpdateAuthToken.sql" />
     <Build Include="Core\Stored Procedures\getMyUserProfile.sql" />
-    <Build Include="Core\Tables\trMyUserProfile.sql" />
     <Build Include="Core\Stored Procedures\updateMyUserProfile.sql" />
+    <Build Include="Core\Tables\trUserPersonnelInfo.sql" />
+    <Build Include="Core\Tables\trUserEducation.sql" />
+    <Build Include="Core\Tables\trUserExperience.sql" />
+    <Build Include="Core\User Defined Types\UserType.sql" />
+    <Build Include="Core\User Defined Types\UserEducationType.sql" />
+    <Build Include="Core\User Defined Types\UserExperienceType.sql" />
+    <Build Include="Core\User Defined Types\UserPersonnelInfoType.sql" />
+    <Build Include="Core\Stored Procedures\updateUser.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

@@ -22,9 +22,11 @@ namespace GoIdentity.ResourceAccess
 
         #region Core
         public DbSet<User> Users { get; set; }
+        public DbSet<UserPersonnelInfo> UserPersonnelInfos { get; set; }
+        public DbSet<UserExperience> UserExperiences { get; set; }
+        public DbSet<UserEducation> UserEducations { get; set; }
+
         public DbSet<Navigation> Navigations { get; set; }
-        public DbSet<UserProfile> UserProfile { get; set; }
-        public DbSet<MyUserProfile> MyUserProfile { get; set; }
 
         public DbSet<Industry> Industries { get; set; }
         public DbSet<Category> Categories { get; set; }

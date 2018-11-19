@@ -8,6 +8,12 @@ namespace GoIdentity.Entities.Core
     [Table(name: "trUser", Schema = "Core")]
     public class User : Entity
     {
+        public User()
+        {
+            this.PersonnelInfo = new UserPersonnelInfo();
+            this.Experience = new List<UserExperience>();
+            this.Education = new List<UserEducation>();
+        }
         [Key]
         public int UserId { get; set; }
 
@@ -25,11 +31,18 @@ namespace GoIdentity.Entities.Core
         public bool IsLocked { get; set; }
         public AccountType AccountType { get; set; }
 
+        [NotMapped]
+        public UserPersonnelInfo PersonnelInfo { get; set; }
+        [NotMapped]
+        public List<UserExperience> Experience { get; set; }
+        [NotMapped]
+        public List<UserEducation> Education { get; set; }
+
     }
 
     public enum AccountType
     {
-        Individual=1,
-        Company=2
+        Individual = 1,
+        Company = 2
     }
 }

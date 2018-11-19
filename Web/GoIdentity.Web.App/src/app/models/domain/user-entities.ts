@@ -30,6 +30,7 @@ export class Client {
 }
 
 import { TreeItem } from 'ngx-treeview';
+import { expand } from "rxjs-compat/operator/expand";
 
 export class Employee {
     public EmployeeId: number;
@@ -124,8 +125,7 @@ export class MapUserOrganization {
     public IsActive: boolean
 }
 
-export class UserProfile
-{
+export class UserProfile {
     public Employee: Employee;
     public MapOrganizations: MapUserOrganization[];
     public MapRoles: vMapUserRole[];
@@ -153,4 +153,78 @@ export class MyUserProfile {
         public MartialStatus?: string
 
     ) { }
+}
+
+export class UserPersonnelInfo {
+    public UserPersonnelInfoId: number;
+    public UserId: number;
+
+    public DoB: Date;
+    public Gender: string;
+    public PlaceOfBirth: string;
+    public CityOfLiving: string;
+
+    public CityOfWork: string;
+    public MaritalStatus: string;
+    public BirthOfOrigin: string;
+    public Nationality: string;
+    public Citizenship: string;
+    public PRStatus: string;
+
+    public PrimaryIndustryOfWork: string;
+    public SecondaryIndustryOfWork: string;
+
+    public PrimaryIndustryOfBusiness: string;
+    public SecondaryIndustryOfBusiness: string;
+
+    public FutureRole: string;
+    public FutureIndustryOfWork: string;
+    public FutureIndustryOfBusiness: string;
+}
+
+export class UserExperience {
+    public UserExperienceId: number;
+    public UserId: number;
+
+    public OrganizationName: string;
+    public Designation: string;
+    public Roles: string;
+    public StartDate: Date;
+    public EndDate: Date;
+    public IsCurrent: boolean;
+    public ReasonForChange: string;
+}
+
+export class UserEducation {
+    public UserEducationId: number;
+    public UserId: number;
+
+    public DegreeType: string;
+    public Title: string;
+    public UniversityOrBoard: string;
+    public InstitutionOrBoard: string;
+    public YearOfPass: string;
+    public Specialization: string;
+}
+
+export class User {
+    public UserId: number;
+
+    public UserName: string;
+    public Password: string;
+    public FirstName: string;
+    public LastName: string;
+
+    public Email: string;
+    public MobileNumber: string;
+
+    public UniqueId: string;
+    public JsonFeed: string;
+
+    public IsLocked: boolean;
+    public AccountType: number;
+
+    public PersonnelInfo: UserPersonnelInfo;
+    public Experience: UserExperience[];
+    public Education: UserEducation[];
 }
