@@ -24,7 +24,6 @@ import { AuthInterceptor } from '../services/auth.interceptor';
 import { OpsRoutingModule } from './ops-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { MyidentityComponent } from './myidentity.component';
-import { MyprofileComponent } from './myprofile.component';
 import { NotificationsComponent } from './notifications.component';
 import { AboutComponent } from './about.component';
 import { ContactusComponent } from './contactus.component';
@@ -32,7 +31,6 @@ import { ConnectorComponent } from './connector.component';
 import { ProfileComponent } from './profile.component';
 import { MyConnectorComponent } from './myconnector.component';
 import { GoogleAddressBoxDirective } from './../shared/google-addressbox.directive';
-
 
 @NgModule({
     imports: [
@@ -57,7 +55,7 @@ import { GoogleAddressBoxDirective } from './../shared/google-addressbox.directi
         OpsRoutingModule, RippleModule
     ],
     declarations: [
-        DashboardComponent, MyConnectorComponent, MyidentityComponent, ProfileComponent, MyprofileComponent, NotificationsComponent, AboutComponent, ContactusComponent, ConnectorComponent,
+        DashboardComponent, MyConnectorComponent, MyidentityComponent, ProfileComponent, NotificationsComponent, AboutComponent, ContactusComponent, ConnectorComponent,
         GoogleAddressBoxDirective
     ],
     providers: [ToasterService,

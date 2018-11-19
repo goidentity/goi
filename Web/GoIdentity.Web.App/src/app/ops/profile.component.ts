@@ -1,36 +1,31 @@
-import { Component, OnInit, Inject, Input, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-
-import { Subscription, Observable } from 'rxjs';
-import { TabsModule } from 'ngx-bootstrap/tabs';
-import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToasterService } from "angular2-toaster";
+import { User, UserEducation, UserExperience } from '../models/domain/user-entities';
+import { MessageEvent } from '../models/utilities/broadcaster';
 import { AuthenticationService } from '../services/authentication.service';
-import { Broadcaster, MessageEvent } from '../models/utilities/broadcaster';
+import { UserService } from '../services/user.service';
 import { BaseComponent } from '../shared/base-component';
-import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
-
-import { DialogModule } from '@progress/kendo-angular-dialog';
-import { GridModule } from '@progress/kendo-angular-grid';
-import { InputsModule } from '@progress/kendo-angular-inputs';
 import { products } from './product_Demo';
 
 @Component({
     templateUrl: './profile.component.html',
     providers: []
 })
-export class ProfileComponent extends BaseComponent implements OnInit {
+export class ProfileComponent extends BaseComponent implements OnInit, AfterViewInit {
+
+    public user: User;
+
     public router: Router;
     public OpenPanelDialogStatus: boolean;
     public OpenConfirmationStatus1: boolean;
     public dataSetsGridView: Array<any>;
     public EducationData: any[] = products;
-    public gender: Array<string> = ["Male", "Female"];
-    public Maritial: Array<string> = ["Single", "Married"];
-    public Nationality: Array<string> = ["Indian", "USA", "Astralian", "Singapure"];
-    public Nationality1: Array<string> = ["Indian", "USA", "Astralian", "Singapure"];
-    public Nationality2: Array<string> = ["Indian", "USA", "Astralian", "Singapure"];
-    public Industries: Array<string> = ["Agriculture and Allied Industries", "Automobiles", "Auto Components", "Aviation", "Banking", "Cement", "Consumer Durables", "Ecommerce", "Education and Training", "Engineering and Capital Goods", "Financial Services"
+    public gendersList: Array<string> = ["Male", "Female"];
+    public maritalStatusesList: Array<string> = ["Single", "Married", "Separated", "Divorced", "Divorced"];
+    public nationalitiesList: Array<string> = ["Indian", "USA", "Astralian", "Singapure"];
+
+    public industriesList: Array<string> = ["Agriculture and Allied Industries", "Automobiles", "Auto Components", "Aviation", "Banking", "Cement", "Consumer Durables", "Ecommerce", "Education and Training", "Engineering and Capital Goods", "Financial Services"
         , "FMCG"
         , "Gems and Jewellery"
         , "Healthcare"
@@ -56,103 +51,16 @@ export class ProfileComponent extends BaseComponent implements OnInit {
         , "Textiles"
         , "Tourism and Hospitality"];
 
-    public selectedValue: string = "Male";
-    public selectedValue1: string = "Single";
-    public selectedNationality: string = "Indian";
-    public selectedNationality1: string = "Indian";
-    public selectedPRStatus: any = ['Indian'];
-    public value: Date = new Date();
-    public value1: Date = new Date();
-    public value2: Date = new Date();
-    public value3: Date = new Date();
-    public Industries1: Array<string> = ["Agriculture and Allied Industries", "Automobiles", "Auto Components", "Aviation", "Banking", "Cement", "Consumer Durables", "Ecommerce", "Education and Training", "Engineering and Capital Goods", "Financial Services"
-        , "FMCG"
-        , "Gems and Jewellery"
-        , "Healthcare"
-        , "Infrastructure"
-        , "Insurance"
-        , "IT and ITeS"
-        , "Manufacturing"
-        , "Media and Entertainment"
-        , "Metals And Mining"
-        , "Oil and Gas"
-        , "Pharmaceuticals"
-        , "Ports"
-        , "Power"
-        , "Railways"
-        , "Real Estate"
-        , "Renewable Energy"
-        , "Retail"
-        , "Roads"
-        , "Science and Technology"
-        , "Services"
-        , "Steel"
-        , "Telecommunications"
-        , "Textiles"
-        , "Tourism and Hospitality"];
-    public Industries2: Array<string> = ["Agriculture and Allied Industries", "Automobiles", "Auto Components", "Aviation", "Banking", "Cement", "Consumer Durables", "Ecommerce", "Education and Training", "Engineering and Capital Goods", "Financial Services"
-        , "FMCG"
-        , "Gems and Jewellery"
-        , "Healthcare"
-        , "Infrastructure"
-        , "Insurance"
-        , "IT and ITeS"
-        , "Manufacturing"
-        , "Media and Entertainment"
-        , "Metals And Mining"
-        , "Oil and Gas"
-        , "Pharmaceuticals"
-        , "Ports"
-        , "Power"
-        , "Railways"
-        , "Real Estate"
-        , "Renewable Energy"
-        , "Retail"
-        , "Roads"
-        , "Science and Technology"
-        , "Services"
-        , "Steel"
-        , "Telecommunications"
-        , "Textiles"
-        , "Tourism and Hospitality"];
-    public Industries3: Array<string> = ["Agriculture and Allied Industries", "Automobiles", "Auto Components", "Aviation", "Banking", "Cement", "Consumer Durables", "Ecommerce", "Education and Training", "Engineering and Capital Goods", "Financial Services"
-        , "FMCG"
-        , "Gems and Jewellery"
-        , "Healthcare"
-        , "Infrastructure"
-        , "Insurance"
-        , "IT and ITeS"
-        , "Manufacturing"
-        , "Media and Entertainment"
-        , "Metals And Mining"
-        , "Oil and Gas"
-        , "Pharmaceuticals"
-        , "Ports"
-        , "Power"
-        , "Railways"
-        , "Real Estate"
-        , "Renewable Energy"
-        , "Retail"
-        , "Roads"
-        , "Science and Technology"
-        , "Services"
-        , "Steel"
-        , "Telecommunications"
-        , "Textiles"
-        , "Tourism and Hospitality"];
+    public edcuationTypeList: Array<string> = ["Doctorate", "Masters", "Post Graduation", "Graduation", "+2", "10th", "Specialisation"];
 
-    public EdcuationType: Array<string> = ["Doctorate", "Masters", "Post Graduation", "Graduation+2", "Specialisation"];
-    public EdcuationType2: Array<string> = ["Doctorate", "Masters", "Post Graduation", "Graduation+2", "Specialisation"];
-    public EdcuationType3: Array<string> = ["Doctorate", "Masters", "Post Graduation", "Graduation+2", "Specialisation"];
-    public selectedEdcuationType: any = ["Doctarate"];
-    public selectedIndustries: any = ["Textiles"];
-    public selectedIndustries1: any = ["Textiles"];
-    public selectedIndustries2: any = ["Textiles"];
-    public selectedIndustries3: any = ["Textiles"];
+    public selectedUserEducation: UserEducation;
+    public selectedUserExperience: UserExperience;
+
     constructor(
         public toasterService: ToasterService,
         public authenticationService: AuthenticationService,
         public messageEvent: MessageEvent,
+        private userService: UserService,
 
         private routerObj: Router) {
         super(toasterService, authenticationService, messageEvent);
@@ -161,11 +69,15 @@ export class ProfileComponent extends BaseComponent implements OnInit {
 
     ngOnInit() {
 
-        this.getReportData();
-    }
-    private getReportData(): void {
 
     }
+
+    ngAfterViewInit(): void {
+        this.userService.getUserProfile().subscribe(u => {
+            this.user = u;
+        });
+    }
+
     sourceList: Widget[] = [
         new Widget('onebyone'),
         new Widget('twobytwo'),
@@ -200,26 +112,60 @@ export class ProfileComponent extends BaseComponent implements OnInit {
     }
 
 
-    public addEducation() {
+    public onAddEducation() {
+        this.selectedUserEducation = new UserEducation();
         this.IsNew = true;
         this.DialogTitle = "Add Education";
         this.OpenDialogStatus = true;
-        debugger;
     }
-    public addEmployment() {
+
+    public onSaveEducation() {
+        this.user.Education.push(this.selectedUserEducation);
+        this.IsNew = true;
+        this.DialogTitle = "Add Education";
+        this.OpenDialogStatus = false;
+    }
+
+    public onCloseEducation() {
+        this.OpenDialogStatus = false;
+    }
+
+    public onAddEmployment() {
+        this.selectedUserExperience = new UserExperience();
         this.IsNew = true;
         this.DialogTitle = "Add Employment";
         this.OpenDialogStatus1 = true;
         debugger;
     }
+
+    public onSaveEmployment() {
+        this.user.Experience.push(this.selectedUserExperience);
+        this.IsNew = true;
+        this.DialogTitle = "Add Experience";
+        this.OpenDialogStatus1 = false;
+    }
+
+    public onCloseEmployment() {
+        this.OpenDialogStatus1 = false;
+    }
+
     public closeConfirmation() {
         this.OpenConfirmationStatus1 = false;
     }
     public closeDialog1() {
         this.OpenDialogStatus1 = false;
     }
+
+    public onCancel() {
+        this.userService.getUserProfile().subscribe(u => {
+            this.user = u;
+        });
+    }
+
     public onSave() {
-        debugger;
+        this.userService.updateUserProfile(this.user).subscribe(u => {
+            this.showSuccess("Success", "Profile updated successfully");
+        });
     }
 
 }

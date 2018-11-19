@@ -1,23 +1,14 @@
-import { Component, OnInit, HostListener, Input, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
-import { DialogModule } from '@progress/kendo-angular-dialog';
-
-import { GridModule } from '@progress/kendo-angular-grid';
-import { BaseComponent } from '../shared/base-component';
-import { Navigation, UserProfile } from "../models/domain/user-entities";
-import { Router, NavigationEnd } from '@angular/router';
-
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToasterService } from 'angular2-toaster/angular2-toaster';
+import { MyConstants } from '../models/domain/my-constants';
+import { Client, Navigation, Organization, UserProfile, vMapOrganization } from "../models/domain/user-entities";
+import { MessageEvent } from '../models/utilities/broadcaster';
+import { KeyConstants } from '../models/utilities/Guid';
+import { GlobalVariables } from '../models/utilities/handy-entities';
 import { AuthenticationService } from '../services/authentication.service';
 import { UserService } from '../services/user.service';
-import { Broadcaster, MessageEvent } from '../models/utilities/broadcaster';
-import { Guid, InputDataTypeConstants, InputControlTypeConstants, InputSourceTypeConstants, KeyConstants } from '../models/utilities/Guid';
-
-import { Organization, vMapOrganization } from '../models/domain/user-entities';
-import { ChangePassword, Client } from '../models/domain/user-entities';
-
-import { MyConstants } from '../models/domain/my-constants';
-import { GlobalVariables } from '../models/utilities/handy-entities';
-
+import { BaseComponent } from '../shared/base-component';
 
 @Component({
     selector: 'app-dashboard',

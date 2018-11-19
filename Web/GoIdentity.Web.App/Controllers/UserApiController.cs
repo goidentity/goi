@@ -57,7 +57,7 @@ namespace GoIdentity.Web.Controllers
 
         [Route("[action]")]
         [HttpGet]
-        public IActionResult UpdateUserProfile(User user)
+        public IActionResult UpdateUserProfile([FromBody]User user)
         {
             var loggedInUserId = this.LoggedInUserId;
             return Ok(this.userBusinessAccess.UpdateUserProfile(user));

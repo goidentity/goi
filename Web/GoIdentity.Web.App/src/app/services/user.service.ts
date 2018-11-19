@@ -6,7 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 import { BaseService } from './base.service';
 import { AuthenticationService } from './authentication.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Navigation, UserProfile, MyUserProfile } from "../models/domain/user-entities";
+import { Navigation, UserProfile, MyUserProfile, User } from "../models/domain/user-entities";
 import { ChangePassword, Client } from '../models/domain/user-entities';
 
 import { AccessControl, vAccessControl } from '../models/domain/accesscontrol-entities';
@@ -29,57 +29,13 @@ export class UserService extends BaseService {
     register(registerViewModel: RegisterViewModel) {
         return this.authHttp.post(this.baseServiceUrl + 'Register', JSON.stringify(registerViewModel));
     }
-    
-    getUserProfile(): Observable<UserProfile> {
-        return this.authHttp.get<UserProfile>(this.baseServiceUrl + 'GetUserProfile/');
+
+    getUserProfile(): Observable<User> {
+        return this.authHttp.get<User>(this.baseServiceUrl + 'GetUserProfile/');
     }
 
-    getMyUserProfile(): Observable<MyUserProfile> {
-        return this.authHttp.get<MyUserProfile>(this.baseServiceUrl + 'GetMyUserProfile/');
-    }
-
-    //createUserProfile(userProfileViewmodel: UserProfileViewmodel) {
-    //    return this.authHttp.post(this.baseServiceUrl + 'CreateUserProfile', JSON.stringify(userProfileViewmodel));
-    //}
-    public createUserProfile(firstname: string, lastname: string, middlename: string, displayname: string, dob: string, mobilenumber: string, alternatenumber: string, email: string, address1: string): Observable<any> {
-        let tokenEndpoint: string = "/api/UserApi/CreateUserProfile";
-        let model: any = {
-            FirstName: firstname,
-            LastName: lastname,
-            MiddleName: middlename,
-            DisplayName: displayname,
-            DOB: dob,
-            MobileNumber: mobilenumber,
-            AlternateNumber: alternatenumber,
-            Email: email,
-            Address1: address1,
-            Address2: firstname,
-            Area: lastname,
-            State: lastname,
-            City: lastname,
-            Zip: lastname,
-            Gender: lastname,
-            Profession: lastname,
-            Company: lastname,
-            RolesPlayed: lastname,
-            RolesInterested: lastname,
-            UserId: lastname
-        }
-        return this.authHttp.post<any>(tokenEndpoint, model).pipe(map(result => {
-            if (result != undefined) {
-                return result;
-            }
-        }));
-    }
-
-    updateMyUserProfile(myUserProfile: MyUserProfile) {
-        return this.authHttp.post(this.baseServiceUrl + 'UpdateMyUserProfile', JSON.stringify(myUserProfile)).subscribe(data => {
-            console.log('done with updation');
-        });
-    }
-
-    updateUserProfile(userProfileViewmodel: UserProfileViewmodel) {
-        return this.authHttp.post(this.baseServiceUrl + 'UpdateUserProfile', JSON.stringify(userProfileViewmodel));
+    updateUserProfile(user: User): Observable<boolean> {
+        return this.authHttp.post<boolean>(this.baseServiceUrl + 'UpdateUserProfile/', JSON.stringify(user));
     }
 
     forgotPassword(userName: string): Observable<boolean> {
@@ -87,8 +43,7 @@ export class UserService extends BaseService {
     }
 }
 
-export class RegisterViewModel
-{
+export class RegisterViewModel {
     FirstName: string;
     LastName: string;
     Password: string;
@@ -96,8 +51,7 @@ export class RegisterViewModel
     MobileNumber: string;
 }
 
-export class UserProfileViewmodel
-{
+export class UserProfileViewmodel {
     FirstName: string;
     LastName: string;
     MiddleName: string;

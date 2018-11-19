@@ -45,6 +45,7 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
 
             return result;
         }
+
         public User Register(User user, string password)
         {
             var primaryDbContext = this.unitOfWork.GetIdentityDbContext();
@@ -74,9 +75,11 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
         public User GetUserProfile(int? userId = null)
         {
             var result = this.unitOfWork.GetIdentityDbContext().Users.First(u => u.UserId == userId);
-            result.PersonnelInfo = this.unitOfWork.GetIdentityDbContext().UserPersonnelInfos.First(u => u.UserId == userId);
+            result.PersonnelInfo = this.unitOfWork.GetIdentityDbContext().UserPersonnelInfos.FirstOrDefault(u => u.UserId == userId);
             result.Experience = this.unitOfWork.GetIdentityDbContext().UserExperiences.Where(u => u.UserId == userId).ToList();
             result.Education = this.unitOfWork.GetIdentityDbContext().UserEducations.Where(u => u.UserId == userId).ToList();
+
+            if (result.PersonnelInfo == null) result.PersonnelInfo = new UserPersonnelInfo();
 
             return result;
         }

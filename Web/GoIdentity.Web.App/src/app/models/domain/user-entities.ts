@@ -172,14 +172,22 @@ export class UserPersonnelInfo {
     public PRStatus: string;
 
     public PrimaryIndustryOfWork: string;
+    public PrimaryIndustryOfWorkArray: string[];
     public SecondaryIndustryOfWork: string;
+    public SecondaryIndustryOfWorkArray: string[];
 
     public PrimaryIndustryOfBusiness: string;
+    public PrimaryIndustryOfBusinessArray: string[];
     public SecondaryIndustryOfBusiness: string;
+    public SecondaryIndustryOfBusinessArray: string[];
 
     public FutureRole: string;
+
     public FutureIndustryOfWork: string;
+    public FutureIndustryOfWorkArray: string[];
+
     public FutureIndustryOfBusiness: string;
+    public FutureIndustryOfBusinessArray: string[];
 }
 
 export class UserExperience {
@@ -213,6 +221,7 @@ export class User {
     public UserName: string;
     public Password: string;
     public FirstName: string;
+    public MiddleName: string;
     public LastName: string;
 
     public Email: string;

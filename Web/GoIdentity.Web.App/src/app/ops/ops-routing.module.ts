@@ -4,7 +4,6 @@ import { AuthGuard } from '../services/authguard.service';
 
 import { DashboardComponent } from './dashboard.component';
 import { MyidentityComponent } from './myidentity.component';
-import { MyprofileComponent } from './myprofile.component';
 import { NotificationsComponent } from './notifications.component';
 import { AboutComponent } from './about.component';
 import { ContactusComponent } from './contactus.component';
@@ -24,18 +23,11 @@ const routes: Routes = [
             title: 'Dashboard'
         }
     }, {
-        path: 'myidentity',
-        component: MyidentityComponent,
+        path: 'profile',
+        component: ProfileComponent,
         canActivate: [AuthGuard],
         data: {
-            title: 'myidentity'
-        }
-    }, {
-        path: 'myprofile',
-        component: MyprofileComponent,
-        canActivate: [AuthGuard],
-        data: {
-            title: 'myprofile'
+            title: 'Profile'
         }
     }, {
         path: 'notifications',

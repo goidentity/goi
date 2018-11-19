@@ -85,7 +85,6 @@
     <Build Include="Core\Tables\dmnCategory.sql" />
     <Build Include="Core\Tables\dmnIndustryCategoryMap.sql" />
     <Build Include="Core\Tables\trUserScore.sql" />
-    <Build Include="Core\Stored Procedures\createUserProfile.sql" />
     <Build Include="Core\Stored Procedures\getUserProfile.sql" />
     <Build Include="Core\Stored Procedures\updateUserProfile.sql" />
     <Build Include="Core\Views\vUserScore.sql" />
@@ -97,8 +96,6 @@
     <Build Include="Score\User Defined Types\EngineResponseType.sql" />
     <Build Include="Score\Stored Procedures\updateEngineLogs.sql" />
     <Build Include="Score\Stored Procedures\UpdateAuthToken.sql" />
-    <Build Include="Core\Stored Procedures\getMyUserProfile.sql" />
-    <Build Include="Core\Stored Procedures\updateMyUserProfile.sql" />
     <Build Include="Core\Tables\trUserPersonnelInfo.sql" />
     <Build Include="Core\Tables\trUserEducation.sql" />
     <Build Include="Core\Tables\trUserExperience.sql" />
