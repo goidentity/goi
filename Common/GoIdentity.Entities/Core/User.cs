@@ -37,6 +37,8 @@ namespace GoIdentity.Entities.Core
         public List<UserExperience> Experience { get; set; }
         [NotMapped]
         public List<UserEducation> Education { get; set; }
+        [NotMapped]
+        public List<BusinessProfile> BusinessData { get; set; }
 
     }
 

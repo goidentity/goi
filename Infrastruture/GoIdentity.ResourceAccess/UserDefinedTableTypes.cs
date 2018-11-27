@@ -145,5 +145,27 @@ namespace GoIdentity.ResourceAccess
                 return result;
             }
         }
+
+        public static DataTable BusinessProfileType
+        {
+            get
+            {
+                var result = new DataTable();
+                var columnCollection = new DataColumnCollection();
+                columnCollection
+                .AddColumn("BusinessProfileId", DbColumnType.Int)
+                .AddColumn("UserId", DbColumnType.Int)
+
+                .AddColumn("YearOfEstablishment", DbColumnType.Short)
+                .AddColumn("ComponySize", DbColumnType.Int)
+                .AddColumn("Role", DbColumnType.String)
+                ;
+
+                foreach (var item in columnCollection)
+                    result.Columns.Add(item);
+
+                return result;
+            }
+        }
     }
 }

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GoIdentity.Entities.Core
 {
@@ -12,10 +7,11 @@ namespace GoIdentity.Entities.Core
     public class BusinessProfile : Entity
     {
         [Key]
-        public string CompanyId { get; set; }
+        public int BusinessProfileId { get; set; }
+        public int UserId { get; set; }
         public string CompanyName { get; set; }
-        public string StartDate { get; set; }
-        public string EndDate { get; set; }
+        public short YearOfEstablishment { get; set; }
+        public int ComponySize { get; set; }
         public string Role { get; set; }
     }
 }

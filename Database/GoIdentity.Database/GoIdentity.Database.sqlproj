@@ -86,7 +86,6 @@
     <Build Include="Core\Tables\dmnIndustryCategoryMap.sql" />
     <Build Include="Core\Tables\trUserScore.sql" />
     <Build Include="Core\Stored Procedures\getUserProfile.sql" />
-    <Build Include="Core\Stored Procedures\updateUserProfile.sql" />
     <Build Include="Core\Views\vUserScore.sql" />
     <Build Include="Core\Tables\trUserNotification.sql" />
     <Build Include="Security\Scores.sql" />
@@ -105,6 +104,8 @@
     <Build Include="Core\User Defined Types\UserPersonnelInfoType.sql" />
     <Build Include="Core\Stored Procedures\updateUser.sql" />
     <Build Include="Core\Stored Procedures\createUser.sql" />
+    <Build Include="Core\Tables\trBusinessProfile.sql" />
+    <Build Include="Core\User Defined Types\BusinessProfileType.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

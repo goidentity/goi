@@ -120,6 +120,7 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
             var userPersonnelInfoTypeTable = UserDefinedTableTypes.UserPersonnelInfoType;
             var userEducationTypeTable = UserDefinedTableTypes.UserEducationType;
             var userExperienceTypeTable = UserDefinedTableTypes.UserExperienceType;
+            var userBusinessProfileTypeTable = UserDefinedTableTypes.BusinessProfileType;
 
             userTypeTable.Rows.Add(new object[]
                 {
@@ -199,6 +200,19 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
                 });
             }
 
+            foreach (var item in user.BusinessData)
+            {
+                userBusinessProfileTypeTable.Rows.Add(new object[]
+                {
+                    item.BusinessProfileId,
+                    item.UserId,
+
+                    item.YearOfEstablishment,
+                    item.ComponySize,
+                    item.Role
+                });
+            }
+
             var parmsCollection = new ParmsCollection();
             var result = this.unitOfWork.GetIdentityDbContext(true).ExecuteStoredProcedure<User>("[Core].[updateUser]",
                             parmsCollection
@@ -206,6 +220,7 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
                             .AddParm("@userPersonnelInfo", SqlDbType.Structured, userPersonnelInfoTypeTable, "[Core].[UserPersonnelInfoType]")
                             .AddParm("@userExperience", SqlDbType.Structured, userExperienceTypeTable, "[Core].[UserExperienceType]")
                             .AddParm("@userEducation", SqlDbType.Structured, userEducationTypeTable, "[Core].[UserEducationType]")
+                            .AddParm("@userBusiness", SqlDbType.Structured, userBusinessProfileTypeTable, "[Core].[BusinessProfileType]")
                             ).FirstOrDefault();
 
             return true;

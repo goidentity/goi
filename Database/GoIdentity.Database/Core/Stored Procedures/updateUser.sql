@@ -2,7 +2,8 @@
 	@user [Core].[UserType] Readonly,
 	@userPersonnelInfo [Core].[UserPersonnelInfoType] Readonly,
 	@userExperience [Core].[UserExperienceType] Readonly,
-	@userEducation [Core].[UserEducationType] Readonly
+	@userEducation [Core].[UserEducationType] Readonly,
+	@userBusiness [Core].[BusinessProfileType] Readonly
 AS
 BEGIN
 
@@ -25,6 +26,7 @@ BEGIN
 	delete from Core.trUserPersonnelInfo where UserId = @userId;
 	delete from Core.trUserExperience where UserId = @userId;
 	delete from Core.trUserEducation where UserId = @userId;
+	delete from Core.trBusinessProfile where UserId = @userId;
 	
 	INSERT INTO Core.trUserPersonnelInfo ([UserId], DoB,Gender,PlaceOfBirth,CityOfLiving,
 	CityOfWork,MaritalStatus,BirthOfOrigin,Nationality,Citizenship,PRStatus,
@@ -49,5 +51,10 @@ BEGIN
 	CreatedBy, CreatedDate, ModifiedBy, ModifiedDate)
 	SELECT [UserId], DegreeType, Title , UniversityOrBoard , InstitutionOrBoard , YearOfPass , Specialization ,
 	@userId,GETDATE(), @userId, GETDATE() FROM @userEducation;
+
+	INSERT INTO Core.trBusinessProfile([UserId], CompanyName, YearOfEstablishment, ComponySize, Role ,
+	CreatedBy, CreatedDate, ModifiedBy, ModifiedDate)
+	SELECT [UserId], CompanyName, YearOfEstablishment, ComponySize, Role ,
+	@userId,GETDATE(), @userId, GETDATE() FROM @userBusiness;
 
 END

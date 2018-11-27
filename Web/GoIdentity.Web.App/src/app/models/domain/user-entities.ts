@@ -215,6 +215,16 @@ export class UserEducation {
     public Specialization: string;
 }
 
+export class BusinessProfile {
+    public BusinessProfileId: number;
+    public UserId: number;
+
+    public CompanyName: string;
+    public YearOfEstablishment: number;
+    public ComponySize: string;
+    public Role: string;    
+}
+
 export class User {
     public UserId: number;
 
@@ -236,4 +246,5 @@ export class User {
     public PersonnelInfo: UserPersonnelInfo;
     public Experience: UserExperience[];
     public Education: UserEducation[];
+    public BusinessData: BusinessProfile[];
 }
