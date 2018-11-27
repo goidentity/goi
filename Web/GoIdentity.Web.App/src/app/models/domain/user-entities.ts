@@ -201,6 +201,13 @@ export class UserExperience {
     public EndDate: Date;
     public IsCurrent: boolean;
     public ReasonForChange: string;
+
+    public PersonalURL: string;
+    public PersonalUrlKeyWords: string;
+
+    public ListingURL: string;
+    public ListingUrlKeyWords: string;
+
 }
 
 export class UserEducation {

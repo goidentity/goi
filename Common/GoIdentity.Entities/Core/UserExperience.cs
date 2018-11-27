@@ -19,5 +19,11 @@ namespace GoIdentity.Entities.Core
         public DateTime? EndDate { get; set; }
         public bool IsCurrent { get; set; }
         public string ReasonForChange { get; set; }
+
+        public string PersonalURL { get; set; }
+        public string PersonalUrlKeyWords { get; set; }
+
+        public string ListingURL { get; set; }
+        public string ListingUrlKeyWords { get; set; }
     }
 }

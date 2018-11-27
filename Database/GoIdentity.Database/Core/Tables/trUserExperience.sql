@@ -11,6 +11,12 @@
 	IsCurrent bit,
 	ReasonForChange varchar(500),
 
+	PersonalURL VARCHAR(500),
+	PersonalUrlKeyWords VARCHAR(5000),
+
+	ListingURL VARCHAR(500),
+	ListingUrlKeyWords VARCHAR(5000),
+
 	[CreatedBy] INT NOT NULL,
 	[CreatedDate] DATETIME NOT NULL, 
     [ModifiedBy] INT NOT NULL, 

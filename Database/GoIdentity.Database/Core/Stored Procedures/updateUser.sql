@@ -43,8 +43,10 @@ BEGIN
 	FROM @userPersonnelInfo;
 
 	INSERT INTO Core.trUserExperience ([UserId], OrganizationName , Designation , Roles , StartDate , EndDate , IsCurrent ,ReasonForChange,
+	PersonalURL, PersonalUrlKeyWords, ListingURL, ListingUrlKeyWords,
 	CreatedBy, CreatedDate, ModifiedBy, ModifiedDate)
 	SELECT [UserId], OrganizationName , Designation , Roles , StartDate , EndDate , IsCurrent ,ReasonForChange,
+	PersonalURL, PersonalUrlKeyWords, ListingURL, ListingUrlKeyWords,
 	@userId,GETDATE(), @userId, GETDATE() FROM @userExperience;
 
 	INSERT INTO Core.trUserEducation([UserId], EducationType, DegreeType, Title , UniversityOrBoard , InstitutionOrBoard , YearOfPass , Specialization ,
