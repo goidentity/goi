@@ -1,12 +1,6 @@
-import { Injectable, Injector } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpEventType, HttpHeaders, HttpErrorResponse, HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpEventType, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-
-import { AuthenticationService } from './authentication.service';
-import { Broadcaster, MessageEvent } from '../models/utilities/broadcaster';
-
-import { JwtHelperService } from '@auth0/angular-jwt';
 
 export class AuthInterceptor implements HttpInterceptor {
 

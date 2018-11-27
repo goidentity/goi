@@ -1,10 +1,8 @@
-﻿import { catchError } from 'rxjs/operators';
-import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http';
+﻿import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-import { BaseService } from './base.service';
 import { AuthenticationService } from './authentication.service';
+import { BaseService } from './base.service';
 
 @Injectable()
 export class ConnectorService extends BaseService {

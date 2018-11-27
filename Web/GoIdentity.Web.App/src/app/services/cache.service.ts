@@ -1,6 +1,4 @@
-
-import { throwError as observableThrowError, of as observableOf, Observable } from 'rxjs';
-
+import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Subject } from 'rxjs/Rx';
 

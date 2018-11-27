@@ -1,8 +1,8 @@
-import { throwError as observableThrowError, Observable, pipe } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { JwtModule, JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthenticationService {

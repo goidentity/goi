@@ -1,16 +1,8 @@
-import { catchError } from 'rxjs/operators';
-import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-import { BaseService } from './base.service';
 import { AuthenticationService } from './authentication.service';
-
-import { Navigation, UserProfile } from "../models/domain/user-entities";
-import { ChangePassword, Client } from '../models/domain/user-entities';
-
-import { AccessControl, vAccessControl } from '../models/domain/accesscontrol-entities';
-import { Role, MapUserRole, vMapUserRole } from '../models/domain/role-entities';
+import { BaseService } from './base.service';
 
 @Injectable()
 export class ScoreService extends BaseService {

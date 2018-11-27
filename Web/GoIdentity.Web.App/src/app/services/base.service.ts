@@ -1,10 +1,6 @@
-
-import {throwError as observableThrowError,  Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpEventType, HttpHeaders, HttpClient } from '@angular/common/http';
-
-
-
+import { throwError as observableThrowError } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
 
 @Injectable()

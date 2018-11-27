@@ -1,40 +1,35 @@
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { DialogModule } from '@progress/kendo-angular-dialog';
 import { GridModule } from '@progress/kendo-angular-grid';
-import { TabsModule } from 'ngx-bootstrap/tabs';
 import { RippleModule } from '@progress/kendo-angular-ripple';
-import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
-import { BsDropdownModule, AccordionModule } from 'ngx-bootstrap';
-import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
-import { AsideToggleDirective } from './shared/aside.directive';
-import { BreadcrumbsComponent } from './shared/breadcrumb.component';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
-
+import { SortableModule } from '@progress/kendo-angular-sortable';
+//import { SpinnerComponentModule } from 'ng2-component-spinner';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { AccordionModule, BsDropdownModule } from 'ngx-bootstrap';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+//import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
+import { DeviceDetectorModule } from 'ngx-device-detector';
+import { AppComponent } from './app.component';
 // Routing Module
 import { AppRoutingModule } from './app.routing';
-import { AppComponent } from './app.component';
-import { CustomErrorHandler } from './shared/custom-errorHandler';
-
 //Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
-
-import { AuthGuard } from './services/authguard.service';
-import { AuthenticationService } from './services/authentication.service'
-//import { SpinnerComponentModule } from 'ng2-component-spinner';
-import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
-import { SortableModule } from '@progress/kendo-angular-sortable';
-//Loading
-import { Broadcaster, MessageEvent } from './models/utilities/broadcaster';
-import { SettingsModule } from './settings/settings.module';
 import { AuthInterceptor } from './services/auth.interceptor';
-import { JwtModule, JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
-//import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
-import { DeviceDetectorModule } from 'ngx-device-detector';
-import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
+import { AuthenticationService } from './services/authentication.service';
+import { AuthGuard } from './services/authguard.service';
+import { SettingsModule } from './settings/settings.module';
+import { AsideToggleDirective } from './shared/aside.directive';
+import { BreadcrumbsComponent } from './shared/breadcrumb.component';
+import { CustomErrorHandler } from './shared/custom-errorHandler';
+import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
+import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 
 export function getToken() {
     return localStorage.getItem('id_token');
