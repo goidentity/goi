@@ -3,6 +3,7 @@
 	[UserEducationId] INT NOT NULL,
 	[UserId] INT NOT NULL,
 
+	EducationType varchar(500),
 	DegreeType varchar(500),
 	Title varchar(500),
 	UniversityOrBoard varchar(500),

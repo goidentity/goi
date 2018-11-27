@@ -207,6 +207,7 @@ export class UserEducation {
     public UserEducationId: number;
     public UserId: number;
 
+    public EducationType: string;
     public DegreeType: string;
     public Title: string;
     public UniversityOrBoard: string;

@@ -47,9 +47,9 @@ BEGIN
 	SELECT [UserId], OrganizationName , Designation , Roles , StartDate , EndDate , IsCurrent ,ReasonForChange,
 	@userId,GETDATE(), @userId, GETDATE() FROM @userExperience;
 
-	INSERT INTO Core.trUserEducation([UserId], DegreeType, Title , UniversityOrBoard , InstitutionOrBoard , YearOfPass , Specialization ,
+	INSERT INTO Core.trUserEducation([UserId], EducationType, DegreeType, Title , UniversityOrBoard , InstitutionOrBoard , YearOfPass , Specialization ,
 	CreatedBy, CreatedDate, ModifiedBy, ModifiedDate)
-	SELECT [UserId], DegreeType, Title , UniversityOrBoard , InstitutionOrBoard , YearOfPass , Specialization ,
+	SELECT [UserId], EducationType, DegreeType, Title , UniversityOrBoard , InstitutionOrBoard , YearOfPass , Specialization ,
 	@userId,GETDATE(), @userId, GETDATE() FROM @userEducation;
 
 	INSERT INTO Core.trBusinessProfile([UserId], CompanyName, YearOfEstablishment, ComponySize, Role ,
