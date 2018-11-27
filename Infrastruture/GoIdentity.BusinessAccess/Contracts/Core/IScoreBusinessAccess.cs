@@ -11,5 +11,6 @@ namespace GoIdentity.BusinessAccess.Contracts.Core
     {
         List<vUserScore> GetLatestScoreByUserId(int userId);
         List<UserNotification> GetNotifications(int userId);
+        List<ProfileScore> GetProfileScore(int userId);
     }
 }

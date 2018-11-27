@@ -106,6 +106,7 @@
     <Build Include="Core\Stored Procedures\createUser.sql" />
     <Build Include="Core\Tables\trBusinessProfile.sql" />
     <Build Include="Core\User Defined Types\BusinessProfileType.sql" />
+    <Build Include="Score\Stored Procedures\getProfileScore.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

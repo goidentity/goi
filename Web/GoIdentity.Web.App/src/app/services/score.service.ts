@@ -30,4 +30,8 @@ export class ScoreService extends BaseService {
         return this.authHttp.get<any[]>(this.baseServiceUrl + 'GetNotifications/' + userId);
     }
 
+    getProfileScore(userId: number): Observable<any[]> {
+        return this.authHttp.get<any[]>(this.baseServiceUrl + 'GetProfileScore/' + userId);
+    }
+
 }

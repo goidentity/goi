@@ -1,11 +1,8 @@
 ﻿using GoIdentity.BusinessAccess.Contracts.Core;
 using GoIdentity.Entities.Core;
 using GoIdentity.ResourceAccess.Contracts.Core;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GoIdentity.BusinessAccess.Implementation.Core
 {
@@ -34,6 +31,11 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
         public List<UserNotification> GetNotifications(int userId)
         {
             return this.scoreDataAccess.GetNotifications(userId);
+        }
+
+        public List<ProfileScore> GetProfileScore(int userId)
+        {
+            return this.scoreDataAccess.GetProfileScore(userId);
         }
     }
 }

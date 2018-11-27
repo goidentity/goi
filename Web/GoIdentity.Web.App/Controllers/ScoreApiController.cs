@@ -31,5 +31,9 @@ namespace GoIdentity.Web.App.Controllers
         [Route("[action]/{userId:int}")]
         [HttpGet]
         public IActionResult GetNotifications(int userId) => Ok(_scoreBusinessAccess.GetNotifications(userId));
+
+        [Route("[action]/{userId:int}")]
+        [HttpGet]
+        public IActionResult GetProfileScore(int userId) => Ok(_scoreBusinessAccess.GetProfileScore(userId));
     }
 }
