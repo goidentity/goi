@@ -21,6 +21,12 @@ declare @professionalScore DECIMAL (18,2) = 0;
 declare @businessScore DECIMAL (18,2) = 0;
 declare @socialScore DECIMAL (18,2) = 5;
 
+declare @esFactor DECIMAL (18,2) = .5
+declare @isFactor DECIMAL (18,2) = .5
+declare @psFactor DECIMAL (18,2) = .5
+declare @bsFactor DECIMAL (18,2) = .5
+declare @ssFactor DECIMAL (18,2) = 1
+
 IF EXISTS (SELECT * FROM Core.trUserPersonnelInfo
 WHERE UserId = @userId
 AND 
@@ -38,6 +44,7 @@ END
 
 IF EXISTS (SELECT * FROM Core.trUserEducation WHERE UserId = @userId and EducationType = 'Highest')
 BEGIN
+	SET @basicScore = (@basicScore + 2)*@esFactor;
 	SET @educationalScore = @educationalScore + 2;
 END
 
@@ -63,6 +70,7 @@ END
 
 IF EXISTS (SELECT * FROM Core.trUserPersonnelInfo WHERE UserId = @userId and LEN(PrimaryIndustryOfWork) > 1)
 BEGIN
+	SET @basicScore = (@basicScore + 15)*@isFactor;
 	SET @industryScore = 7.5;
 END
 
@@ -73,6 +81,7 @@ END
 
 IF EXISTS (SELECT * FROM Core.trUserExperience WHERE UserId = @userId and LEN(OrganizationName) > 1)
 BEGIN
+	SET @basicScore = (@basicScore + 15)*@psFactor;
 	SET @professionalScore = 15;
 END
 
@@ -88,6 +97,7 @@ END
 
 IF EXISTS (SELECT * FROM Core.trBusinessProfile WHERE UserId = @userId and LEN(CompanyName) > 1)
 BEGIN
+	SET @basicScore = (@basicScore + 10)*@bsFactor;
 	SET @businessScore = 10;
 END
 
@@ -112,6 +122,11 @@ BEGIN
 	SET @socialScore = @socialScore + 10;
 END
 
+SET @educationalScore = @educationalScore*@esFactor
+SET @industryScore = @industryScore*@isFactor
+SET @professionalScore = @professionalScore*@psFactor
+SET @businessScore = @businessScore*@bsFactor
+SET @socialScore = @socialScore*@psFactor
 
 INSERT INTO @profileScore (Profile , Educational , Industry ,Professional , Business , Social , Total)
 values (@basicScore, @educationalScore, @industryScore, @professionalScore, @businessScore, @socialScore, 
