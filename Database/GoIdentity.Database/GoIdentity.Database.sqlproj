@@ -107,6 +107,9 @@
     <Build Include="Core\Tables\trBusinessProfile.sql" />
     <Build Include="Core\User Defined Types\BusinessProfileType.sql" />
     <Build Include="Score\Stored Procedures\getProfileScore.sql" />
+    <Build Include="Score\vUserTokenView.sql" />
+    <Build Include="Score\Tables\trUserTokenResponse.sql" />
+    <Build Include="Score\Tables\trUserTokenResponseDetail.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
