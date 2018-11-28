@@ -290,6 +290,71 @@
 
         <tab>
             <ng-template tabHeading>
+                <i class="fa fa-copyright"></i> Business
+            </ng-template>
+            <div>
+                <div class=" ipro-side-table">
+                    <div class="form-group">
+                        <button kendoButton (click)="onAddBusiness()" [primary]="true"><i class="k-icon k-i-plus"></i>Business</button>
+                    </div>
+
+                    <kendo-grid [data]="user.BusinessData">
+                        <kendo-grid-column field="CompanyName" title="Company Name" width="150">
+                        </kendo-grid-column>
+                        <kendo-grid-column field="Year" title="Year Of Establishment" width="50">
+                        </kendo-grid-column>
+                        <kendo-grid-column field="CompanySize" title="Company Size" width="50">
+                        </kendo-grid-column>                        
+                        <kendo-grid-column field="Role" title="Role"  width="50">
+                        </kendo-grid-column>
+
+                    </kendo-grid>
+                </div>
+                <div class="example-wrapper" *ngIf="OpenDialogStatusBusiness">
+                    <div id="{{themepanel}}">
+                        <kendo-dialog [minWidth]="250" [width]="450" title="{{ DialogTitle }}" (close)="closeDialogBusiness()">
+
+
+                            <div class="form-group">
+                                <label> Company Name <span class="startMark">*</span></label>
+                                <input type="text" [(ngModel)]="selectedUserBusiness.CompanyName" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Year Of Establishment <span class="startMark">*</span></label>
+                                <input type="text" [(ngModel)]="selectedUserBusiness.Year" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Company Size <span class="startMark">*</span></label>
+                                <input type="text" [(ngModel)]="selectedUserBusiness.CompanySize" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Role <span class="startMark">*</span></label>
+                                <input type="text" [(ngModel)]="selectedUserBusiness.Role" class="form-control" />
+                            </div>                      
+
+
+                            <kendo-dialog-actions>
+                                <button kendoButton (click)="onSaveBusiness()" primary="true"><i class="fa fa-floppy-o"></i> &nbsp; Save</button>
+                                <button kendoButton (click)="onCloseBusiness()" class="buttonred"><i class="fa fa-ban"></i> &nbsp; Cancel</button>
+
+                            </kendo-dialog-actions>
+                        </kendo-dialog>
+                    </div>
+                </div>
+                <div *ngIf="OpenConfirmationStatusBusiness" id="{{themepanel}}">
+                    <kendo-dialog [minWidth]="250" [width]="450" title="Please confirm" (close)="closeConfirmation('cancel')">
+                        <p style="margin: 30px; text-align: center;">Are you sure you want to Delete?</p>
+                        <kendo-dialog-actions>
+                            <button kendoButton (click)="onDeleteRole()" primary="true">Yes</button>
+                            <button kendoButton (click)="closeConfirmation('no')">No</button>
+                        </kendo-dialog-actions>
+                    </kendo-dialog>
+                </div>
+            </div>
+        </tab>
+
+        <tab>
+            <ng-template tabHeading>
                 <i class="fa fa-copyright"></i> Future Aspirations
             </ng-template>
             <div class="row justify-content-left">

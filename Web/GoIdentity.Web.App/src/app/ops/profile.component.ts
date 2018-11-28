@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToasterService } from "angular2-toaster";
-import { User, UserEducation, UserExperience } from '../models/domain/user-entities';
+import { User, UserEducation, UserExperience, BusinessProfile } from '../models/domain/user-entities';
 import { MessageEvent } from '../models/utilities/broadcaster';
 import { AuthenticationService } from '../services/authentication.service';
 import { UserService } from '../services/user.service';
@@ -55,6 +55,7 @@ export class ProfileComponent extends BaseComponent implements OnInit, AfterView
 
     public selectedUserEducation: UserEducation;
     public selectedUserExperience: UserExperience;
+    public selectedUserBusiness: BusinessProfile;
 
     constructor(
         public toasterService: ToasterService,
@@ -202,11 +203,34 @@ export class ProfileComponent extends BaseComponent implements OnInit, AfterView
         this.OpenDialogStatus1 = false;
     }
 
+    public onAddBusiness() {
+        this.selectedUserBusiness = new BusinessProfile();
+        this.IsNew = true;
+        this.DialogTitle = "Add Business";
+        this.OpenDialogStatusBusiness = true;
+        debugger;
+    }
+
+    public onSaveBusiness() {
+        this.user.BusinessData.push(this.selectedUserBusiness);
+        this.IsNew = true;
+        this.DialogTitle = "Add Business";
+        this.OpenDialogStatusBusiness = false;
+    }
+
+    public onCloseBusiness() {
+        this.OpenDialogStatusBusiness = false;
+    }
+
     public closeConfirmation() {
         this.OpenConfirmationStatus1 = false;
     }
     public closeDialog1() {
         this.OpenDialogStatus1 = false;
+    }
+
+    public closeDialogBusiness() {
+        this.OpenDialogStatusBusiness = false;
     }
 
     public onCancel() {

@@ -69,6 +69,7 @@ export class BaseComponent {
     public IsNew: boolean;
     public OpenDialogStatus: boolean;
     public OpenDialogStatus1: boolean;
+    public OpenDialogStatusBusiness: boolean;
     
     public OpenConfirmationStatus: boolean;
     public ErrorMessages: string[];
@@ -82,6 +83,7 @@ export class BaseComponent {
     public closeDialog() {
         this.OpenDialogStatus = false;
         this.OpenDialogStatus1 = false;
+        this.OpenDialogStatusBusiness = false;
     }
 
     public openConfirmation() {
