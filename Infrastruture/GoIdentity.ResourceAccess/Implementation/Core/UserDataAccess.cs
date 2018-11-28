@@ -52,6 +52,7 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
             var userPersonnelInfoTypeTable = UserDefinedTableTypes.UserPersonnelInfoType;
             var userEducationTypeTable = UserDefinedTableTypes.UserEducationType;
             var userExperienceTypeTable = UserDefinedTableTypes.UserExperienceType;
+            var userBusinessTypeTable = UserDefinedTableTypes.BusinessProfileType;
 
             userTypeTable.Rows.Add(new object[]
                 {

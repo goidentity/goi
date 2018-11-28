@@ -13,6 +13,7 @@ namespace GoIdentity.Entities.Core
             this.PersonnelInfo = new UserPersonnelInfo();
             this.Experience = new List<UserExperience>();
             this.Education = new List<UserEducation>();
+            this.BusinessData = new List<BusinessProfile>();
         }
         [Key]
         public int UserId { get; set; }
