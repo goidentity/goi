@@ -110,6 +110,10 @@
     <Build Include="Score\vUserTokenView.sql" />
     <Build Include="Score\Tables\trUserTokenResponse.sql" />
     <Build Include="Score\Tables\trUserTokenResponseDetail.sql" />
+    <Build Include="Score\User Defined Types\UserTokenResponseDetailType.sql" />
+    <Build Include="Score\User Defined Types\UserTokenResponseType.sql" />
+    <Build Include="Score\Stored Procedures\updateUserTokenResponse.sql" />
+    <Build Include="Score\Stored Procedures\updateUserTokenResponseDetail.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

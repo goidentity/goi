@@ -12,5 +12,8 @@ namespace GoIdentity.ResourceAccess.Contracts.Core
         List<vUserScore> GetLatestScoreByUserId(int userId);
         List<UserNotification> GetNotifications(int userId);
         List<ProfileScore> GetProfileScore(int userId);
+        List<vUserToken> GetUserTokens(int userId);
+        bool UpdateUserTokenResponse(IEnumerable<UserTokenResponse> tokenResponse);
+        bool UpdateUserTokenResponseDetail(IEnumerable<UserTokenResponseDetail> responseDetail);
     }
 }

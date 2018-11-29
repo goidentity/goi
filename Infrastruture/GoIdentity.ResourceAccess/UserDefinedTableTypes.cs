@@ -167,5 +167,55 @@ namespace GoIdentity.ResourceAccess
                 return result;
             }
         }
+
+        public static DataTable UserTokenResponseType
+        {
+            get
+            {
+                var result = new DataTable();
+                var columnCollection = new DataColumnCollection();
+                columnCollection
+                    .AddColumn("UserTokenResponseId", DbColumnType.Int)
+                    .AddColumn("UserId", DbColumnType.Int)
+                    .AddColumn("Token", DbColumnType.String)
+                    .AddColumn("ProcessDate", DbColumnType.DateTime)
+                    .AddColumn("CreatedBy", DbColumnType.Int)
+                    .AddColumn("CreatedDate", DbColumnType.DateTime)
+                    .AddColumn("UpdatedBy", DbColumnType.Int)
+                    .AddColumn("UpdatedDate", DbColumnType.DateTime);
+                foreach (var item in columnCollection)
+                    result.Columns.Add(item);
+                return result;
+            }
+        }
+
+        public static DataTable UserTokenResponseDetail
+        {
+            get
+            {
+                var result = new DataTable();
+                var columnCollection = new DataColumnCollection();
+                columnCollection
+                    .AddColumn("UserTokenResponseDetailId", DbColumnType.Int)
+                    .AddColumn("UserTokenResponseId",DbColumnType.Int)
+                    .AddColumn("ProcessedDate",DbColumnType.DateTime)
+                    .AddColumn("ResponseDateFileName", DbColumnType.String)
+                    .AddColumn("NlpEntitiesFileName",DbColumnType.String)
+                    .AddColumn("NlpEntities",DbColumnType.String)
+                    .AddColumn("NlpSentimentFileName", DbColumnType.String)
+                    .AddColumn("NlpSentiment", DbColumnType.String)
+                    .AddColumn("NlpSyntaxFileName", DbColumnType.String)
+                    .AddColumn("NlpSyntax", DbColumnType.String)
+                    .AddColumn("NlpClassifyFileName", DbColumnType.String)
+                    .AddColumn("NlpClassify", DbColumnType.String)
+                    .AddColumn("CreatedBy", DbColumnType.Int)
+                    .AddColumn("CreatedDate", DbColumnType.DateTime)
+                    .AddColumn("UpdatedBy", DbColumnType.Int)
+                    .AddColumn("UpdatedDate", DbColumnType.DateTime);
+                foreach (var item in columnCollection)
+                    result.Columns.Add(item);
+                return result;
+            }
+        }
     }
 }

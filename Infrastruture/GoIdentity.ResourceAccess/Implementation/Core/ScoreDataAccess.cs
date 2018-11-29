@@ -37,5 +37,70 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
         {
             return this.unitOfWork.GetIdentityDbContext().UserNotifications.Where(n => n.UserId == userId).ToList();
         }
+
+        public List<vUserToken> GetUserTokens(int userId)
+        {
+            return this.unitOfWork.GetIdentityDbContext()
+                .ExecuteResultSet<vUserToken>("SELECT * FROM Cores.vUserTokenView WHERE UserId = @userId" + userId.ToString())
+                .ToList();
+        }
+
+        public bool UpdateUserTokenResponse(IEnumerable<UserTokenResponse> tokenResponse)
+        {
+            var tokenResponseTableType = UserDefinedTableTypes.UserTokenResponseType;
+            foreach(var item in tokenResponse)
+            {
+                tokenResponseTableType.Rows.Add(new object[]
+                {
+                    item.UserTokenResponseId,
+                    item.UserId,
+                    item.Token,
+                    item.ProcessDate,
+                    item.CreatedBy,
+                    item.CreatedDate,
+                    item.ModifiedBy,
+                    item.ModifiedDate
+                });
+            }
+            var parmsCollection = new ParmsCollection();
+            this.unitOfWork.GetIdentityDbContext(true).ExecuteStoredProcedure<int>("",
+                parmsCollection
+               .AddParm("@userTokenResponse", SqlDbType.Structured, tokenResponseTableType, "[Scores].[userTokenResponseType]"));
+
+            return true;
+        }
+        public bool UpdateUserTokenResponseDetail(IEnumerable<UserTokenResponseDetail> responseDetail)
+        {
+            var responseDetailType = UserDefinedTableTypes.UserTokenResponseDetail;
+            foreach (var item in responseDetail)
+            {
+                responseDetailType.Rows.Add(new object[]
+                {
+                    item.UserTokenResponseDetailId,
+                    item.UserTokenResponseId,
+                    item.ProcessedDate,
+                    item.ResponseDataFileName,
+                    item.NlpEntitiesFileName,
+                    item.NlpEntities,
+                    item.NlpSentimentFileName,
+                    item.NlpSentiment,
+                    item.NlpSyntaxFileName,
+                    item.NlpSyntax,
+                    item.NlpClassifyFileName,
+                    item.NlpClassify,
+                    item.CreatedBy,
+                    item.CreatedDate,
+                    item.ModifiedBy,
+                    item.ModifiedDate
+                });
+            }
+            var parmsCollection = new ParmsCollection();
+            this.unitOfWork.GetIdentityDbContext(true).ExecuteStoredProcedure<int>("",
+                parmsCollection
+               .AddParm("@userTokenResponseDetail", SqlDbType.Structured, responseDetailType, 
+               "[Scores].[userTokenResponseDetailType]"));
+
+            return true;
+        }
     }
 }

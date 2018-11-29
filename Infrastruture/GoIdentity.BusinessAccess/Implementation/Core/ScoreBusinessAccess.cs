@@ -37,5 +37,10 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
         {
             return this.scoreDataAccess.GetProfileScore(userId);
         }
+
+        public List<vUserToken> GetUserTokens(int userId)
+        {
+            return this.scoreDataAccess.GetUserTokens(userId);
+        }
     }
 }
