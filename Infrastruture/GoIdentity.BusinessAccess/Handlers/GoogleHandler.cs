@@ -1,4 +1,5 @@
 ﻿using GoIdentity.Entities.Scores;
+using Google.Cloud.Language.V1;
 using Newtonsoft.Json;
 using System;
 using System.Net;
@@ -16,6 +17,20 @@ namespace GoIdentity.BusinessAccess.Handlers
 
         }
 
+        public override string RawHandle(string input)
+        {
+            var url = @"https://www.googleapis.com/customsearch/v1?key=AIzaSyBAUIgRfOlx8e4OcsZm0CojOTbLnwNyYRs&cx=010411868023207416729:pkel_dw1rf8&q=";
+
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Clear();
+
+                var response = client.GetAsync(url + WebUtility.UrlEncode(input)).Result;
+
+                return response.Content.ReadAsStringAsync().Result;
+            }
+        }
+
         public override string Handle(Influencer influencer, UserInfluencerAuth userInfluencerAuthKey)
         {
             var url = @"https://www.googleapis.com/customsearch/v1?key=AIzaSyBAUIgRfOlx8e4OcsZm0CojOTbLnwNyYRs&cx=010411868023207416729:pkel_dw1rf8&q=";
@@ -25,9 +40,46 @@ namespace GoIdentity.BusinessAccess.Handlers
                 client.DefaultRequestHeaders.Clear();
 
                 var response = client.GetAsync(url + WebUtility.UrlEncode(userInfluencerAuthKey.User.FirstName + " " + userInfluencerAuthKey.User.LastName)).Result;
-                
+
                 return response.Content.ReadAsStringAsync().Result;
-            }            
+            }
+        }
+
+        public override dynamic ProcessDetailed(string text)
+        {
+            var client = LanguageServiceClient.Create();
+
+            var responseEntities = client.AnalyzeEntities(new Document()
+            {
+                Content = text,
+                Type = Document.Types.Type.PlainText
+            });
+
+            var responseSentiment = client.AnalyzeEntitySentiment(new Document()
+            {
+                Content = text,
+                Type = Document.Types.Type.PlainText
+            });
+
+            var responseSyntax = client.AnalyzeSyntax(new Document()
+            {
+                Content = text,
+                Type = Document.Types.Type.PlainText
+            });
+
+            var responseClassify = client.ClassifyText(new Document()
+            {
+                Content = text,
+                Type = Document.Types.Type.PlainText
+            });
+
+            return new
+            {
+                AnalyzeEntities = JsonConvert.SerializeObject(responseSentiment),
+                AnalyzeEntitySentiment = JsonConvert.SerializeObject(responseSentiment),
+                AnalyzeSyntax = JsonConvert.SerializeObject(responseSyntax),
+                ClassifyText = JsonConvert.SerializeObject(responseClassify)
+            };
         }
 
         public override string AuthorizeUser(Influencer influencer)
@@ -64,15 +116,15 @@ namespace GoIdentity.BusinessAccess.Handlers
                     redirect_uri = callBackUrl,
                     grant_type = "authorization_code"
                 });
-                var tokenresponse = await httpClient.PostAsync(authRelUrl, new StringContent(body,Encoding.UTF8, "application/json"));
+                var tokenresponse = await httpClient.PostAsync(authRelUrl, new StringContent(body, Encoding.UTF8, "application/json"));
                 if (tokenresponse?.IsSuccessStatusCode ?? false)
                 {
                     var token = await tokenresponse.Content.ReadAsStringAsync();
                     var tokenJson = JsonConvert.DeserializeObject<dynamic>(token);
-                    
-                    return (tokenJson.access_token,tokenJson.expires_in);
+
+                    return (tokenJson.access_token, tokenJson.expires_in);
                 }
-                return (string.Empty,0);
+                return (string.Empty, 0);
             }
         }
     }

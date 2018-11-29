@@ -35,5 +35,14 @@ namespace GoIdentity.Web.App.Controllers
         [Route("[action]/{userId:int}")]
         [HttpGet]
         public IActionResult GetProfileScore(int userId) => Ok(_scoreBusinessAccess.GetProfileScore(userId));
+
+        [Route("[action]/{userId:int}")]
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult RefreshScore(int userId)
+        {
+            _scoreBusinessAccess.RefreshScore(userId);
+            return Ok(true);
+        }
     }
 }

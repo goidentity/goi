@@ -198,20 +198,27 @@ namespace GoIdentity.ResourceAccess
                 columnCollection
                     .AddColumn("UserTokenResponseDetailId", DbColumnType.Int)
                     .AddColumn("UserTokenResponseId",DbColumnType.Int)
+
                     .AddColumn("ProcessedDate",DbColumnType.DateTime)
-                    .AddColumn("ResponseDateFileName", DbColumnType.String)
-                    .AddColumn("NlpEntitiesFileName",DbColumnType.String)
-                    .AddColumn("NlpEntities",DbColumnType.String)
-                    .AddColumn("NlpSentimentFileName", DbColumnType.String)
-                    .AddColumn("NlpSentiment", DbColumnType.String)
-                    .AddColumn("NlpSyntaxFileName", DbColumnType.String)
-                    .AddColumn("NlpSyntax", DbColumnType.String)
-                    .AddColumn("NlpClassifyFileName", DbColumnType.String)
-                    .AddColumn("NlpClassify", DbColumnType.String)
-                    .AddColumn("CreatedBy", DbColumnType.Int)
-                    .AddColumn("CreatedDate", DbColumnType.DateTime)
-                    .AddColumn("UpdatedBy", DbColumnType.Int)
-                    .AddColumn("UpdatedDate", DbColumnType.DateTime);
+                    .AddColumn("TokenLink", DbColumnType.String)
+                    .AddColumn("Count", DbColumnType.Int)
+                    .AddColumn("Description", DbColumnType.String)
+
+                    .AddColumn("AnalyzeEntities", DbColumnType.String)
+                    .AddColumn("AnalyzeEntitiesTokens", DbColumnType.String)
+                    .AddColumn("AnalyzeEntitiesScore", DbColumnType.Decimal)
+                    .AddColumn("AnalyzeEntitiesMagnitude", DbColumnType.Decimal)
+
+                    .AddColumn("AnalyzeEntitySentiment", DbColumnType.String)
+                    .AddColumn("AnalyzeEntitySentimentTokens", DbColumnType.String)
+                    .AddColumn("AnalyzeEntitySentimentScore", DbColumnType.Decimal)
+                    .AddColumn("AnalyzeEntitySentimentMagnitude", DbColumnType.Decimal)
+
+                    .AddColumn("AnalyzeSyntax", DbColumnType.String)
+                    .AddColumn("AnalyzeSyntaxTokens", DbColumnType.String)
+
+                    .AddColumn("ClassifyText", DbColumnType.String)
+                    .AddColumn("ClassifyTextTokens", DbColumnType.String);
                 foreach (var item in columnCollection)
                     result.Columns.Add(item);
                 return result;

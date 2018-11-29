@@ -69,6 +69,7 @@
     <Folder Include="Score\User Defined Types" />
     <Folder Include="Score\Stored Procedures" />
     <Folder Include="Core\User Defined Types" />
+    <Folder Include="Score\Views" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Core\Tables\trUser.sql" />
@@ -107,13 +108,13 @@
     <Build Include="Core\Tables\trBusinessProfile.sql" />
     <Build Include="Core\User Defined Types\BusinessProfileType.sql" />
     <Build Include="Score\Stored Procedures\getProfileScore.sql" />
-    <Build Include="Score\vUserTokenView.sql" />
     <Build Include="Score\Tables\trUserTokenResponse.sql" />
     <Build Include="Score\Tables\trUserTokenResponseDetail.sql" />
     <Build Include="Score\User Defined Types\UserTokenResponseDetailType.sql" />
     <Build Include="Score\User Defined Types\UserTokenResponseType.sql" />
     <Build Include="Score\Stored Procedures\updateUserTokenResponse.sql" />
     <Build Include="Score\Stored Procedures\updateUserTokenResponseDetail.sql" />
+    <Build Include="Score\Views\vUserTokenView.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

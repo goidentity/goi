@@ -1,23 +1,26 @@
 ﻿CREATE TYPE [Scores].UserTokenResponseDetailType AS TABLE
 (
+	[UserTokenResponseDetailId] INT NOT NULL,
 	[UserTokenResponseId] INT NOT NULL, 
 	
 	[ProcessedDate] DATETIME NULL,
-	[ResponseDataFileName] VARCHAR(8000) null,
+	[TokenLink] VARCHAR(MAX) NULL,
+	[Count] INT NULL,
+	[Description] VARCHAR(MAX) NULL,
 
-	[NlpEntitiesFileName]  VARCHAR(8000) null,
-	[NlpEntities]  VARCHAR(max) null,
+	[AnalyzeEntities] VARCHAR(MAX) NULL,
+	[AnalyzeEntitiesTokens] VARCHAR(MAX) NULL,
+	[AnalyzeEntitiesScore] DECIMAL(18,2) NULL,
+	[AnalyzeEntitiesMagnitude] DECIMAL(18,2) NULL,
 
-	[NlpSentimentFileName]  VARCHAR(8000) null,
-	[NlpSentiment]  VARCHAR(max) null,
+	[AnalyzeEntitySentiment] VARCHAR(MAX) NULL,
+	[AnalyzeEntitySentimentTokens] VARCHAR(MAX) NULL,
+	[AnalyzeEntitySentimentScore] DECIMAL(18,2) NULL,
+	[AnalyzeEntitySentimentMagnitude] DECIMAL(18,2) NULL,
 
-	[NlpSyntaxFileName]  VARCHAR(8000) null,
-	[NlpSyntax]  VARCHAR(max) null,
-
-	[NlpClassifyFileName]  VARCHAR(8000) null,
-	[NlpClassify]  VARCHAR(max) null,
-	[CreatedBy] INT NOT NULL,
-	[CreatedDate] DATETIME NOT NULL, 
-    [ModifiedBy] INT NOT NULL, 
-    [ModifiedDate] DATETIME NOT NULL
+	[AnalyzeSyntax] VARCHAR(MAX) NULL,
+	[AnalyzeSyntaxTokens] VARCHAR(MAX) NULL,
+	
+	[ClassifyText] VARCHAR(MAX) NULL,
+	[ClassifyTextTokens] VARCHAR(MAX) NULL
 )

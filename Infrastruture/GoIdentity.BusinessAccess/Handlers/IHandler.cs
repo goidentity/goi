@@ -1,4 +1,5 @@
-﻿using GoIdentity.Entities.Scores;
+﻿using Google.Cloud.Language.V1;
+using GoIdentity.Entities.Scores;
 using System.Threading.Tasks;
 
 namespace GoIdentity.BusinessAccess.Handlers
@@ -21,6 +22,16 @@ namespace GoIdentity.BusinessAccess.Handlers
         public Handler(ConnectorType connector)
         {
             this.Connector = connector;
+        }
+
+        public virtual string RawHandle(string input)
+        {
+            return string.Empty;
+        }
+
+        public virtual dynamic ProcessDetailed(string text)
+        {
+            return default(dynamic);
         }
 
         public virtual string Handle(Influencer influencer, UserInfluencerAuth userInfluencerAuthKey)

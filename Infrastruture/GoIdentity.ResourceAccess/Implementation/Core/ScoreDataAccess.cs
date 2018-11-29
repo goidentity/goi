@@ -1,4 +1,5 @@
 ﻿using GoIdentity.Entities.Core;
+using GoIdentity.Entities.Scores;
 using GoIdentity.ResourceAccess.Contracts.Core;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
                             .AddParm("@userId", SqlDbType.Int, userId)).ToList();
 
             return result;
-        }       
+        }
 
         public List<UserNotification> GetNotifications(int userId)
         {
@@ -41,14 +42,19 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
         public List<vUserToken> GetUserTokens(int userId)
         {
             return this.unitOfWork.GetIdentityDbContext()
-                .ExecuteResultSet<vUserToken>("SELECT * FROM Cores.vUserTokenView WHERE UserId = @userId" + userId.ToString())
+                .ExecuteResultSet<vUserToken>($"SELECT * FROM [Core].vUserTokenView WHERE UserId = {userId}")
                 .ToList();
+        }
+
+        public void RefreshScore(int userId)
+        {
+
         }
 
         public bool UpdateUserTokenResponse(IEnumerable<UserTokenResponse> tokenResponse)
         {
             var tokenResponseTableType = UserDefinedTableTypes.UserTokenResponseType;
-            foreach(var item in tokenResponse)
+            foreach (var item in tokenResponse)
             {
                 tokenResponseTableType.Rows.Add(new object[]
                 {
@@ -69,36 +75,60 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
 
             return true;
         }
-        public bool UpdateUserTokenResponseDetail(IEnumerable<UserTokenResponseDetail> responseDetail)
+
+        public bool UpdateUserTokenResponseDetail(UserTokenResponse response, List<GoogleData> responseDetail)
         {
+            var responseType = UserDefinedTableTypes.UserTokenResponseType;
             var responseDetailType = UserDefinedTableTypes.UserTokenResponseDetail;
+
+            responseType.Rows.Add(new object[]
+                {
+                    response.UserTokenResponseId,
+                    response.UserId,
+                    response.Token,
+                    response.ProcessDate,
+
+                    response.CreatedBy,
+                    response.CreatedDate,
+                    response.ModifiedBy,
+                    response.ModifiedDate
+                });
+
             foreach (var item in responseDetail)
             {
                 responseDetailType.Rows.Add(new object[]
                 {
-                    item.UserTokenResponseDetailId,
-                    item.UserTokenResponseId,
-                    item.ProcessedDate,
-                    item.ResponseDataFileName,
-                    item.NlpEntitiesFileName,
-                    item.NlpEntities,
-                    item.NlpSentimentFileName,
-                    item.NlpSentiment,
-                    item.NlpSyntaxFileName,
-                    item.NlpSyntax,
-                    item.NlpClassifyFileName,
-                    item.NlpClassify,
-                    item.CreatedBy,
-                    item.CreatedDate,
-                    item.ModifiedBy,
-                    item.ModifiedDate
+                    0,
+                    0,
+                    DateTime.Now,
+
+                    item.Link,
+                    item.Count,
+                    item.Description,
+
+
+                    item.AnalyzeEntities,
+                    item.AnalyzeEntitiesTokens,
+                    item.AnalyzeEntitiesScore,
+                    item.AnalyzeEntitiesMagnitude,
+
+                    item.AnalyzeEntitySentiment,
+                    item.AnalyzeEntitySentimentTokens,
+                    item.AnalyzeEntitySentimentScore,
+                    item.AnalyzeEntitySentimentMagnitude,
+
+                    item.AnalyzeSyntax,
+                    item.AnalyzeSyntaxTokens,
+
+                    item.ClassifyText,
+                    item.ClassifyTextTokens
                 });
             }
             var parmsCollection = new ParmsCollection();
-            this.unitOfWork.GetIdentityDbContext(true).ExecuteStoredProcedure<int>("",
+            this.unitOfWork.GetIdentityDbContext(true).ExecuteStoredProcedure<int>("[Scores].updateUserTokenResponseDetail",
                 parmsCollection
-               .AddParm("@userTokenResponseDetail", SqlDbType.Structured, responseDetailType, 
-               "[Scores].[userTokenResponseDetailType]"));
+               .AddParm("@userTokenResponse", SqlDbType.Structured, responseType, "[Scores].[UserTokenResponseType]")
+               .AddParm("@userTokenResponseDetail", SqlDbType.Structured, responseDetailType, "[Scores].UserTokenResponseDetailType"));
 
             return true;
         }

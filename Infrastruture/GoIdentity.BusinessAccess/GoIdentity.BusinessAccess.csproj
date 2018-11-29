@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Cloud.Language.V1" Version="1.2.0-beta01" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
   </ItemGroup>
 

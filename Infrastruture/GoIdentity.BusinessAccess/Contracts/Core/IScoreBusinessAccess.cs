@@ -13,5 +13,6 @@ namespace GoIdentity.BusinessAccess.Contracts.Core
         List<UserNotification> GetNotifications(int userId);
         List<ProfileScore> GetProfileScore(int userId);
         List<vUserToken> GetUserTokens(int userId);
+        void RefreshScore(int userId);
     }
 }

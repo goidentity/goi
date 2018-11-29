@@ -1,5 +1,6 @@
 ﻿CREATE TYPE [Scores].[UserTokenResponseType] AS TABLE
 (
+	UserTokenResponseId INT NOT NULL,
 	[UserId] INT NOT NULL, 
 
 	[Token] VARCHAR(8000) NOT NULL,

@@ -11,5 +11,11 @@ BEGIN
            ,[CreatedDate]
            ,[ModifiedBy]
            ,[ModifiedDate]) 
-	SELECT * FROM @userTokenResponse
+	SELECT [UserId]
+           ,[Token]
+           ,[ProcessDate]
+           ,[CreatedBy]
+           ,[CreatedDate]
+           ,[ModifiedBy]
+           ,[ModifiedDate] FROM @userTokenResponse
 END

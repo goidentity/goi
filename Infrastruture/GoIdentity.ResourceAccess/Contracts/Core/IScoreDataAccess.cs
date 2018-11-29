@@ -1,4 +1,5 @@
 ﻿using GoIdentity.Entities.Core;
+using GoIdentity.Entities.Scores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,8 @@ namespace GoIdentity.ResourceAccess.Contracts.Core
         List<UserNotification> GetNotifications(int userId);
         List<ProfileScore> GetProfileScore(int userId);
         List<vUserToken> GetUserTokens(int userId);
+        void RefreshScore(int userId);
         bool UpdateUserTokenResponse(IEnumerable<UserTokenResponse> tokenResponse);
-        bool UpdateUserTokenResponseDetail(IEnumerable<UserTokenResponseDetail> responseDetail);
+        bool UpdateUserTokenResponseDetail(UserTokenResponse response, List<GoogleData> responseDetail);
     }
 }

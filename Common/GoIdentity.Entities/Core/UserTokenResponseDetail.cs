@@ -12,15 +12,27 @@ namespace GoIdentity.Entities.Core
         [Key]
         public int UserTokenResponseDetailId { get; set; }
         public int UserTokenResponseId { get; set; }
+
         public DateTime ProcessedDate { get; set; }
-        public string ResponseDataFileName { get; set; }
-        public string NlpEntitiesFileName { get; set; }
-        public string NlpEntities { get; set; }
-        public string NlpSentimentFileName { get; set; }
-        public string NlpSentiment { get; set; }
-        public string NlpSyntaxFileName { get; set; }
-        public string NlpSyntax { get; set; }
-        public string NlpClassifyFileName { get; set; }
-        public string NlpClassify { get; set; }
+        public string TokenLink { get; set; }
+        public int? Count { get; set; }
+        public string Description { get; set; }
+
+        public string AnalyzeEntities { get; set; }
+        public string AnalyzeEntitiesTokens { get; set; }
+        public double? AnalyzeEntitiesScore { get; set; }
+        public double? AnalyzeEntitiesMagnitude { get; set; }
+
+        public string AnalyzeEntitySentiment { get; set; }
+        public string AnalyzeEntitySentimentTokens { get; set; }
+        public double? AnalyzeEntitySentimentScore { get; set; }
+        public double? AnalyzeEntitySentimentMagnitude { get; set; }
+
+        public string AnalyzeSyntax { get; set; }
+        public string AnalyzeSyntaxTokens { get; set; }
+
+        public string ClassifyText { get; set; }
+        public string ClassifyTextTokens { get; set; }
+
     }
 }
