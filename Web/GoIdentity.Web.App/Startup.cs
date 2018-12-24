@@ -30,6 +30,7 @@ namespace GoIdentity.Web.App
             ConnectionStrings.DOCS_PATH = Configuration.GetSection("AppSettings")["DocsPath"];
 
             ConnectionStrings.GOOGLE_AUTH_SECRET_KEY = Configuration.GetSection("AppSettings")["GoogleAuthSecretKey"];
+            ConnectionStrings.REDIRECT_URL_DOMAIN = Configuration.GetSection("AppSettings")["RedirectUrlDomain"];
         }
 
         public IConfigurationRoot Configuration { get; }

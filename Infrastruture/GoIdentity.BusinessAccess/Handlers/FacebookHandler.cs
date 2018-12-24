@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using GoIdentity.Entities.Scores;
+using GoIdentity.Utilities.Constants;
 using Newtonsoft.Json;
 
 namespace GoIdentity.BusinessAccess.Handlers
@@ -34,7 +35,7 @@ namespace GoIdentity.BusinessAccess.Handlers
         public override string AuthorizeUser(Influencer influencer)
         {
             string appId = influencer.ApiKey;
-            string callBackUrl = @"https://localhost:44344/api/oauth/facebook/callback";
+            string callBackUrl = $"{ConnectionStrings.REDIRECT_URL_DOMAIN}/api/oauth/facebook/callback";
 
             return @"https://www.facebook.com/dialog/oauth?" +
                            "client_id=" + appId +
@@ -47,7 +48,7 @@ namespace GoIdentity.BusinessAccess.Handlers
         {
             string appId = influencer.ApiKey,
                    appSecret = influencer.Other1,
-                   redirectUri = @"https://localhost:44344/api/oauth/facebook/callback";
+                   redirectUri = $"{ConnectionStrings.REDIRECT_URL_DOMAIN}/api/oauth/facebook/callback";
 
             using (var httpClient = new HttpClient() { BaseAddress = new Uri(@"https://graph.facebook.com/") })
             {

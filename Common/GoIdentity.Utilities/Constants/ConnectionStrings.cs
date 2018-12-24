@@ -9,5 +9,6 @@
         public static string DOCS_PATH { get; set; }
 
         public static string GOOGLE_AUTH_SECRET_KEY { get; set; }
+        public static string REDIRECT_URL_DOMAIN { get; set; }
     }
 }

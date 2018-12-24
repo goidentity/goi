@@ -1,4 +1,5 @@
 ﻿using GoIdentity.Entities.Scores;
+using GoIdentity.Utilities.Constants;
 using Google.Cloud.Language.V1;
 using Newtonsoft.Json;
 using System;
@@ -85,7 +86,7 @@ namespace GoIdentity.BusinessAccess.Handlers
         public override string AuthorizeUser(Influencer influencer)
         {
             var clientId = "222479061363-cs7ogfj3409d79vh2tjic6dief3m8vve.apps.googleusercontent.com"; //influencer.ApiKey;
-            string callBackUrl = @"https://localhost:44344/api/oauth/googleplus/callback";
+            string callBackUrl = $"{ConnectionStrings.REDIRECT_URL_DOMAIN}/api/oauth/googleplus/callback";
 
             return @"https://accounts.google.com/o/oauth2/v2/auth?" +
                     "scope=" + @"https://www.googleapis.com/auth/plus.login" + //profile&" +
@@ -101,7 +102,7 @@ namespace GoIdentity.BusinessAccess.Handlers
         {
             var clientId = influencer.ApiKey;
             var clientSecret = influencer.Other1;
-            string callBackUrl = @"https://localhost:44344/api/oauth/googleplus/callback";
+            string callBackUrl = $"{ConnectionStrings.REDIRECT_URL_DOMAIN}/api/oauth/googleplus/callback";
 
             //get access token            
             using (var httpClient = new HttpClient() { BaseAddress = new Uri(@"https://www.googleapis.com/") })

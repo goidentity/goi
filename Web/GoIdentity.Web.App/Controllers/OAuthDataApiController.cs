@@ -1,5 +1,6 @@
 ﻿using GoIdentity.BusinessAccess.Contracts.Core;
 using GoIdentity.Entities.Scores;
+using GoIdentity.Utilities.Constants;
 using GoIdentity.Web.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,8 @@ namespace GoIdentity.Web.App.Controllers
         public async Task<IActionResult> LinkedInCallback(string code, string state)
         {           
             bool isSuccess = await authBusinessAccess.StoreAuthToken(code, ConnectorType.LinkedIn, 1); //used LoggedInUserId instead of 1
-            return Redirect(@"https://localhost:44344/#/ops/connectors");
+            
+            return Redirect($"{ConnectionStrings.REDIRECT_URL_DOMAIN}/#/ops/connectors");
         }
         [HttpGet]
         [Route("linkedin")]
@@ -41,7 +43,7 @@ namespace GoIdentity.Web.App.Controllers
         public async Task<IActionResult> FacebookCallback(string code)
         {
             bool isSuccess = await authBusinessAccess.StoreAuthToken(code, ConnectorType.Facebook, 1);
-            return Redirect(@"https://localhost:44344/#/ops/connectors");
+            return Redirect($"{ConnectionStrings.REDIRECT_URL_DOMAIN}/#/ops/connectors");
         }
 
         [HttpGet]
@@ -60,14 +62,14 @@ namespace GoIdentity.Web.App.Controllers
         public async Task<IActionResult> TwitterCallback(string code)
         {
             bool isSuccess = await authBusinessAccess.StoreAuthToken(code, ConnectorType.Twitter, 1);
-            return Redirect(@"https://localhost:44344/#/ops/connectors");
+            return Redirect($"{ConnectionStrings.REDIRECT_URL_DOMAIN}/#/ops/connectors");
         }
         [HttpGet]
         [Route("twitter")]
         public async Task<IActionResult> TwitterAuthUrl()
         {
             bool? isSuccess = await authBusinessAccess.StoreAuthToken(string.Empty, ConnectorType.Twitter, 1);
-            return Redirect(@"https://localhost:44344/#/ops/connectors");
+            return Redirect($"{ConnectionStrings.REDIRECT_URL_DOMAIN}/#/ops/connectors");
             //return Ok(new
             //{
             //    Url = authBusinessAccess.AuthorizeUser(ConnectorType.Twitter)
@@ -80,7 +82,7 @@ namespace GoIdentity.Web.App.Controllers
         public async Task<IActionResult> GoogleCallback(string code)
         {
             bool isSuccess = await authBusinessAccess.StoreAuthToken(code, ConnectorType.Google, 1);
-            return Redirect(@"https://localhost:44344/#/ops/connectors");
+            return Redirect($"{ConnectionStrings.REDIRECT_URL_DOMAIN}/#/ops/connectors");
         }
 
         [HttpGet]

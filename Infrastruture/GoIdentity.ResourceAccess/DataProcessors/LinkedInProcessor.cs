@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoIdentity.Utilities.Constants;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,7 @@ namespace GoIdentity.ResourceAccess.DataProcessors
             return @"https://www.linkedin.com/oauth/v2/authorization?" +
                            "response_type=code&" +
                            "client_id=819u32abc5qgqk&" +
-                           "redirect_uri=https://localhost:53106/api/oauth/linkedin/callback&" +
+                           "redirect_uri="+$"{ConnectionStrings.REDIRECT_URL_DOMAIN}/api/oauth/linkedin/callback&" +
                            "state=987654321&" +
                            "scope=r_fullprofile";
         }
