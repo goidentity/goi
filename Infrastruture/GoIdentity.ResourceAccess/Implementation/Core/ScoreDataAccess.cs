@@ -132,5 +132,52 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
 
             return true;
         }
+        
+
+        public void UpdateUserScore(List<UserScore> userScores)
+        {
+            var groupId = Guid.NewGuid();
+            var sql = @"INSERT INTO [Core].[trUserScore]
+                                   ([UserId]
+                                   ,[ICMapId]
+                                   ,[ScoreType]
+                                   ,[Score]
+                                   ,[PositiveScore]
+                                   ,[NeutralScore]
+                                   ,[NegativeScore]
+                                   ,[ChangeScore]
+                                   ,[CreatedOn]
+                                   ,[GroupId])
+                             VALUES
+                                   (@userId
+                                   ,@icMapId
+                                   ,NULL
+                                   ,@score
+                                   ,@positiveScore
+                                   ,@neutralScore
+                                   ,@negativeScore
+                                   ,0
+                                   ,GETDATE()
+                                   ,@groupId)";
+
+            foreach(var userScore in userScores)
+            {
+                var parameters = new ParmsCollection();
+                parameters.AddParm("@userId", SqlDbType.Int, userScore.UserId);
+                parameters.AddParm("@icMapId", SqlDbType.Int, userScore.ICMapId);
+                parameters.AddParm("@score", SqlDbType.Decimal, userScore.Score);
+                parameters.AddParm("@positiveScore", SqlDbType.Decimal, userScore.PositiveScore);
+                parameters.AddParm("@neutralScore", SqlDbType.Decimal, userScore.NeutralScore);
+                parameters.AddParm("@negativeScore", SqlDbType.Decimal, userScore.NegativeScore);
+                parameters.AddParm("@groupId", SqlDbType.UniqueIdentifier, groupId);
+
+                this.unitOfWork.GetIdentityDbContext(true)
+                    .ExecuteNonQuery(sql, parameters, CommandType.Text);
+            }
+        }
+        public List<Category> GetCategories()
+        {
+            return this.unitOfWork.GetIdentityDbContext(true).Categories.ToList();
+        }
     }
 }

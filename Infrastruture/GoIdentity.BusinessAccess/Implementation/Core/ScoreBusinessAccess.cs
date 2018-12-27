@@ -3,6 +3,7 @@ using GoIdentity.BusinessAccess.Handlers;
 using GoIdentity.Entities.Core;
 using GoIdentity.Entities.Scores;
 using GoIdentity.ResourceAccess.Contracts.Core;
+using GoIdentity.Utilities;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,32 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
         public List<vUserToken> GetUserTokens(int userId)
         {
             return this.scoreDataAccess.GetUserTokens(userId);
+        }
+
+        public void Mock_RefreshScore(int userId)
+        {
+            /*
+             * Get categories
+             * Generate score for each category
+             * */
+            var categories = this.scoreDataAccess.GetCategories();
+            var userScores = new List<UserScore>();
+            var random = new Random();
+            foreach(var category in categories)
+            {
+                var userScore = new UserScore();
+                userScore.UserId = userId;
+                userScore.ICMapId = category.Id;
+                userScore.Score = random.Next(40, 100);
+                var rndm_inner = new Random();
+                var ionicScores = MockHelper.GetRandomValueCollection(rndm_inner, (double)userScore.Score, 3)
+                    .OrderByDescending(o=>o);
+                userScore.NeutralScore = (decimal)ionicScores.FirstOrDefault();
+                userScore.PositiveScore = (decimal)ionicScores.Skip(1).FirstOrDefault();
+                userScore.NegativeScore = (decimal)ionicScores.Skip(2).FirstOrDefault();
+                userScores.Add(userScore);
+            }
+            this.scoreDataAccess.UpdateUserScore(userScores);
         }
 
         public void RefreshScore(int userId)

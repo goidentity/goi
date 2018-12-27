@@ -16,9 +16,12 @@ namespace GoIdentity.Entities.Core
 
         public int? ICMapId { get; set; }
         public decimal Score { get; set; }
+        public decimal PositiveScore { get; set; }
+        public decimal NeutralScore { get; set; }
+        public decimal NegativeScore { get; set; }
         public decimal ChangeScore { get; set; }
 
         public DateTime CreatedOn { get; set; }
-        //public Guid GroupId { get; set; }
+        public Guid GroupId { get; set; }
     }
 }

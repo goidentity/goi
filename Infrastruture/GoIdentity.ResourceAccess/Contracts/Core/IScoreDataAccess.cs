@@ -17,5 +17,7 @@ namespace GoIdentity.ResourceAccess.Contracts.Core
         void RefreshScore(int userId);
         bool UpdateUserTokenResponse(IEnumerable<UserTokenResponse> tokenResponse);
         bool UpdateUserTokenResponseDetail(UserTokenResponse response, List<GoogleData> responseDetail);
+        void UpdateUserScore(List<UserScore> userScores);
+        List<Category> GetCategories();
     }
 }

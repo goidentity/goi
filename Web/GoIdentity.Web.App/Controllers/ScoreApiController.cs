@@ -41,7 +41,8 @@ namespace GoIdentity.Web.App.Controllers
         [AllowAnonymous]
         public IActionResult RefreshScore(int userId)
         {
-            _scoreBusinessAccess.RefreshScore(userId);
+            //_scoreBusinessAccess.RefreshScore(userId);
+            _scoreBusinessAccess.Mock_RefreshScore(userId);
             return Ok(true);
         }
     }

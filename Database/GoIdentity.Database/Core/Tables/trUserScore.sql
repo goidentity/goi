@@ -7,6 +7,9 @@
     [ScoreType] varchar(500) NULL,
 
 	[Score] DECIMAL(18, 2) NOT NULL default(0), 
+	[PositiveScore] DECIMAL(18,2) NOT NULL default(0),
+	[NeutralScore] DECIMAL(18,2) NOT NULL default(0),
+	[NegativeScore] DECIMAL(18,2) NOT NULL default(0),
 	[ChangeScore] DECIMAL(18, 2) NOT NULL default(0), 
 
     [CreatedOn] DATETIME NOT NULL, 

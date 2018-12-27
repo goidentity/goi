@@ -96,12 +96,12 @@
 
 	IF NOT EXISTS (SELECT 1 FROM Core.dmnCategory)
 	BEGIN
-		INSERT INTO Core.dmnCategory ([Name]) VALUES ('Profile')
-		INSERT INTO Core.dmnCategory ([Name]) VALUES ('Education')
-		INSERT INTO Core.dmnCategory ([Name]) VALUES ('SelfIndustry')
-		INSERT INTO Core.dmnCategory ([Name]) VALUES ('Profession')
-		INSERT INTO Core.dmnCategory ([Name]) VALUES ('Business')
-		INSERT INTO Core.dmnCategory ([Name]) VALUES ('Social')
+		INSERT INTO Core.dmnCategory ([Name], [Weightage]) VALUES ('Profile', .5)
+		INSERT INTO Core.dmnCategory ([Name], [Weightage] ) VALUES ('Education', .25)
+		INSERT INTO Core.dmnCategory ([Name], [Weightage]) VALUES ('SelfIndustry', .20)
+		INSERT INTO Core.dmnCategory ([Name], [Weightage]) VALUES ('Profession', .25)
+		INSERT INTO Core.dmnCategory ([Name], [Weightage]) VALUES ('Business', .10)
+		INSERT INTO Core.dmnCategory ([Name], [Weightage]) VALUES ('Social', .15)
 	END
 
 	IF NOT EXISTS (SELECT 1 FROM Core.dmnIndustryCategoryMap)

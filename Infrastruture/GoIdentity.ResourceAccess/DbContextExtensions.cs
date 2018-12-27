@@ -95,19 +95,23 @@ namespace GoIdentity.ResourceAccess
             var parmArray = default(SqlParameter[]);
             var sqlQuery = new StringBuilder(string.Format("EXECUTE {0} ", procedureName));
 
-            if (queryCommandType != CommandType.StoredProcedure) { sqlQuery = new StringBuilder(procedureName); }
-
-            if (parms != null && parms.Count > 0)
+            if(queryCommandType != CommandType.StoredProcedure)
             {
-                for (int i = 0; i < parms.ToArray().Length; i++)
-                {
-                    sqlQuery.Append(string.Format("{0} {1},", parms[i].ParameterName, parms[i].Direction == ParameterDirection.Input ? string.Empty : "out"));
-                }
-                sqlQuery = sqlQuery.Remove(sqlQuery.Length - 1, 1);
+                sqlQuery = new StringBuilder(procedureName);
             }
+            
 
             if (queryCommandType == CommandType.StoredProcedure)
             {
+                if (parms != null && parms.Count > 0)
+                {
+                    for (int i = 0; i < parms.ToArray().Length; i++)
+                    {
+                        sqlQuery.Append(string.Format("{0} {1},", parms[i].ParameterName, parms[i].Direction == ParameterDirection.Input ? string.Empty : "out"));
+                    }
+                    sqlQuery = sqlQuery.Remove(sqlQuery.Length - 1, 1);
+                }
+
                 if (parms == null || parms.Count == 0)
                 {
                     result = db.Database.ExecuteSqlCommand($"{sqlQuery.ToString()}");

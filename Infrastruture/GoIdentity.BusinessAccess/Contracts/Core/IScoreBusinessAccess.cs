@@ -14,5 +14,6 @@ namespace GoIdentity.BusinessAccess.Contracts.Core
         List<ProfileScore> GetProfileScore(int userId);
         List<vUserToken> GetUserTokens(int userId);
         void RefreshScore(int userId);
+        void Mock_RefreshScore(int userId);
     }
 }
