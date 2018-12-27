@@ -96,7 +96,7 @@
 
 	IF NOT EXISTS (SELECT 1 FROM Core.dmnCategory)
 	BEGIN
-		INSERT INTO Core.dmnCategory ([Name], [Weightage]) VALUES ('Profile', .5)
+		INSERT INTO Core.dmnCategory ([Name], [Weightage]) VALUES ('Profile', .05)
 		INSERT INTO Core.dmnCategory ([Name], [Weightage] ) VALUES ('Education', .25)
 		INSERT INTO Core.dmnCategory ([Name], [Weightage]) VALUES ('SelfIndustry', .20)
 		INSERT INTO Core.dmnCategory ([Name], [Weightage]) VALUES ('Profession', .25)

@@ -1,4 +1,5 @@
 ﻿using GoIdentity.Entities.Core;
+using GoIdentity.Entities.Scores;
 using GoIdentity.Entities.Security;
 using System.Collections.Generic;
 
@@ -14,5 +15,6 @@ namespace GoIdentity.ResourceAccess.Contracts.Core
         List<UserScore> GetUserScores(int? userId = null);
 
         bool UpdateUserProfile(User user);
+        UserIdentity GetUserIdentity(int userId);
     }
 }

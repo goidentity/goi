@@ -1,7 +1,9 @@
 ﻿using GoIdentity.Entities.Core;
+using GoIdentity.Entities.Scores;
 using GoIdentity.Entities.Security;
 using GoIdentity.ResourceAccess.Contracts.Core;
 using GoIdentity.Utilities.Constants;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -10,10 +12,11 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
 {
     public class UserDataAccess : DataAccess, IUserDataAccess
     {
-        public UserDataAccess(UserContext userContext, IUnitOfWork unitOfWork)
+        private readonly IScoreDataAccess scoreDataAccess;
+        public UserDataAccess(IScoreDataAccess scoreDataAccess, UserContext userContext, IUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
-
+            this.scoreDataAccess = scoreDataAccess;
         }
 
         public List<Claim> ValidateUser(UserLoginLog userLoginLog, out User user)
@@ -112,7 +115,8 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
         public List<UserScore> GetUserScores(int? userId = null)
         {
             var scores = this.unitOfWork.GetIdentityDbContext().UserScores.Where(u => u.UserId == userId).ToList();
-            return scores;
+            var groupId = scores.OrderByDescending(o => o.CreatedOn).Select(f=>f.GroupId).FirstOrDefault();
+            return scores.Where(s=>s.GroupId == groupId).ToList();
         }
 
         public bool UpdateUserProfile(User user)
@@ -225,6 +229,20 @@ namespace GoIdentity.ResourceAccess.Implementation.Core
                             ).FirstOrDefault();
 
             return true;
+        }
+
+        public UserIdentity GetUserIdentity(int userId)
+        {
+            var user = GetUserProfile(userId);
+            var ui = new UserIdentity();
+            ui.UserId = userId;
+            ui.UserName = user.FirstName + " " + user.LastName;
+            ui.Title = "Entrepreneur, Developer, Operations";
+            ui.Rank = (new Random()).Next(1, 50);
+            ui.Badge = "You are a social Geek";
+            var userScores = this.scoreDataAccess.GetLatestScoreByUserId(userId);
+            ui.CategoryScores = userScores;
+            return ui;
         }
     }
 }

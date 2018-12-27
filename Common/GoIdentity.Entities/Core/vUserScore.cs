@@ -12,9 +12,13 @@ namespace GoIdentity.Entities.Core
         public decimal IndustryWeightage { get; set; }
         public int CategoryId { get; set; }
         public string Category { get; set; }
+        public decimal CategoryWeightage { get; set; }
         public int UserId { get; set; }
         public decimal Score { get; set; }
         public decimal LastScore { get; set; }
         public string ScoreType { get; set; }
+        public decimal PositiveScore { get; set; }
+        public decimal NeutralScore { get; set; }
+        public decimal NegativeScore { get; set; }
     }
 }

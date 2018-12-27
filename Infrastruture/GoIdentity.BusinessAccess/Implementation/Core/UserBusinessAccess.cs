@@ -5,6 +5,7 @@ using GoIdentity.ResourceAccess.Contracts.Core;
 using GoIdentity.BusinessAccess.Contracts.Core;
 using GoIdentity.Utilities.Security;
 using System.Collections.Generic;
+using GoIdentity.Entities.Scores;
 
 namespace GoIdentity.BusinessAccess.Implementation.Core
 {
@@ -66,6 +67,11 @@ namespace GoIdentity.BusinessAccess.Implementation.Core
         public bool UpdateUserProfile(User user)
         {
             return userDataAccess.UpdateUserProfile(user);
+        }
+
+        public UserIdentity GetUserIdentity(int userId)
+        {
+            return this.userDataAccess.GetUserIdentity(userId);
         }
     }
 }

@@ -4,6 +4,7 @@ using GoIdentity.ResourceAccess.Contracts.Core;
 using GoIdentity.BusinessAccess.Contracts.Core;
 using GoIdentity.Utilities.Security;
 using System.Collections.Generic;
+using GoIdentity.Entities.Scores;
 
 namespace GoIdentity.BusinessAccess.Contracts.Core
 {
@@ -18,6 +19,6 @@ namespace GoIdentity.BusinessAccess.Contracts.Core
         User GetUserProfile(int? userId = null);
         List<UserScore> GetUserScores(int? userId = null);
         bool UpdateUserProfile(User user);
-
+        UserIdentity GetUserIdentity(int userId);
     }
 }
