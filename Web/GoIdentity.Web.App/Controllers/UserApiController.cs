@@ -72,8 +72,9 @@ namespace GoIdentity.Web.Controllers
         }
         [Route("[action]")]
         [HttpGet]
-        public IActionResult GetUserIdentity(int userId)
+        public IActionResult GetUserIdentity()
         {
+            var userId = this.LoggedInUserId;
             return Ok(this.userBusinessAccess.GetUserIdentity(userId));
         }
         /*
