@@ -70,12 +70,10 @@ namespace GoIdentity.Web.Controllers
             var loggedInUserId = this.LoggedInUserId;
             return Ok(this.userBusinessAccess.UpdateUserProfile(user));
         }
-        [AllowAnonymous]
         [Route("[action]")]
         [HttpGet]
         public IActionResult GetUserIdentity(int userId)
         {
-            //var userId = this.LoggedInUserId;
             return Ok(this.userBusinessAccess.GetUserIdentity(userId));
         }
         /*
